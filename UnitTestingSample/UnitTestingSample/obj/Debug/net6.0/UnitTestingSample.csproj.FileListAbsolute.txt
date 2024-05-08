@@ -1,0 +1,12 @@
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\bin\Debug\net6.0\UnitTestingSample.deps.json
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\bin\Debug\net6.0\UnitTestingSample.dll
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\bin\Debug\net6.0\UnitTestingSample.pdb
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\obj\Debug\net6.0\UnitTestingSample.csproj.AssemblyReference.cache
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\obj\Debug\net6.0\UnitTestingSample.GeneratedMSBuildEditorConfig.editorconfig
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\obj\Debug\net6.0\UnitTestingSample.AssemblyInfoInputs.cache
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\obj\Debug\net6.0\UnitTestingSample.AssemblyInfo.cs
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\obj\Debug\net6.0\UnitTestingSample.csproj.CoreCompileInputs.cache
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\obj\Debug\net6.0\UnitTestingSample.dll
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\obj\Debug\net6.0\refint\UnitTestingSample.dll
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\obj\Debug\net6.0\UnitTestingSample.pdb
+G:\Work\Personal\UnitTestingSample\UnitTestingSample\obj\Debug\net6.0\ref\UnitTestingSample.dll

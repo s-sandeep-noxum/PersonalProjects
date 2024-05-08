@@ -1,0 +1,134 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "ErrorOr/0.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/ErrorOr.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/ErrorOr.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "BuberBreakfast.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/BuberBreakfast.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BuberBreakfast.Contracts.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ErrorOr/0.1.0": {
+      "sha512": "adIVrA1Ixck5oZ79ZKB5f7k+aVlg4AB47nNHY14+qI8d+4//sTe0Dvbp8AIJEz/94OimmWjdGfei67q9UZPGig==",
+      "type": "package",
+      "path": "erroror/0.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "erroror.0.1.0.nupkg.sha512",
+        "erroror.nuspec",
+        "icon-square.png",
+        "lib/net6.0/ErrorOr.dll",
+        "lib/net6.0/ErrorOr.xml"
+      ]
+    },
+    "BuberBreakfast.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../BuberBreakfast.contracts/BuberBreakfast.Contracts.csproj",
+      "msbuildProject": "../BuberBreakfast.contracts/BuberBreakfast.Contracts.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "BuberBreakfast.Contracts >= 1.0.0",
+      "ErrorOr >= 0.1.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Sandeep.shenoy\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "F:\\Personal Code\\BuberBreakfast\\BuberBreakfast\\BuberBreakfast.csproj",
+      "projectName": "BuberBreakfast",
+      "projectPath": "F:\\Personal Code\\BuberBreakfast\\BuberBreakfast\\BuberBreakfast.csproj",
+      "packagesPath": "C:\\Users\\Sandeep.shenoy\\.nuget\\packages\\",
+      "outputPath": "F:\\Personal Code\\BuberBreakfast\\BuberBreakfast\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Sandeep.shenoy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "F:\\Personal Code\\BuberBreakfast\\BuberBreakfast.contracts\\BuberBreakfast.Contracts.csproj": {
+              "projectPath": "F:\\Personal Code\\BuberBreakfast\\BuberBreakfast.contracts\\BuberBreakfast.Contracts.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "dependencies": {
+          "ErrorOr": {
+            "target": "Package",
+            "version": "[0.1.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

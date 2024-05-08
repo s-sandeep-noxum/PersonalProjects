@@ -1,0 +1,101 @@
+﻿<scg:List 
+          xmlns:sys="clr-namespace:System;assembly="
+          xmlns:scg="clr-namespace:System.Collections.Generic;assembly="
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:xx="Noxum.Publishing.ImageConverter;assembly="
+          xmlns="clr-namespace:Noxum.Publishing.ImageConverter.ImageTypeProperties"
+		  x:TypeArguments="ImageTypeInfo"
+		  x:abc ="ImageTypeInfo"
+		  x:Class="Noxum.Publishing.ImageConverter.ImageTypeProperties.ImageTypeInfo">
+	<ImageTypeInfo ImageType="AI" IsTransparent="True" HasResolution="False" HasPages="True" HasLayers="True" HasClippingPaths ="True" IsVector="True">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="PAM"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+	<ImageTypeInfo ImageType="BMP" IsTransparent="False" HasResolution="True" HasPages="False" HasLayers="False" HasClippingPaths ="False" IsVector="False">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="BMP2"/>
+				<Alias Value="BMP3"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+	<ImageTypeInfo ImageType="EPS" IsTransparent="True" HasResolution="True" HasPages="False" HasLayers="True" HasClippingPaths ="True" IsVector="True">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="EPI"/>
+				<Alias Value="EPS2"/>
+				<Alias Value="EPS3"/>
+				<Alias Value="EPSF"/>
+				<Alias Value="EPSI"/>
+				<Alias Value="EPT"/>
+				<Alias Value="EPT2"/>
+				<Alias Value="EPT3"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+	<ImageTypeInfo ImageType="GIF" IsTransparent="True"  HasResolution="False" HasPages="True"  HasLayers="True" HasClippingPaths ="False" IsVector="False">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="GIF87"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+	<ImageTypeInfo ImageType="JP2" IsTransparent="True" HasResolution="True" HasPages="False"  HasLayers="False" HasClippingPaths ="True" IsVector="False"/>
+	<ImageTypeInfo ImageType="JPG" IsTransparent="False" HasResolution="True" HasPages="False"  HasLayers="False" HasClippingPaths ="True" IsVector="False">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="JPEG"/>
+				<Alias Value="PJPEG"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+	<ImageTypeInfo ImageType="PCX" IsTransparent="False" HasResolution="True" HasPages="False"  HasLayers="False" HasClippingPaths ="False" IsVector="False"/>
+	<ImageTypeInfo ImageType="PDF" IsTransparent="True" HasResolution="False" HasPages="True"  HasLayers="False" HasClippingPaths ="True" IsVector="True">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="PDFA"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+	<ImageTypeInfo ImageType="PNG" IsTransparent="True" HasResolution="True" HasPages="False"  HasLayers="False" HasClippingPaths ="False" IsVector="False">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="PNG00"/>
+				<Alias Value="PNG24"/>
+				<Alias Value="PNG32"/>
+				<Alias Value="PNG48"/>
+				<Alias Value="PNG64"/>
+				<Alias Value="PNG8"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+	<ImageTypeInfo ImageType="PS" IsTransparent="True" HasResolution="True" HasPages="False"  HasLayers="False" HasClippingPaths ="True" IsVector="True">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="PS2"/>
+				<Alias Value="PS3"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+	<ImageTypeInfo ImageType="PSD" IsTransparent="True" HasResolution="True" HasPages="False"  HasLayers="True" HasClippingPaths ="True" IsVector="False"/>
+	<ImageTypeInfo ImageType="SVG" IsTransparent="True" HasResolution="False" HasPages="False"  HasLayers="True" HasClippingPaths ="True" IsVector="True"/>
+	<ImageTypeInfo ImageType="TIFF" IsTransparent="True" HasResolution="True" HasPages="True"  HasLayers="True" HasClippingPaths ="True" IsVector="False">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="TIF"/>
+				<Alias Value="TIFF64"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+	<ImageTypeInfo ImageType="WMF" IsTransparent="True" HasResolution="False" HasPages="False"  HasLayers="False" HasClippingPaths ="False" IsVector="False">
+		<ImageTypeInfo.Alias>
+			<AliasContainer>
+				<Alias Value="EMF"/>
+			</AliasContainer>
+		</ImageTypeInfo.Alias>
+	</ImageTypeInfo>
+</scg:List>
+<!--<sys:ArrayList xmlns:sys="clr-namespace:System.Collections;assembly=mscorlib"/>-->

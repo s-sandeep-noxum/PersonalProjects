@@ -1,0 +1,7 @@
+F:\Personal Code\ListChecker\ListChecker\bin\Debug\ListChecker.exe.config
+F:\Personal Code\ListChecker\ListChecker\bin\Debug\ListChecker.exe
+F:\Personal Code\ListChecker\ListChecker\bin\Debug\ListChecker.pdb
+F:\Personal Code\ListChecker\ListChecker\obj\Debug\ListChecker.csproj.AssemblyReference.cache
+F:\Personal Code\ListChecker\ListChecker\obj\Debug\ListChecker.csproj.CoreCompileInputs.cache
+F:\Personal Code\ListChecker\ListChecker\obj\Debug\ListChecker.exe
+F:\Personal Code\ListChecker\ListChecker\obj\Debug\ListChecker.pdb

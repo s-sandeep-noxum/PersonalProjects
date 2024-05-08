@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>WorkItemFolder</id>
+    <version>1.0.0</version>
+    <authors>WorkItemFolder</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0-windows7.0">
+        <dependency id="Microsoft.Azure.Amqp" version="2.6.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CSharp" version="4.7.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.IdentityModel.Tokens" version="6.16.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.NETCore.Targets" version="5.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.TeamFoundation.DistributedTask.Common.Contracts" version="16.205.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.TeamFoundationServer.Client" version="16.205.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.TeamFoundationServer.ExtendedClient" version="16.205.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.VisualStudio.Services.Client" version="16.205.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.VisualStudio.Services.InteractiveClient" version="16.205.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.ComponentModel.Composition" version="7.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Data.DataSetExtensions" version="4.5.0" exclude="Build,Analyzers" />
+        <dependency id="System.IdentityModel.Tokens.Jwt" version="6.16.0" exclude="Build,Analyzers" />
+        <dependency id="System.Private.Uri" version="4.3.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net6.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/net6.0-windows7.0/Data/YearData.xml" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="F:\Personal Code\FolderCreator\FolderCreator\bin\Debug\net6.0-windows\WorkItemFolder.runtimeconfig.json" target="lib\net6.0-windows7.0\WorkItemFolder.runtimeconfig.json" />
+    <file src="F:\Personal Code\FolderCreator\FolderCreator\bin\Debug\net6.0-windows\WorkItemFolder.dll" target="lib\net6.0-windows7.0\WorkItemFolder.dll" />
+    <file src="F:\Personal Code\FolderCreator\FolderCreator\Data\YearData.xml" target="content\Data\YearData.xml" />
+    <file src="F:\Personal Code\FolderCreator\FolderCreator\Data\YearData.xml" target="contentFiles\any\net6.0-windows7.0\Data\YearData.xml" />
+  </files>
+</package>
