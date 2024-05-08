@@ -41,7 +41,7 @@ namespace WorkItemFolder.ConnectionItems
             {
                 const String c_collectionUri = @"https://noxum.visualstudio.com/";
                 const String c_projectName = "Noxum.PS5";
-                const String c_token = "bxqnie4h3py3bnoogvveja7fibjcszbxb5icy43bxpxo4gjx6nyq";
+                const String c_token = "";
 
                 Uri orgUrl = new Uri(c_collectionUri);
 
