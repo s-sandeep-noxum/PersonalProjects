@@ -1,14 +1,14 @@
 ﻿using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using System;
+using System.Configuration;
 
 namespace WorkItemFolder.ConnectionItems
 {
     public static class ConnectionClass
     {
         const String c_collectionUri = @"https://noxum.visualstudio.com/";
-        public const String ProjectName = "Noxum.PS5";
-        const String c_token = "kgosdqajx5vj36nj5tqugacq35dibd6cnihmnx3sl7dp6q4jkbva";
+        public const String ProjectName = "Noxum.PS5";       
         private static VssConnection myConnection = null;
 
         public static VssConnection MyConnection
@@ -18,7 +18,7 @@ namespace WorkItemFolder.ConnectionItems
                 if (myConnection == null)
                 {
                     Uri Uri = new Uri(c_collectionUri);
-                    myConnection = new(Uri, new VssBasicCredential(string.Empty, c_token));
+                    myConnection = new(Uri, new VssBasicCredential(string.Empty, ConfigurationManager.AppSettings["cToken"]));
                     return myConnection;
                 }
                 return myConnection;

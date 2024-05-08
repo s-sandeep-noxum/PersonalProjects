@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WorkItemFolder
-build_property.ProjectDir = F:\Personal Code\FolderCreator\FolderCreator\
+build_property.ProjectDir = F:\PersonalProjects\FolderCreator\FolderCreator\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
