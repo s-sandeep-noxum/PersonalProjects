@@ -1,7 +1,8 @@
-﻿using Microsoft.VisualStudio.Services.Common;
+﻿using FolderCreator;
+using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using System;
-using System.Configuration;
 
 namespace WorkItemFolder.ConnectionItems
 {
@@ -17,8 +18,16 @@ namespace WorkItemFolder.ConnectionItems
             {
                 if (myConnection == null)
                 {
+
+                    ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+                    IConfiguration configuration = configurationBuilder
+                                                    .AddUserSecrets("011cf0df-752c-481d-96cc-728b1efb92fe")                                                    
+                                                    .Build();
+
+                    string azureToken = configuration.GetSection("Azure")["cToken"];
+
                     Uri Uri = new Uri(c_collectionUri);
-                    myConnection = new(Uri, new VssBasicCredential(string.Empty, ConfigurationManager.AppSettings["cToken"]));
+                    myConnection = new(Uri, new VssBasicCredential(string.Empty, azureToken));
                     return myConnection;
                 }
                 return myConnection;
