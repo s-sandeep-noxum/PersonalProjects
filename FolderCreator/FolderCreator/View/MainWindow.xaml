@@ -5,7 +5,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Work Item Generator" Height="640" Width="1200" Icon="/Icons/bookmark.png">
+        Title="Work Item Generator" Height="640" Width="1200">
     <TabControl Margin="5">
         <TabItem Header="Work Items">
             <Grid>
