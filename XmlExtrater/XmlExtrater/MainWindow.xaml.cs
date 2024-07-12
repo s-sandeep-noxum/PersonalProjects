@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 
-namespace XmlExtrater
+namespace XmlStripper
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
