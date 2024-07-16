@@ -8,13 +8,13 @@ namespace WorkItemFolder.ConnectionItems
 	public static class ConnectionClass
 	{
 		private const String c_collectionUri = @"https://noxum.visualstudio.com/";		
-		private static VssConnection myConnection = null;
+		private static VssConnection connection = null;
 
-		public static VssConnection MyConnection
+		public static VssConnection Connection
 		{
 			get
 			{
-				if (myConnection == null)
+				if (connection == null)
 				{
 					ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
 					IConfiguration configuration = configurationBuilder
@@ -24,10 +24,10 @@ namespace WorkItemFolder.ConnectionItems
 					string azureToken = configuration.GetSection("Azure")["cToken"];
 
 					Uri Uri = new Uri(c_collectionUri);
-					myConnection = new(Uri, new VssBasicCredential(string.Empty, azureToken));
-					return myConnection;
+					connection = new(Uri, new VssBasicCredential(string.Empty, azureToken));
+					return connection;
 				}
-				return myConnection;
+				return connection;
 			}
 		}
 

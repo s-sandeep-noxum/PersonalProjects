@@ -33,8 +33,8 @@ namespace FolderCreator.ViewModel
 		private string description;
 		private string folderPath;
 
-		private List<string> myQueries;
 		private List<string> projects;
+		private List<string> queries;
 		private ICommand saveClick;
 		private ICommand searchClick;
 		private string selectedProject;
@@ -116,23 +116,6 @@ namespace FolderCreator.ViewModel
 			}
 		}
 
-		public List<string> MyQueries
-		{
-			get
-			{
-				return myQueries;
-			}
-
-			set
-			{
-				if (myQueries != value)
-				{
-					myQueries = value;
-					OnPropertyChanged(nameof(MyQueries));
-				}
-			}
-		}
-
 		public List<string> Projects
 		{
 			get
@@ -140,7 +123,7 @@ namespace FolderCreator.ViewModel
 				if (this.projects == null)
 				{
 					this.projects = new List<string>();
-					ProjectHttpClient projectClient = ConnectionClass.MyConnection.GetClient<ProjectHttpClient>();
+					ProjectHttpClient projectClient = ConnectionClass.Connection.GetClient<ProjectHttpClient>();
 					IEnumerable<TeamProjectReference> projectsWithAccess = projectClient.GetProjects().Result;
 
 					foreach (TeamProjectReference p in projectsWithAccess)
@@ -148,10 +131,26 @@ namespace FolderCreator.ViewModel
 						this.projects.Add(p.Name);
 					}
 				}
-				return this.projects;
+				return this.projects.OrderBy(x => x).ToList();
 			}
 		}
 
+		public List<string> Queries
+		{
+			get
+			{
+				return queries;
+			}
+
+			set
+			{
+				if (this.queries != value)
+				{
+					this.queries = value;
+					OnPropertyChanged(nameof(Queries));
+				}
+			}
+		}
 		public ICommand SaveClick
 		{
 			get
@@ -176,7 +175,7 @@ namespace FolderCreator.ViewModel
 				if (this.selectedProject != value)
 				{
 					this.selectedProject = value;
-					this.MyQueries = this.GetMyQueries(selectedProject);
+					this.Queries = this.GetQueries(selectedProject);
 					OnPropertyChanged(nameof(SelectedProject));
 				}
 			}
@@ -277,7 +276,7 @@ namespace FolderCreator.ViewModel
 		private static WorkItemTrackingHttpClient GetMyQueriesFromProject(string ProjectName, out QueryHierarchyItem myQueriesFolder)
 		{
 			// Create instance of WorkItemTrackingHttpClient using VssConnection
-			WorkItemTrackingHttpClient witClient = ConnectionClass.MyConnection.GetClient<WorkItemTrackingHttpClient>();
+			WorkItemTrackingHttpClient witClient = ConnectionClass.Connection.GetClient<WorkItemTrackingHttpClient>();
 
 			// Get 2 levels of query hierarchy items
 			List<QueryHierarchyItem> queryHierarchyItems = witClient.GetQueriesAsync(ProjectName, depth: 2).Result;
@@ -395,7 +394,7 @@ namespace FolderCreator.ViewModel
 			return WiNumber + "-" + Title;
 		}
 
-		private List<string> GetMyQueries(string ProjectName)
+		private List<string> GetQueries(string ProjectName)
 		{
 			List<string> savedQueries = new List<string>();
 			QueryHierarchyItem myQueriesFolder;
@@ -413,7 +412,7 @@ namespace FolderCreator.ViewModel
 			}
 			if (savedQueries.Count > 0)
 			{
-				return savedQueries;
+				return savedQueries.OrderBy(x => x).ToList();
 			}
 			return null;
 		}

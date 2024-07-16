@@ -37,7 +37,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Project:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 10 0" />
                     <ComboBox Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Name="cmbProjects" MinWidth="120" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" />
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Query:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 10 0" />
-                    <ComboBox Grid.Row="0" Grid.Column="3" Height="25" VerticalAlignment="Center" HorizontalAlignment="left" Name="cmbQuery" MinWidth="120" ItemsSource="{Binding MyQueries}" SelectedItem="{Binding CurrentQuery}" />
+                    <ComboBox Grid.Row="0" Grid.Column="3" Height="25" VerticalAlignment="Center" HorizontalAlignment="left" Name="cmbQuery" MinWidth="120" ItemsSource="{Binding Queries}" SelectedItem="{Binding CurrentQuery}" />
                     <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" Content="Search" MinWidth="100" Margin="10 0 0 0" />
                 </Grid>
 
