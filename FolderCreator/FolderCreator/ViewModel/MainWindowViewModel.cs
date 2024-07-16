@@ -274,6 +274,20 @@ namespace FolderCreator.ViewModel
 			return ((IdentityRef)identityOjbect).DisplayName;
 		}
 
+		private static WorkItemTrackingHttpClient GetMyQueriesFromProject(string ProjectName, out QueryHierarchyItem myQueriesFolder)
+		{
+			// Create instance of WorkItemTrackingHttpClient using VssConnection
+			WorkItemTrackingHttpClient witClient = ConnectionClass.MyConnection.GetClient<WorkItemTrackingHttpClient>();
+
+			// Get 2 levels of query hierarchy items
+			List<QueryHierarchyItem> queryHierarchyItems = witClient.GetQueriesAsync(ProjectName, depth: 2).Result;
+
+			// Search for 'My Queries' folder
+			myQueriesFolder = queryHierarchyItems.FirstOrDefault(qhi => qhi.Name.Equals("My Queries"));
+
+			return witClient;
+		}
+
 		private static async Task ShowWorkItemDetails(VssConnection connection, int workItemId)
 		{
 			// Get an instance of the work item tracking client
@@ -384,14 +398,8 @@ namespace FolderCreator.ViewModel
 		private List<string> GetMyQueries(string ProjectName)
 		{
 			List<string> savedQueries = new List<string>();
-			// Create instance of WorkItemTrackingHttpClient using VssConnection
-			WorkItemTrackingHttpClient witClient = ConnectionClass.MyConnection.GetClient<WorkItemTrackingHttpClient>();
-
-			// Get 2 levels of query hierarchy items
-			List<QueryHierarchyItem> queryHierarchyItems = witClient.GetQueriesAsync(ProjectName, depth: 2).Result;
-
-			// Search for 'My Queries' folder
-			QueryHierarchyItem myQueriesFolder = queryHierarchyItems.FirstOrDefault(qhi => qhi.Name.Equals("My Queries"));
+			QueryHierarchyItem myQueriesFolder;
+			GetMyQueriesFromProject(ProjectName, out myQueriesFolder);
 
 			if (myQueriesFolder != null)
 			{
@@ -410,7 +418,7 @@ namespace FolderCreator.ViewModel
 			return null;
 		}
 
-		private string GetTagValues(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem workItem)
+		private string GetTagValues(WorkItem workItem)
 		{
 			object identityOjbect;
 			workItem.Fields.TryGetValue("System.Tags", out identityOjbect);
@@ -428,16 +436,11 @@ namespace FolderCreator.ViewModel
 			try
 			{
 				if (string.IsNullOrEmpty(selectedQuery)) return null;
-
 				List<WorkItemDetails> workItemDetails = new List<WorkItemDetails>();
-				// Create instance of WorkItemTrackingHttpClient using VssConnection
-				WorkItemTrackingHttpClient witClient = ConnectionClass.MyConnection.GetClient<WorkItemTrackingHttpClient>();
 
-				// Get 2 levels of query hierarchy items
-				List<QueryHierarchyItem> queryHierarchyItems = witClient.GetQueriesAsync(ConnectionClass.ProjectName, depth: 2).Result;
+				QueryHierarchyItem myQueriesFolder;
+				WorkItemTrackingHttpClient witClient = GetMyQueriesFromProject(this.SelectedProject, out myQueriesFolder);
 
-				// Search for 'My Queries' folder
-				QueryHierarchyItem myQueriesFolder = queryHierarchyItems.FirstOrDefault(qhi => qhi.Name.Equals("My Queries"));
 				if (myQueriesFolder != null)
 				{
 					// See if our 'Open WI' query already exists under 'My Queries' folder.
@@ -460,7 +463,7 @@ namespace FolderCreator.ViewModel
 							if (workItemRefs.Any())
 							{
 								// get details for each work item in the batch
-								List<Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem> workItems = witClient.GetWorkItemsAsync(workItemRefs.Select(wir => wir.Id)).Result;
+								List<WorkItem> workItems = witClient.GetWorkItemsAsync(workItemRefs.Select(wir => wir.Id)).Result;
 								foreach (var workItem in workItems)
 								{
 									workItemDetails.Add(new WorkItemDetails

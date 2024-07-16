@@ -8,7 +8,7 @@ namespace WorkItemFolder.ConnectionItems
 {
 	public static class ConnectionClass
 	{
-		const String c_collectionUri = @"https://noxum.visualstudio.com/";
+		private const String c_collectionUri = @"https://noxum.visualstudio.com/";
 		public const String ProjectName = "Noxum.PS5";
 		private static VssConnection myConnection = null;
 
@@ -18,7 +18,6 @@ namespace WorkItemFolder.ConnectionItems
 			{
 				if (myConnection == null)
 				{
-
 					ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
 					IConfiguration configuration = configurationBuilder
 																					.AddUserSecrets("011cf0df-752c-481d-96cc-728b1efb92fe")
@@ -50,8 +49,7 @@ namespace WorkItemFolder.ConnectionItems
 
 						//// Get a GitHttpClient to talk to the Git endpoints
 						//using (GitHttpClient gitClient = connection.GetClient<GitHttpClient>())
-						//{                  
-
+						//{
 						//}
 
 						// Create instance of WorkItemTrackingHttpClient using VssConnection
@@ -120,11 +118,8 @@ namespace WorkItemFolder.ConnectionItems
 				}
 				catch (Exception ee)
 				{
-
 						MessageBox.Show(ee.StackTrace, "Error");
 				}
 		}        */
-
 	}
-
 }
