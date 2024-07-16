@@ -497,6 +497,7 @@ namespace FolderCreator.ViewModel
 				return null;
 			}
 		}
+
 		private string GetWorkItemType(WorkItem workItem)
 		{
 			object identityOjbect;

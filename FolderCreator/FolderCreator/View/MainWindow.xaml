@@ -23,9 +23,9 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Search Settings Row -->
-                <Grid Grid.Row="1" Grid.Column="1" >
+                <Grid Grid.Row="1" Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
@@ -39,9 +39,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Query:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 10 0" />
                     <ComboBox Grid.Row="0" Grid.Column="3" Height="25" VerticalAlignment="Center" HorizontalAlignment="left" Name="cmbQuery" MinWidth="120" ItemsSource="{Binding MyQueries}" SelectedItem="{Binding CurrentQuery}" />
                     <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" Content="Search" MinWidth="100" Margin="10 0 0 0" />
-
                 </Grid>
-
 
                 <!--Grid Data-->
                 <DataGrid Style="{StaticResource EmptyTemplate_1}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0" x:Name="dgvWorkItems" RowHeight="20"

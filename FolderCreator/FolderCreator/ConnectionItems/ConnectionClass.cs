@@ -1,5 +1,4 @@
-﻿using FolderCreator;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using System;
@@ -8,8 +7,7 @@ namespace WorkItemFolder.ConnectionItems
 {
 	public static class ConnectionClass
 	{
-		private const String c_collectionUri = @"https://noxum.visualstudio.com/";
-		public const String ProjectName = "Noxum.PS5";
+		private const String c_collectionUri = @"https://noxum.visualstudio.com/";		
 		private static VssConnection myConnection = null;
 
 		public static VssConnection MyConnection
