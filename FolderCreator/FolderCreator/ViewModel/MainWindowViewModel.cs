@@ -16,11 +16,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
-using WorkItemFolder.Commands;
-using WorkItemFolder.ConnectionItems;
-using WorkItemFolder.Data;
+using WorkItemCreator.Commands;
+using WorkItemCreator.ConnectionItems;
+using WorkItemCreator.Data;
 
-namespace FolderCreator.ViewModel
+namespace WorkItemCreator.ViewModel
 {
 	public class MainWindowViewModel : INotifyPropertyChanged
 	{
@@ -43,6 +43,8 @@ namespace FolderCreator.ViewModel
 
 		private object winHandle;
 		private string wiNumber;
+
+		public bool ShowIcon { get; set; } = true;
 
 		public MainWindowViewModel()
 		{

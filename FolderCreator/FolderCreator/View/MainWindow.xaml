@@ -1,12 +1,34 @@
-﻿<Window x:Class="FolderCreator.View.MainWindow"
+﻿<Window x:Class="WorkItemCreator.View.MainWindow"
         x:Name="winMainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:icons="clr-namespace:IconsLibrary;assembly=IconsLibrary"
+        xmlns:converters="clr-namespace:WorkItemCreator.Converters"
+        xmlns:local="clr-namespace:WorkItemCreator.ViewModel"
         mc:Ignorable="d"
         Title="Work Item Generator" Height="640" Width="1200">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <converters:ImageToSourceConverter x:Key="ImageToSourceConverter" x:Name="ImageToSourceConverter"/>
+        <Style x:Key="FeatureGroupIconStyle" TargetType="Image">
+            <!--<Setter Property="Source" Value="../Icons/Taskbar-Icon.ico"/>-->
+            <Setter Property="Source" Value="/IconsLibrary;component/UI-48/Computer.png"/>
+            <!--<Setter Property="Source" Value="{Binding Source={x:Type icons:Computer}, Path=Source,Converter={StaticResource ImageToSourceConverter}}" />-->
+            <!--<Setter Property="Source" Value="{Binding Source={x:Type icons:Computer},Path= Source}"/>-->
+            <!--<Setter Property="Source" Value="{DynamicResource ResourceKey={x:Type icons:Computer}}"/>-->
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ShowIcon}" Value="false">
+                    <Setter Property="Source" Value="{Binding Source={x:Type icons:Computer},Path= Source}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <TabControl Margin="5">
+        <!-- First Tab-->
         <TabItem Header="Work Items">
             <Grid>
                 <Grid.RowDefinitions>
@@ -33,12 +55,16 @@
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Project:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 10 0" />
                     <ComboBox Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Name="cmbProjects" MinWidth="120" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" />
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Query:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 10 0" />
                     <ComboBox Grid.Row="0" Grid.Column="3" Height="25" VerticalAlignment="Center" HorizontalAlignment="left" Name="cmbQuery" MinWidth="120" ItemsSource="{Binding Queries}" SelectedItem="{Binding CurrentQuery}" />
                     <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" Content="Search" MinWidth="100" Margin="10 0 0 0" />
+                    <Image Style="{StaticResource FeatureGroupIconStyle}" Grid.Row="0" Grid.Column="5" Margin="10 0 10 0" MaxHeight="20" >
+
+                    </Image>
                 </Grid>
 
                 <!--Grid Data-->
@@ -49,6 +75,17 @@
                   IsReadOnly="True"
                   Background="LightGray" RowBackground="WhiteSmoke" AlternatingRowBackground="FloralWhite"
                   ItemsSource="{Binding WiDetails}">
+                    <DataGrid.Resources>
+                        <ContextMenu x:Key="dgvContextMenu">
+                            <MenuItem Header="Copy" Command="{Binding CopyClick}" />
+                            <MenuItem Header="Copy All" Command="{Binding CopyAllClick}" />
+                        </ContextMenu>
+                    </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                            <Setter Property="ContextMenu" Value="{StaticResource dgvContextMenu}" />
+                        </Style>
+                    </DataGrid.RowStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Work Item ID" Binding="{Binding WiNumber}" />
                         <DataGridTextColumn Header="Work Item Type" Binding="{Binding WiType}" />
@@ -60,6 +97,7 @@
                 </DataGrid>
             </Grid>
         </TabItem>
+        <!-- Second Tab -->
         <TabItem Header="New Folder Settings">
             <Grid>
                 <Grid.RowDefinitions>

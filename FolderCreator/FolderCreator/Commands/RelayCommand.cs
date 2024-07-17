@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WorkItemFolder.Commands
+namespace WorkItemCreator.Commands
 {
     public class RelayCommand : ICommand
     {

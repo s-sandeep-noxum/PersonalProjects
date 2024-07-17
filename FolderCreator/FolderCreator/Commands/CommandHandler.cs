@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WorkItemFolder.Commands
+namespace WorkItemCreator.Commands
 {
     public class CommandHandler : ICommand
     {

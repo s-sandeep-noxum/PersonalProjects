@@ -1,4 +1,4 @@
-﻿namespace WorkItemFolder.Data
+﻿namespace WorkItemCreator.Data
 {
     public class WorkItemDetails
     {

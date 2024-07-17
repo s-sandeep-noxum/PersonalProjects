@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using System;
 
-namespace WorkItemFolder.ConnectionItems
+namespace WorkItemCreator.ConnectionItems
 {
 	public static class ConnectionClass
 	{

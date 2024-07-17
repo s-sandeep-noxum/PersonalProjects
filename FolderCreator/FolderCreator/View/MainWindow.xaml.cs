@@ -1,7 +1,7 @@
-﻿using FolderCreator.ViewModel;
+﻿using WorkItemCreator.ViewModel;
 using System.Windows;
 
-namespace FolderCreator.View
+namespace WorkItemCreator.View
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -13,8 +13,6 @@ namespace FolderCreator.View
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = MainWindowViewModel;            
-
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.MainWindowViewModel.FolderPath = @"C:\Users\Sandeep.shenoy\OneDrive - Noxum GmbH\Work Details";
         }
