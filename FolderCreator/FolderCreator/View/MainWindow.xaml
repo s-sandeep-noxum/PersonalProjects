@@ -7,25 +7,27 @@
         xmlns:icons="clr-namespace:IconsLibrary;assembly=IconsLibrary"
         xmlns:converters="clr-namespace:WorkItemCreator.Converters"
         xmlns:local="clr-namespace:WorkItemCreator.ViewModel"
-        mc:Ignorable="d"
-        Title="Work Item Generator" Height="640" Width="1200">
+        mc:Ignorable="d" Title="Work Item Generator" Height="640" Width="1200">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <converters:ImageToSourceConverter x:Key="ImageToSourceConverter" x:Name="ImageToSourceConverter"/>
-        <Style x:Key="FeatureGroupIconStyle" TargetType="Image">
-            <!--<Setter Property="Source" Value="../Icons/Taskbar-Icon.ico"/>-->
-            <Setter Property="Source" Value="/IconsLibrary;component/UI-48/Computer.png"/>
-            <!--<Setter Property="Source" Value="{Binding Source={x:Type icons:Computer}, Path=Source,Converter={StaticResource ImageToSourceConverter}}" />-->
-            <!--<Setter Property="Source" Value="{Binding Source={x:Type icons:Computer},Path= Source}"/>-->
-            <!--<Setter Property="Source" Value="{DynamicResource ResourceKey={x:Type icons:Computer}}"/>-->
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding ShowIcon}" Value="false">
-                    <Setter Property="Source" Value="{Binding Source={x:Type icons:Computer},Path= Source}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary>
+            <icons:Computer01 x:Key="computerIcon01"/>
+            <icons:Computer02 x:Key="computerIcon02"/>
+
+            <BitmapImage x:Key="ProjectIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project.png"/>
+            <BitmapImage x:Key="QueryIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Query.png"/>
+
+            <Style x:Key="FeatureGroupIconStyle" TargetType="Image">
+                <Setter Property="Width" Value="25"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Margin" Value="0 0 5 0"/>
+            </Style>
+
+            <converters:ImageSourceConverter x:Key="ImageSourceConverter" x:Name="ImageSourceConverter"/>
+            <converters:ImageToSourceConverter x:Key="ImageToSourceConverter" x:Name="ImageToSourceConverter"/>
+        </ResourceDictionary>
     </Window.Resources>
     <TabControl Margin="5">
         <!-- First Tab-->
@@ -56,15 +58,21 @@
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Project:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 10 0" />
-                    <ComboBox Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Name="cmbProjects" MinWidth="120" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" />
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Query:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 10 0" />
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" >
+                        <Image Source="{Binding Source={StaticResource ProjectIcon}}" Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
+                        <TextBlock Text="Project:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 10 0" />
+                    </StackPanel>
+                    <ComboBox Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 10 0"  Name="cmbProjects" MinWidth="120" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" />
+                    <StackPanel  Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                        <Image Source="{Binding Source={StaticResource QueryIcon}}" Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
+                        <TextBlock Text="Query:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 10 0" />
+                    </StackPanel>
                     <ComboBox Grid.Row="0" Grid.Column="3" Height="25" VerticalAlignment="Center" HorizontalAlignment="left" Name="cmbQuery" MinWidth="120" ItemsSource="{Binding Queries}" SelectedItem="{Binding CurrentQuery}" />
                     <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" Content="Search" MinWidth="100" Margin="10 0 0 0" />
-                    <Image Style="{StaticResource FeatureGroupIconStyle}" Grid.Row="0" Grid.Column="5" Margin="10 0 10 0" MaxHeight="20" >
-
-                    </Image>
+                    <Image Grid.Row="0" Grid.Column="5" Style="{StaticResource FeatureGroupIconStyle}" Margin="10 0 10 0" />
+                    <Image Grid.Row="0" Grid.Column="6" Source="{Binding Source={StaticResource computerIcon02}, Path=Source}" Margin="10 0 10 0" />
                 </Grid>
 
                 <!--Grid Data-->

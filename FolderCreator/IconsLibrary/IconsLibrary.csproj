@@ -1,21 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-windows;net471;net45</TargetFrameworks>		
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<TargetFrameworks>net6.0-windows</TargetFrameworks>		
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<OutputType>Library</OutputType>
 		<UseWPF>true</UseWPF>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="UI-48\bookmark.png" />
-	  <None Remove="UI-48\Computer.png" />
-	  <None Remove="UI-48\ComputerNew.png" />
+	  <None Remove="UI-48\**" />	 
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="UI-48\bookmark.png" />
-	  <Resource Include="UI-48\Computer.png" />
-	  <Resource Include="UI-48\ComputerNew.png" />
+	  <Resource Include="UI-48\**" />	  
 	</ItemGroup>
 
 </Project>

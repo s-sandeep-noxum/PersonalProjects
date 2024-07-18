@@ -2,19 +2,19 @@
 using System.Windows;
 namespace IconsLibrary
 {
-	public class Computer : Image
+	public class Computer01 : Image
 	{
-		static Computer()
+		static Computer01()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof(Computer), new FrameworkPropertyMetadata(typeof(Computer)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof(Computer01), new FrameworkPropertyMetadata(typeof(Computer01)));
 		}
 	}
 
-	public class ComputerNew : Image
+	public class Computer02 : Image
 	{
-		static ComputerNew()
+		static Computer02()
 		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof(ComputerNew), new FrameworkPropertyMetadata(typeof(ComputerNew)));
+			DefaultStyleKeyProperty.OverrideMetadata(typeof(Computer02), new FrameworkPropertyMetadata(typeof(Computer02)));
 		}
 	}
 }
