@@ -95,5 +95,40 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="TextBox" x:Key="LengthIssueTemplate" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderThickness="1" BorderBrush="Red" VerticalAlignment="Top">
+                                <Grid>
+                                    <AdornedElementPlaceholder x:Name="adorner" Margin="-1" />
+                                </Grid>
+                            </Border>
+                            <Border x:Name="errorBorder" Background="Red" Margin="8,0,0,0" Opacity="0" CornerRadius="0" IsHitTestVisible="False" MinHeight="24">
+                                <TextBlock Text="{Binding ElementName=adorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                                   Foreground="Black" Margin="8,3,8,3" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            </Border>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=Background}">
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="ErrorTemplate">
+            <Border BorderBrush="Red" BorderThickness="1" CornerRadius="2">
+                <Grid>
+                    <AdornedElementPlaceholder />
+                    <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 6 0" />
+                </Grid>
+            </Border>
+        </ControlTemplate>
     </Application.Resources>
 </Application>

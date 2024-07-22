@@ -13,8 +13,7 @@ namespace WorkItemCreator.View
         public MainWindow()
         {
             InitializeComponent();
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            this.MainWindowViewModel.FolderPath = @"C:\Users\Sandeep.shenoy\OneDrive - Noxum GmbH\Work Details";
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;           
         }
     }
 }

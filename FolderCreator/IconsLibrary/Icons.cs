@@ -17,4 +17,12 @@ namespace IconsLibrary
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(Computer02), new FrameworkPropertyMetadata(typeof(Computer02)));
 		}
 	}
+
+	public class Project : Image
+	{
+		static Project()
+		{
+			DefaultStyleKeyProperty.OverrideMetadata(typeof(Project), new FrameworkPropertyMetadata(typeof(Project)));
+		}
+	}
 }

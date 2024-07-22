@@ -22,7 +22,7 @@ using WorkItemCreator.Data;
 
 namespace WorkItemCreator.ViewModel
 {
-	public class MainWindowViewModel : INotifyPropertyChanged
+	public class MainWindowViewModel : INotifyPropertyChanged, IDataErrorInfo
 	{
 		private List<string> _yearData;
 
@@ -44,10 +44,9 @@ namespace WorkItemCreator.ViewModel
 		private object winHandle;
 		private string wiNumber;
 
-		public bool ShowIcon { get; set; } = true;
-
 		public MainWindowViewModel()
 		{
+			this.FolderPath = @"C:\Users\Sandeep.shenoy\OneDrive - Noxum GmbH\Work Details";
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -104,6 +103,16 @@ namespace WorkItemCreator.ViewModel
 			}
 		}
 
+		public string Error
+		{
+			get
+			{
+				return null;
+			}
+		}
+
+		public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+
 		public string FolderPath
 		{
 			get
@@ -153,6 +162,7 @@ namespace WorkItemCreator.ViewModel
 				}
 			}
 		}
+
 		public ICommand SaveClick
 		{
 			get
@@ -237,6 +247,39 @@ namespace WorkItemCreator.ViewModel
 				if (_yearData == value) return;
 				_yearData = value;
 				OnPropertyChanged(nameof(YearData));
+			}
+		}
+
+		public string this[string objectName]
+		{
+			get
+			{
+				string result = string.Empty;
+
+				switch (objectName)
+				{
+					case "WiNumber":
+						int txtLength = 0;
+						if (WiNumber != "" && WiNumber != null)
+						{
+							txtLength = WiNumber.ToString().Length;
+						}
+						if (txtLength != 6) result = "Work Item Number Should be 6 digits.";
+						break;
+				}
+
+				if (ErrorCollection.ContainsKey(objectName))
+				{
+					ErrorCollection[objectName] = result;
+				}
+				else if (result != string.Empty)
+				{
+					ErrorCollection.Add(objectName, result);
+				}
+				else { ErrorCollection.Remove(objectName); }
+
+				OnPropertyChanged(nameof(ErrorCollection));
+				return result;
 			}
 		}
 
@@ -536,27 +579,18 @@ namespace WorkItemCreator.ViewModel
 
 		private void SaveWindow()
 		{
-			if (!string.IsNullOrEmpty(WiNumber))
+			if(ErrorCollection.Count > 0)
 			{
-				if (!string.IsNullOrEmpty(Title))
-				{
-					string folderPath = string.Empty;
-					if (CreateFolders(ref folderPath))
-					{
-						if (MessageBox.Show("Do you want to open the created folder?", "Folder Created", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
-						{
-							System.Diagnostics.Process.Start("explorer.exe", folderPath);
-						}
-					}
-				}
-				else
-				{
-					MessageBox.Show("Enter a Title for the folder.");
-				}
+				MessageBox.Show("Please correct the errors before saving the data.");
+				return;
 			}
-			else
+			string folderPath = string.Empty;
+			if (CreateFolders(ref folderPath))
 			{
-				MessageBox.Show("Enter a Work Item Number.");
+				if (MessageBox.Show("Do you want to open the created folder?", "Folder Created", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+				{
+					System.Diagnostics.Process.Start("explorer.exe", folderPath);
+				}
 			}
 		}
 	}

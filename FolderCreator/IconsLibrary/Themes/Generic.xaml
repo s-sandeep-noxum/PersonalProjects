@@ -12,10 +12,14 @@
 
 
     <Style TargetType="{x:Type CommandImages:Computer01}" BasedOn="{StaticResource CommandImageStyle}">
-        <Setter Property="Source" Value="/IconsLibrary;component/UI-48/Computer.png"/>
+        <Setter Property="Source" Value="pack://application:,,,/IconsLibrary;component/UI-48/Computer.png"/>
     </Style>
 
     <Style TargetType="{x:Type CommandImages:Computer02}" BasedOn="{StaticResource CommandImageStyle}">
         <Setter Property="Source" Value="pack://application:,,,/IconsLibrary;component/UI-48/ComputerNew.png"/>
+    </Style>
+
+    <Style TargetType="{x:Type CommandImages:Project}" BasedOn="{StaticResource CommandImageStyle}">
+        <Setter Property="Source" Value="pack://application:,,,/IconsLibrary;component/UI-48/Project.png"/>
     </Style>
 </ResourceDictionary>
