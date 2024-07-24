@@ -254,7 +254,7 @@ namespace WorkItemCreator.ViewModel
 		{
 			get
 			{
-				string result = string.Empty;
+				string error = string.Empty;
 
 				switch (objectName)
 				{
@@ -264,22 +264,26 @@ namespace WorkItemCreator.ViewModel
 						{
 							txtLength = WiNumber.ToString().Length;
 						}
-						if (txtLength != 6) result = "Work Item Number Should be 6 digits.";
+						if (txtLength != 6) error = "Work Item Number Should be 6 digits.";
 						break;
 				}
 
-				if (ErrorCollection.ContainsKey(objectName))
+
+				if (error != string.Empty)
 				{
-					ErrorCollection[objectName] = result;
+					if (ErrorCollection.ContainsKey(objectName))
+					{
+						this.ErrorCollection.Remove(objectName);
+					}
+					this.ErrorCollection.Add(objectName, error);
 				}
-				else if (result != string.Empty)
+				else if (ErrorCollection.ContainsKey(objectName))
 				{
-					ErrorCollection.Add(objectName, result);
+					this.ErrorCollection.Remove(objectName);
 				}
-				else { ErrorCollection.Remove(objectName); }
 
 				OnPropertyChanged(nameof(ErrorCollection));
-				return result;
+				return error;
 			}
 		}
 
@@ -579,7 +583,7 @@ namespace WorkItemCreator.ViewModel
 
 		private void SaveWindow()
 		{
-			if(ErrorCollection.Count > 0)
+			if (ErrorCollection.Count > 0)
 			{
 				MessageBox.Show("Please correct the errors before saving the data.");
 				return;

@@ -25,9 +25,7 @@
 		<UseWPF>true</UseWPF>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 	</PropertyGroup>
-	<PropertyGroup>
-		<ApplicationIcon>Computer_icon-icons.com_55509.ico</ApplicationIcon>
-	</PropertyGroup>
+	<PropertyGroup />
 	<PropertyGroup>
 		<ManifestCertificateThumbprint>1B38C8954F409D9508575172A8A464F3D7A9A351</ManifestCertificateThumbprint>
 	</PropertyGroup>
@@ -40,6 +38,7 @@
 	<PropertyGroup>
 		<SignManifests>true</SignManifests>
 		<UserSecretsId>011cf0df-752c-481d-96cc-728b1efb92fe</UserSecretsId>
+		<ApplicationIcon>Taskbar-Icon.ico</ApplicationIcon>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="$(AppData)\microsoft\UserSecrets\$(UserSecretsId)\secrets.json" Link="secrets.json" />
@@ -54,6 +53,7 @@
 		<Content Include="Data\YearData.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Taskbar-Icon.ico" />
 	</ItemGroup>
 	<ItemGroup>
 		<PublishFile Include="Data\YearData.xml">
