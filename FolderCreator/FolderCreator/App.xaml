@@ -94,32 +94,24 @@
                     </Setter>
                 </DataTrigger>
             </Style.Triggers>
-        </Style>
+        </Style>       
 
-        <Style TargetType="TextBox" x:Key="LengthIssueTemplate" BasedOn="{StaticResource {x:Type TextBox}}">
-            <Setter Property="Validation.ErrorTemplate">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Border BorderThickness="1" BorderBrush="Red" VerticalAlignment="Top">
-                                <Grid>
-                                    <AdornedElementPlaceholder x:Name="adorner" Margin="-1" />
-                                </Grid>
-                            </Border>
-                            <Border x:Name="errorBorder" Background="Red" Margin="8,0,0,0" Opacity="0" CornerRadius="0" IsHitTestVisible="False" MinHeight="24">
-                                <TextBlock Text="{Binding ElementName=adorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
-                                   Foreground="Black" Margin="8,3,8,3" TextWrapping="Wrap" VerticalAlignment="Center" />
-                            </Border>
-                        </StackPanel>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=Background}">
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+        <Style x:Key="OnErrorTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="Validation.ErrorTemplate">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <StackPanel>
+                                    <AdornedElementPlaceholder x:Name="placeholder" />
+                                    <TextBlock FontSize="11" FontStyle="Italic" Foreground="Red" Text="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <ControlTemplate x:Key="ErrorTemplate">

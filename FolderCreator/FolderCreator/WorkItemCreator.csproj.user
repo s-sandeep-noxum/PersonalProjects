@@ -14,4 +14,9 @@
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
     <_LastSelectedProfileId>F:\PersonalProjects\FolderCreator\FolderCreator\Properties\PublishProfiles\ClickOnceProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
+  <ItemGroup>
+    <Page Update="Resources\CommonResources.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
 </Project>

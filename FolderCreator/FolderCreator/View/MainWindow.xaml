@@ -4,35 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:icons="clr-namespace:IconsLibrary;assembly=IconsLibrary"
-        xmlns:converters="clr-namespace:WorkItemCreator.Converters"
         xmlns:local="clr-namespace:WorkItemCreator.ViewModel"
-        xmlns:validation ="clr-namespace:WorkItemFolder.Validations"
+        xmlns:validation="clr-namespace:WorkItemFolder.Validations"
         mc:Ignorable="d" Title="Work Item Generator" Height="640" Width="1200" Background="AliceBlue">
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
     <Window.Resources>
         <ResourceDictionary>
-            <icons:Computer01 x:Key="ComputerIcon01" />
-            <icons:Computer02 x:Key="ComputerIcon02" />
-
-            <BitmapImage x:Key="ProjectIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project.png" />
-            <BitmapImage x:Key="QueryIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Query.png" />
-
-            <Style x:Key="FeatureGroupIconStyle" TargetType="Image">
-                <Setter Property="Width" Value="25" />
-                <Setter Property="Height" Value="25" />
-                <Setter Property="Margin" Value="0 0 5 0" />
-            </Style>
-
-            <converters:ImageSourceConverter x:Key="ImageSourceConverter" x:Name="ImageSourceConverter" />
-            <converters:ImageToSourceConverter x:Key="ImageToSourceConverter" x:Name="ImageToSourceConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/CommonResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <TabControl Margin="5" Background="AliceBlue">
         <!-- First Tab -->
-        <TabItem Header="New Folder Settings" >
+        <TabItem >
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding Source={StaticResource FolderIcon}}" Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
+                    <TextBlock Text="Folder Details" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </StackPanel>
+            </TabItem.Header>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10" />
@@ -59,9 +52,9 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="Folder Path:" Width="140" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FolderPath, Mode=TwoWay}" Margin="3" Name="txtFolderPath" IsEnabled="False" Width="240" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FolderPath, Mode=TwoWay}" Margin="3" Name="txtFolderPath" IsEnabled="False" Width="260" />
                 </Grid>
-                <Grid Grid.Row ="1" Grid.Column="2" Grid.ColumnSpan="2">
+                <Grid Grid.Row ="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="30 0 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.25*" />
                         <ColumnDefinition Width="*" />
@@ -70,7 +63,16 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="Year:" Width="100" HorizontalAlignment="Left" />
-                    <ComboBox Grid.Row="0" Grid.Column="1" Height="20" HorizontalAlignment="Left" Name="cmbYear" MinWidth="70" ItemsSource="{Binding YearData}" SelectedItem="{Binding CurrentYear}" />
+                    <ComboBox Grid.Row="0" Grid.Column="1" Height="20" HorizontalAlignment="Left" Name="cmbYear" MinWidth="80" ItemsSource="{Binding YearData}" SelectedItem="{Binding CurrentYear}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Source={StaticResource CalendarIcon}}" Style="{StaticResource FeatureGroupIconStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Path= YearText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="1" Margin=" 0 0 0 5" >
                     <Grid.ColumnDefinitions>
@@ -84,7 +86,7 @@
                     <TextBox Grid.Row="0" Grid.Column="1" Width="120" Text="{Binding WiNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[WiNumber]}"
                              Name="txtWorkItemNumber" Margin="3" HorizontalAlignment="Left" />
                 </Grid>
-                <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin=" 0 0 0 5" >
+                <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="30 0 0 5" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.25*" />
                         <ColumnDefinition Width="*" />
@@ -93,7 +95,7 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="Title:" Width="100" HorizontalAlignment="Left" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Name="txtTitle"  HorizontalAlignment="Stretch" Margin="3" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"  >
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="txtTitle"  HorizontalAlignment="Stretch" Margin="0 3 0 3" Style="{StaticResource OnErrorTextBoxStyle}"  >
                         <TextBox.Text>
                             <Binding Path="Title" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -116,13 +118,29 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Button Grid.Row="0" Grid.Column="0" x:Name="btnSave" Content="Save" Width="80" HorizontalAlignment="Right" Margin="0 5 10 0" VerticalAlignment="Center"  Command="{Binding SaveClick}" />
-                    <Button Grid.Row="0" Grid.Column="1" x:Name="btnCancel" Content="Close" Width="80" HorizontalAlignment="Left" Margin="10 5 0 0" VerticalAlignment="Center" Command="{Binding CancelClick}" CommandParameter="{Binding ElementName=winMainWindow}" />
+                    <Button Grid.Row="0" Grid.Column="0" x:Name="btnSave" Width="100" HorizontalAlignment="Right" Margin="0 5 10 0" VerticalAlignment="Center" Command="{Binding SaveClick}" >
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="{StaticResource SaveIcon}" Style="{StaticResource ButtonIconStyle}" HorizontalAlignment="Left" VerticalAlignment ="Center" Margin="0 0 10 0"/>
+                            <TextBlock Text="Save" HorizontalAlignment="Right" VerticalAlignment ="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="0" Grid.Column="1" x:Name="btnCancel" Width="100" HorizontalAlignment="Left" Margin="10 5 0 0" VerticalAlignment="Center" Command="{Binding CancelClick}" CommandParameter="{Binding ElementName=winMainWindow}" >
+                        <StackPanel Orientation="Horizontal" >
+                            <Image Source="{StaticResource CloseIcon}" Style="{StaticResource ButtonIconStyle}" HorizontalAlignment="Left" VerticalAlignment ="Center" Margin="0 0 10 0"/>
+                            <TextBlock Text="Close" HorizontalAlignment="Right" VerticalAlignment ="Center" />
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </Grid>
         </TabItem>
         <!-- Second Tab-->
-        <TabItem Header="Work Items" Height="20" VerticalAlignment="Top">
+        <TabItem >
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding Source={StaticResource WorkItemIcon}}" Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
+                    <TextBlock Text="Work Items" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </StackPanel>
+            </TabItem.Header>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10" />

@@ -19,16 +19,17 @@ using System.Xml;
 using WorkItemCreator.Commands;
 using WorkItemCreator.ConnectionItems;
 using WorkItemCreator.Data;
+using WorkItemFolder.Data;
 
 namespace WorkItemCreator.ViewModel
 {
 	public class MainWindowViewModel : INotifyPropertyChanged, IDataErrorInfo
 	{
-		private List<string> _yearData;
+		private List<CalendarYear> _yearData;
 
 		private ICommand cancelClick;
 		private string currentQuery;
-		private string currentYear;
+		private CalendarYear currentYear;
 
 		private string description;
 		private string folderPath;
@@ -82,13 +83,13 @@ namespace WorkItemCreator.ViewModel
 			}
 		}
 
-		public string CurrentYear
+		public CalendarYear CurrentYear
 		{
-			get { return DateTime.Now.Year.ToString(); }
+			get { return new CalendarYear { YearText = DateTime.Now.Year.ToString() }; }
 			set
 			{
-				if (currentYear == value) return;
-				currentYear = DateTime.Now.Year.ToString();
+				if (currentYear?.YearText == value.YearText) return;
+				currentYear = new CalendarYear { YearText = value.YearText.ToString() };
 				OnPropertyChanged(nameof(CurrentYear));
 			}
 		}
@@ -239,7 +240,7 @@ namespace WorkItemCreator.ViewModel
 			}
 		}
 
-		public List<string> YearData
+		public List<CalendarYear> YearData
 		{
 			get { return LoadData(); }
 			set
@@ -559,17 +560,17 @@ namespace WorkItemCreator.ViewModel
 			return (string)identityOjbect;
 		}
 
-		private List<string> LoadData()
+		private List<CalendarYear> LoadData()
 		{
 			XmlDocument xmlDocument = new XmlDocument();
 			xmlDocument.Load(@"Data\YearData.xml");
 			XmlNodeList xmlNodeList = xmlDocument.GetElementsByTagName("Year");
 
-			_yearData = new List<string>();
+			_yearData = new List<CalendarYear>();
 
 			foreach (XmlNode node in xmlNodeList)
 			{
-				_yearData.Add(node.InnerText);
+				_yearData.Add(new CalendarYear{ YearText = node.InnerText});
 			}
 
 			return _yearData;
