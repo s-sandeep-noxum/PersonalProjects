@@ -12,6 +12,8 @@
     <BitmapImage x:Key="SaveIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Save-Black.png" />
     <BitmapImage x:Key="CloseIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Close-Black.png" />
     <BitmapImage x:Key="CalendarIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Calendar-Black.png" />
+    <BitmapImage x:Key="ProjectComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project-Black.png" />
+    <BitmapImage x:Key="SearchComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Search-Black.png" />
 
     <Style x:Key="FeatureGroupIconStyle" TargetType="Image">
         <Setter Property="Width" Value="20" />

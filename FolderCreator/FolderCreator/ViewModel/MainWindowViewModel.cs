@@ -28,17 +28,17 @@ namespace WorkItemCreator.ViewModel
 		private List<CalendarYear> _yearData;
 
 		private ICommand cancelClick;
-		private string currentQuery;
+		private Queries currentQuery = new Queries();
 		private CalendarYear currentYear;
 
 		private string description;
 		private string folderPath;
 
-		private List<string> projects;
-		private List<string> queries;
+		private List<Projects> projects;
+		private List<Queries> queries;
 		private ICommand saveClick;
 		private ICommand searchClick;
-		private string selectedProject;
+		private Projects selectedProject = new Projects();
 		private string title;
 		private List<WorkItemDetails> wiDetails;
 
@@ -69,7 +69,7 @@ namespace WorkItemCreator.ViewModel
 			}
 		}
 
-		public string CurrentQuery
+		public Queries CurrentQuery
 		{
 			get
 			{
@@ -77,8 +77,8 @@ namespace WorkItemCreator.ViewModel
 			}
 			set
 			{
-				if (currentQuery == value) return;
-				currentQuery = value;
+				if (currentQuery.QueryText == value.QueryText) return;
+				currentQuery.QueryText = value.QueryText;
 				OnPropertyChanged(nameof(CurrentQuery));
 			}
 		}
@@ -128,26 +128,26 @@ namespace WorkItemCreator.ViewModel
 			}
 		}
 
-		public List<string> Projects
+		public List<Projects> Projects
 		{
 			get
 			{
 				if (this.projects == null)
 				{
-					this.projects = new List<string>();
+					this.projects = new List<Projects>();
 					ProjectHttpClient projectClient = ConnectionClass.Connection.GetClient<ProjectHttpClient>();
 					IEnumerable<TeamProjectReference> projectsWithAccess = projectClient.GetProjects().Result;
 
 					foreach (TeamProjectReference p in projectsWithAccess)
 					{
-						this.projects.Add(p.Name);
+						this.projects.Add(new Projects { ProjectText = p.Name });
 					}
 				}
-				return this.projects.OrderBy(x => x).ToList();
+				return this.projects.OrderBy(x => x.ProjectText).ToList();
 			}
 		}
 
-		public List<string> Queries
+		public List<Queries> Queries
 		{
 			get
 			{
@@ -180,15 +180,15 @@ namespace WorkItemCreator.ViewModel
 			}
 		}
 
-		public string SelectedProject
+		public Projects SelectedProject
 		{
 			get { return this.selectedProject; }
 			set
 			{
-				if (this.selectedProject != value)
+				if (this.selectedProject.ProjectText != value.ProjectText)
 				{
-					this.selectedProject = value;
-					this.Queries = this.GetQueries(selectedProject);
+					this.selectedProject.ProjectText = value.ProjectText;
+					this.Queries = this.GetQueries(selectedProject.ProjectText);
 					OnPropertyChanged(nameof(SelectedProject));
 				}
 			}
@@ -208,7 +208,7 @@ namespace WorkItemCreator.ViewModel
 		{
 			get
 			{
-				this.wiDetails = GetWorkItems(CurrentQuery);
+				this.wiDetails = GetWorkItems(CurrentQuery?.QueryText);
 				return this.wiDetails;
 			}
 			set
@@ -269,7 +269,6 @@ namespace WorkItemCreator.ViewModel
 						break;
 				}
 
-
 				if (error != string.Empty)
 				{
 					if (ErrorCollection.ContainsKey(objectName))
@@ -297,8 +296,8 @@ namespace WorkItemCreator.ViewModel
 					Mouse.OverrideCursor = Cursors.Wait;
 				});
 
-				if (string.IsNullOrEmpty(CurrentQuery)) return;
-				var workItems = GetWorkItems(CurrentQuery);
+				if (string.IsNullOrEmpty(CurrentQuery.QueryText)) return;
+				var workItems = GetWorkItems(CurrentQuery.QueryText);
 				if (workItems == null || workItems.Count == 0) { MessageBox.Show("Search did not return any result!!"); }
 				else { WiDetails = workItems; }
 			}
@@ -444,9 +443,9 @@ namespace WorkItemCreator.ViewModel
 			return WiNumber + "-" + Title;
 		}
 
-		private List<string> GetQueries(string ProjectName)
+		private List<Queries> GetQueries(string ProjectName)
 		{
-			List<string> savedQueries = new List<string>();
+			List<Queries> savedQueries = new List<Queries>();
 			QueryHierarchyItem myQueriesFolder;
 			GetMyQueriesFromProject(ProjectName, out myQueriesFolder);
 
@@ -456,13 +455,13 @@ namespace WorkItemCreator.ViewModel
 				{
 					foreach (var child in myQueriesFolder.Children.OrderBy(x => x.Name))
 					{
-						savedQueries.Add(child.Name);
+						savedQueries.Add(new Queries { QueryText = child.Name });
 					}
 				}
 			}
 			if (savedQueries.Count > 0)
 			{
-				return savedQueries.OrderBy(x => x).ToList();
+				return savedQueries.OrderBy(x => x.QueryText).ToList();
 			}
 			return null;
 		}
@@ -488,7 +487,7 @@ namespace WorkItemCreator.ViewModel
 				List<WorkItemDetails> workItemDetails = new List<WorkItemDetails>();
 
 				QueryHierarchyItem myQueriesFolder;
-				WorkItemTrackingHttpClient witClient = GetMyQueriesFromProject(this.SelectedProject, out myQueriesFolder);
+				WorkItemTrackingHttpClient witClient = GetMyQueriesFromProject(this.SelectedProject.ProjectText, out myQueriesFolder);
 
 				if (myQueriesFolder != null)
 				{
@@ -570,7 +569,7 @@ namespace WorkItemCreator.ViewModel
 
 			foreach (XmlNode node in xmlNodeList)
 			{
-				_yearData.Add(new CalendarYear{ YearText = node.InnerText});
+				_yearData.Add(new CalendarYear { YearText = node.InnerText });
 			}
 
 			return _yearData;

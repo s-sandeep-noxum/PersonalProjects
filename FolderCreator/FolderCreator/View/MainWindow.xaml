@@ -180,7 +180,16 @@
                               HorizontalAlignment="Left" 
                               Margin="0 5 10 5"  
                               Name="cmbProjects" 
-                              MinWidth="150" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" />
+                              MinWidth="200" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Source={StaticResource ProjectComboIcon}}" Style="{StaticResource FeatureGroupIconStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Path= ProjectText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <StackPanel  Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
                         <Image Source="{Binding Source={StaticResource QueryIcon}}" Style="{Binding Source={StaticResource FeatureGroupIconStyle}}" />
                         <TextBlock Text="Query:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 10 0" />
@@ -190,7 +199,16 @@
                               HorizontalAlignment="left"
                               Margin="0 5 10 5"  
                               Name="cmbQuery" 
-                              MinWidth="150" ItemsSource="{Binding Queries}" SelectedItem="{Binding CurrentQuery}" />
+                              MinWidth="200" ItemsSource="{Binding Queries}" SelectedItem="{Binding CurrentQuery}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Source={StaticResource SearchComboIcon}}" Style="{StaticResource FeatureGroupIconStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Path= QueryText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" Content="Search" MinWidth="100" Margin="10 0 0 0" />
                     <!--<Button x:Name="btnRandom" Grid.Row="5" Grid.Column="7" Width="30" Height="30" Margin="10 0 0 0">
                         <icons:Computer01 />
