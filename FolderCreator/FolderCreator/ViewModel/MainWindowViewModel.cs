@@ -29,7 +29,7 @@ namespace WorkItemCreator.ViewModel
 
 		private ICommand cancelClick;
 		private Queries currentQuery = new Queries();
-		private CalendarYear currentYear;
+		private CalendarYear selectedYear;
 
 		private string description;
 		private string folderPath;
@@ -83,14 +83,14 @@ namespace WorkItemCreator.ViewModel
 			}
 		}
 
-		public CalendarYear CurrentYear
+		public CalendarYear SelectedYear
 		{
 			get { return new CalendarYear { YearText = DateTime.Now.Year.ToString() }; }
 			set
 			{
-				if (currentYear?.YearText == value.YearText) return;
-				currentYear = new CalendarYear { YearText = value.YearText.ToString() };
-				OnPropertyChanged(nameof(CurrentYear));
+				if (selectedYear?.YearText == value.YearText) return;
+				selectedYear = new CalendarYear { YearText = value.YearText.ToString() };
+				OnPropertyChanged(nameof(SelectedYear));
 			}
 		}
 
@@ -403,7 +403,7 @@ namespace WorkItemCreator.ViewModel
 		{
 			try
 			{
-				folderName = FolderPath + "\\" + CurrentYear + "\\" + GetFolderName();
+				folderName = FolderPath + "\\" + SelectedYear.YearText + "\\" + GetFolderName();
 				bool exists = System.IO.Directory.Exists(folderName);
 
 				if (!exists)

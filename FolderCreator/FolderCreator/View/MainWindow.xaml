@@ -209,7 +209,8 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" Content="Search" MinWidth="100" Margin="10 0 0 0" />
+                    <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" 
+                            Content="Search" MinWidth="100" Margin="10 3 0 3" Height="25" />
                     <!--<Button x:Name="btnRandom" Grid.Row="5" Grid.Column="7" Width="30" Height="30" Margin="10 0 0 0">
                         <icons:Computer01 />
                     </Button>-->
