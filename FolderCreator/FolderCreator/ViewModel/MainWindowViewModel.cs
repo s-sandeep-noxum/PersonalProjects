@@ -29,25 +29,25 @@ namespace WorkItemCreator.ViewModel
 
 		private ICommand cancelClick;
 		private Queries currentQuery = new Queries();
-		private CalendarYear selectedYear;
-
 		private string description;
 		private string folderPath;
-
 		private List<Projects> projects;
 		private List<Queries> queries;
 		private ICommand saveClick;
 		private ICommand searchClick;
 		private Projects selectedProject = new Projects();
+		private CalendarYear selectedYear;
 		private string title;
 		private List<WorkItemDetails> wiDetails;
 
 		private object winHandle;
 		private string wiNumber;
 
+		private WorkItemDetails workItemDetails;
+
 		public MainWindowViewModel()
 		{
-			this.FolderPath = @"C:\Users\Sandeep.shenoy\OneDrive - Noxum GmbH\Work Details";
+			this.FolderPath = @"C:\Users\Sandeep.shenoy\OneDrive - Noxum GmbH\Work Details";			
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -80,17 +80,6 @@ namespace WorkItemCreator.ViewModel
 				if (currentQuery.QueryText == value.QueryText) return;
 				currentQuery.QueryText = value.QueryText;
 				OnPropertyChanged(nameof(CurrentQuery));
-			}
-		}
-
-		public CalendarYear SelectedYear
-		{
-			get { return new CalendarYear { YearText = DateTime.Now.Year.ToString() }; }
-			set
-			{
-				if (selectedYear?.YearText == value.YearText) return;
-				selectedYear = new CalendarYear { YearText = value.YearText.ToString() };
-				OnPropertyChanged(nameof(SelectedYear));
 			}
 		}
 
@@ -194,6 +183,16 @@ namespace WorkItemCreator.ViewModel
 			}
 		}
 
+		public CalendarYear SelectedYear
+		{
+			get { return new CalendarYear { YearText = DateTime.Now.Year.ToString() }; }
+			set
+			{
+				if (selectedYear?.YearText == value.YearText) return;
+				selectedYear = new CalendarYear { YearText = value.YearText.ToString() };
+				OnPropertyChanged(nameof(SelectedYear));
+			}
+		}
 		public string Title
 		{
 			get { return this.title; }
@@ -218,7 +217,6 @@ namespace WorkItemCreator.ViewModel
 				OnPropertyChanged(nameof(WiDetails));
 			}
 		}
-
 		public object WinHandle
 		{
 			get { return winHandle; }
@@ -240,6 +238,17 @@ namespace WorkItemCreator.ViewModel
 			}
 		}
 
+		public WorkItemDetails WorkItemDetail
+		{
+			get
+			{
+				return workItemDetails;
+			}
+			set
+			{
+				workItemDetails = value;
+			}
+		}
 		public List<CalendarYear> YearData
 		{
 			get { return LoadData(); }

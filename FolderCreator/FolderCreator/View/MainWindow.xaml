@@ -6,9 +6,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkItemCreator.ViewModel"
         xmlns:validation="clr-namespace:WorkItemFolder.Validations"
-        mc:Ignorable="d" Title="Work Item Generator" Height="640" Width="1200" Background="AliceBlue">
+        mc:Ignorable="d"
+        Title="Work Item Generator"
+        Height="640"
+        Width="1200"
+        Background="AliceBlue">
     <Window.DataContext>
-        <local:MainWindowViewModel />
+        <local:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <ResourceDictionary>
@@ -17,234 +21,397 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <TabControl Margin="5" Background="AliceBlue">
+    <TabControl Margin="5"
+	            Background="AliceBlue">
         <!-- First Tab -->
-        <TabItem >
+        <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="{Binding Source={StaticResource FolderIcon}}" Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
-                    <TextBlock Text="Folder Details" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image Source="{Binding Source={StaticResource FolderIcon}}"
+					       Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
+                    <TextBlock Text="Folder Details"
+					           HorizontalAlignment="Left"
+					           VerticalAlignment="Center"/>
                 </StackPanel>
             </TabItem.Header>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="25" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" Grid.ColumnSpan="2">
+                <Grid Grid.Row="1"
+				      Grid.Column="1"
+				      Margin="0,0,0,5"
+				      Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Content="Folder Path:" Width="140" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FolderPath, Mode=TwoWay}" Margin="3" Name="txtFolderPath" IsEnabled="False" Width="260" />
+                    <Label Grid.Row="0"
+					       Grid.Column="0"
+					       Content="Folder Path:"
+					       Width="140"/>
+                    <TextBox Grid.Row="0"
+					         Grid.Column="1"
+					         Text="{Binding FolderPath, Mode=TwoWay}"
+					         Margin="3"
+					         Name="txtFolderPath"
+					         IsEnabled="False"
+					         Width="260"/>
                 </Grid>
-                <Grid Grid.Row ="1" Grid.Column="4" Margin="30,0,0,30" Grid.RowSpan="2">
+                <Grid Grid.Row="1"
+				      Grid.Column="4"
+				      Margin="30,0,0,30"
+				      Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Content="Year:" Width="100" HorizontalAlignment="Left" />
-                    <ComboBox Grid.Row="0" Grid.Column="1" Height="20" HorizontalAlignment="Left" Name="cmbYear" MinWidth="80" ItemsSource="{Binding YearData}" SelectedItem="{Binding CurrentYear}">
+                    <Label Grid.Row="0"
+					       Grid.Column="0"
+					       Content="Year:"
+					       Width="100"
+					       HorizontalAlignment="Left"/>
+                    <ComboBox Grid.Row="0"
+					          Grid.Column="1"
+					          Height="20"
+					          HorizontalAlignment="Left"
+					          Name="cmbYear"
+					          MinWidth="80"
+					          ItemsSource="{Binding YearData}"
+					          SelectedItem="{Binding CurrentYear}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Source={StaticResource CalendarIcon}}" Style="{StaticResource FeatureGroupIconStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <TextBlock Text="{Binding Path= YearText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                    <Image Source="{Binding Source={StaticResource CalendarIcon}}"
+									       Style="{StaticResource FeatureGroupIconStyle}"
+									       HorizontalAlignment="Left"
+									       VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Path= YearText}"
+									           HorizontalAlignment="Right"
+									           VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                 </Grid>
-                <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" Grid.ColumnSpan="2" >
+                <Grid Grid.Row="2"
+				      Grid.Column="1"
+				      Margin="0,0,0,5"
+				      Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Content="Work Item Number:" Width="140" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Width="120" Text="{Binding WiNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[WiNumber]}"
-                             Name="txtWorkItemNumber" Margin="3" HorizontalAlignment="Left" />
+                    <Label Grid.Row="0"
+					       Grid.Column="0"
+					       Content="Work Item Number:"
+					       Width="140"/>
+                    <TextBox Grid.Row="0"
+					         Grid.Column="1"
+					         Width="120"
+					         Text="{Binding WiNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+					         ToolTip="{Binding ErrorCollection[WiNumber]}"
+					         Name="txtWorkItemNumber"
+					         Margin="3"
+					         HorizontalAlignment="Left"/>
                 </Grid>
-                <Grid Grid.Row="2" Grid.Column="4" Margin="30 0 0 5" >
+                <Grid Grid.Row="2"
+				      Grid.Column="4"
+				      Margin="30 0 0 5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Content="Title:" Width="100" HorizontalAlignment="Left" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Name="txtTitle"  HorizontalAlignment="Stretch" Margin="0 3 0 3" Style="{StaticResource OnErrorTextBoxStyle}"  >
+                    <Label Grid.Row="0"
+					       Grid.Column="0"
+					       Content="Title:"
+					       Width="100"
+					       HorizontalAlignment="Left"/>
+                    <TextBox Grid.Row="0"
+					         Grid.Column="1"
+					         Name="txtTitle"
+					         HorizontalAlignment="Stretch"
+					         Margin="0 3 0 3"
+					         Style="{StaticResource OnErrorTextBoxStyle}">
                         <TextBox.Text>
-                            <Binding Path="Title" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="Title"
+							         ValidatesOnDataErrors="True"
+							         UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <validation:DescriptionValidationRule />
+                                    <validation:DescriptionValidationRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
                 </Grid>
-
-                <Label Grid.Row="3" Grid.Column="1" Content="Description" Width="120" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Grid.Row="4" Grid.Column="1" Margin="3,3,0,3" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Name="txtDescription"
-                         Text="{Binding Description}" Grid.ColumnSpan="4" />
-                <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,0" Grid.RowSpan="2">
+                <Label Grid.Row="3"
+				       Grid.Column="1"
+				       Content="Description"
+				       Width="120"
+				       FontWeight="Bold"
+				       HorizontalAlignment="Left"
+				       VerticalAlignment="Center"/>
+                <TextBox Grid.Row="4"
+				         Grid.Column="1"
+				         Margin="3,3,0,3"
+				         TextWrapping="Wrap"
+				         AcceptsReturn="True"
+				         HorizontalScrollBarVisibility="Disabled"
+				         VerticalScrollBarVisibility="Auto"
+				         Name="txtDescription"
+				         Text="{Binding Description}"
+				         Grid.ColumnSpan="4"/>
+                <Grid Grid.Row="5"
+				      Grid.Column="1"
+				      Grid.ColumnSpan="4"
+				      Margin="0,0,0,0"
+				      Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-
-                    <Button Grid.Row="0" Grid.Column="0" x:Name="btnSave" Width="100" HorizontalAlignment="Right" Margin="0 10 10 10" VerticalAlignment="Center" Command="{Binding SaveClick}" >
-                        <StackPanel Orientation="Horizontal" >
-                            <Image Source="{StaticResource SaveIcon}" Style="{StaticResource ButtonIconStyle}" HorizontalAlignment="Left" VerticalAlignment ="Center" Margin="0 0 10 0"/>
-                            <TextBlock Text="Save" HorizontalAlignment="Right" VerticalAlignment ="Center" />
+                    <Button Grid.Row="0"
+					        Grid.Column="0"
+					        x:Name="btnSave"
+					        Width="100"
+					        HorizontalAlignment="Right"
+					        Margin="0 10 10 10"
+					        VerticalAlignment="Center"
+					        Command="{Binding SaveClick}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{StaticResource SaveIcon}"
+							       Style="{StaticResource ButtonIconStyle}"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Center"
+							       Margin="0 0 10 0"/>
+                            <TextBlock Text="Save"
+							           HorizontalAlignment="Right"
+							           VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="0" Grid.Column="1" x:Name="btnCancel" Width="100" HorizontalAlignment="Left" Margin="10 10 0 10" VerticalAlignment="Center" Command="{Binding CancelClick}" CommandParameter="{Binding ElementName=winMainWindow}" >
-                        <StackPanel Orientation="Horizontal" >
-                            <Image Source="{StaticResource CloseIcon}" Style="{StaticResource ButtonIconStyle}" HorizontalAlignment="Left" VerticalAlignment ="Center" Margin="0 0 10 0"/>
-                            <TextBlock Text="Close" HorizontalAlignment="Right" VerticalAlignment ="Center" />
+                    <Button Grid.Row="0"
+					        Grid.Column="1"
+					        x:Name="btnCancel"
+					        Width="100"
+					        HorizontalAlignment="Left"
+					        Margin="10 10 0 10"
+					        VerticalAlignment="Center"
+					        Command="{Binding CancelClick}"
+					        CommandParameter="{Binding ElementName=winMainWindow}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{StaticResource CloseIcon}"
+							       Style="{StaticResource ButtonIconStyle}"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Center"
+							       Margin="0 0 10 0"/>
+                            <TextBlock Text="Close"
+							           HorizontalAlignment="Right"
+							           VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                 </Grid>
             </Grid>
         </TabItem>
         <!-- Second Tab-->
-        <TabItem >
+        <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="{Binding Source={StaticResource WorkItemIcon}}" Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
-                    <TextBlock Text="Work Items" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image Source="{Binding Source={StaticResource WorkItemIcon}}"
+					       Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
+                    <TextBlock Text="Work Items"
+					           HorizontalAlignment="Left"
+					           VerticalAlignment="Center"/>
                 </StackPanel>
             </TabItem.Header>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height ="*" />
-                    <RowDefinition Height="10" />
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
                 </Grid.ColumnDefinitions>
-
                 <!-- Search Settings Row -->
-                <Grid Grid.Row="1" Grid.Column="1">
+                <Grid Grid.Row="1"
+				      Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-                        <Image Source="{Binding Source={StaticResource ProjectIcon}}" Style="{Binding Source={StaticResource FeatureGroupIconStyle}}" />
-                        <TextBlock Text="Project:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 10 0" />
+                    <StackPanel Grid.Row="0"
+					            Grid.Column="0"
+					            Orientation="Horizontal">
+                        <Image Source="{Binding Source={StaticResource ProjectIcon}}"
+						       Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
+                        <TextBlock Text="Project:"
+						           Width="auto"
+						           VerticalAlignment="Center"
+						           HorizontalAlignment="Left"
+						           Margin="0 0 10 0"/>
                     </StackPanel>
-                    <ComboBox Grid.Row="0" Grid.Column="1" Height="25" 
-                              VerticalAlignment="Center" 
-                              HorizontalAlignment="Left" 
-                              Margin="0 5 10 5"  
-                              Name="cmbProjects" 
-                              MinWidth="200" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" >
+                    <ComboBox Grid.Row="0"
+					          Grid.Column="1"
+					          Height="25"
+					          VerticalAlignment="Center"
+					          HorizontalAlignment="Left"
+					          Margin="0 5 10 5"
+					          Name="cmbProjects"
+					          MinWidth="200"
+					          ItemsSource="{Binding Projects}"
+					          SelectedItem="{Binding SelectedProject}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Source={StaticResource ProjectComboIcon}}" Style="{StaticResource FeatureGroupIconStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <TextBlock Text="{Binding Path= ProjectText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                    <Image Source="{Binding Source={StaticResource ProjectComboIcon}}"
+									       Style="{StaticResource FeatureGroupIconStyle}"
+									       HorizontalAlignment="Left"
+									       VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Path= ProjectText}"
+									           HorizontalAlignment="Right"
+									           VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <StackPanel  Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
-                        <Image Source="{Binding Source={StaticResource QueryIcon}}" Style="{Binding Source={StaticResource FeatureGroupIconStyle}}" />
-                        <TextBlock Text="Query:" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 10 0" />
+                    <StackPanel Grid.Row="0"
+					            Grid.Column="2"
+					            Orientation="Horizontal">
+                        <Image Source="{Binding Source={StaticResource QueryIcon}}"
+						       Style="{Binding Source={StaticResource FeatureGroupIconStyle}}"/>
+                        <TextBlock Text="Query:"
+						           Width="auto"
+						           VerticalAlignment="Center"
+						           HorizontalAlignment="Left"
+						           Margin="0 0 10 0"/>
                     </StackPanel>
-                    <ComboBox Grid.Row="0" Grid.Column="3" Height="25" 
-                              VerticalAlignment="Center" 
-                              HorizontalAlignment="left"
-                              Margin="0 5 10 5"  
-                              Name="cmbQuery" 
-                              MinWidth="200" ItemsSource="{Binding Queries}" SelectedItem="{Binding CurrentQuery}" >
+                    <ComboBox Grid.Row="0"
+					          Grid.Column="3"
+					          Height="25"
+					          VerticalAlignment="Center"
+					          HorizontalAlignment="left"
+					          Margin="0 5 10 5"
+					          Name="cmbQuery"
+					          MinWidth="200"
+					          ItemsSource="{Binding Queries}"
+					          SelectedItem="{Binding CurrentQuery}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Source={StaticResource SearchComboIcon}}" Style="{StaticResource FeatureGroupIconStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                    <TextBlock Text="{Binding Path= QueryText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                    <Image Source="{Binding Source={StaticResource SearchComboIcon}}"
+									       Style="{StaticResource FeatureGroupIconStyle}"
+									       HorizontalAlignment="Left"
+									       VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Path= QueryText}"
+									           HorizontalAlignment="Right"
+									           VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" 
-                            Content="Search" MinWidth="100" Margin="10 3 0 3" Height="25" />
-                    <!--<Button x:Name="btnRandom" Grid.Row="5" Grid.Column="7" Width="30" Height="30" Margin="10 0 0 0">
-                        <icons:Computer01 />
-                    </Button>-->
+                    <Button Grid.Row="0"
+					        Grid.Column="4"
+					        x:Name="btnQuerySearch"
+					        Command="{Binding SearchClick}"
+					        Content="Search"
+					        MinWidth="100"
+					        Margin="10 3 0 3"
+					        Height="25"/>
                 </Grid>
-
                 <!--Grid Data-->
-                <DataGrid Style="{StaticResource EmptyTemplate_1}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0" 
-                          x:Name="dgvWorkItems" RowHeight="20"
-                          AutoGenerateColumns="False"
-                          HorizontalScrollBarVisibility="Disabled"
-                          HorizontalAlignment="Stretch" 
-                          CanUserResizeColumns="False"
-                          IsReadOnly="True"
-                          Background ="White" RowBackground="White" 
-                          AlternatingRowBackground="AliceBlue"
-                          ItemsSource="{Binding WiDetails}">
+                <DataGrid Style="{StaticResource EmptyTemplate_1}"
+				          Grid.Row="2"
+				          Grid.Column="1"
+				          Grid.ColumnSpan="2"
+				          Margin="0 10 0 0"
+				          x:Name="dgvWorkItems"
+				          RowHeight="20"
+				          AutoGenerateColumns="False"
+				          HorizontalScrollBarVisibility="Disabled"
+				          HorizontalAlignment="Stretch"
+				          CanUserResizeColumns="False"
+				          IsReadOnly="True"				          
+				          Background="White"
+				          RowBackground="White"
+				          AlternatingRowBackground="AliceBlue"
+				          ItemsSource="{Binding WiDetails}"
+				          SelectedItem="{Binding WorkItemDetail, Mode=TwoWay}">
                     <DataGrid.Resources>
-                        <ContextMenu x:Key="dgvContextMenu">
-                            <MenuItem Header="Copy" Command="{Binding CopyClick}" />
-                            <MenuItem Header="Copy All" Command="{Binding CopyAllClick}" />
+                        <ContextMenu x:Key="GridContextMenu">
+                            <MenuItem Header="Open"
+							          Command="{Binding OpenCommand}" CommandTarget="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                                <MenuItem.Icon>
+                                    <Image Source="{Binding Source={StaticResource OpenIcon}}"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
                         </ContextMenu>
                     </DataGrid.Resources>
                     <DataGrid.RowStyle>
-                        <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                            <Setter Property="ContextMenu" Value="{StaticResource dgvContextMenu}" />
+                        <Style TargetType="DataGridRow"
+						       BasedOn="{StaticResource {x:Type DataGridRow}}">
+                            <Setter Property="ContextMenu"
+							        Value="{StaticResource GridContextMenu}"/>
                         </Style>
                     </DataGrid.RowStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Work Item ID" Binding="{Binding WiNumber}" />
-                        <DataGridTextColumn Header="Work Item Type" Binding="{Binding WiType}" />
-                        <DataGridTextColumn Header="State" Width="60" Binding="{Binding State}" />
-                        <DataGridTextColumn Header="Assigned To" Width="auto" Binding="{Binding AssignedTo}" />
-                        <DataGridTextColumn Header="Tags" Width="auto" Binding="{Binding Tags}" />
-                        <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Description}" />
+                        <DataGridTextColumn Header="Work Item ID"
+						                    Binding="{Binding WiNumber}"/>
+                        <DataGridTextColumn Header="Work Item Type"
+						                    Binding="{Binding WiType}"/>
+                        <DataGridTextColumn Header="State"
+						                    Width="60"
+						                    Binding="{Binding State}"/>
+                        <DataGridTextColumn Header="Assigned To"
+						                    Width="auto"
+						                    Binding="{Binding AssignedTo}"/>
+                        <DataGridTextColumn Header="Tags"
+						                    Width="auto"
+						                    Binding="{Binding Tags}"/>
+                        <DataGridTextColumn Header="Description"
+						                    Width="*"
+						                    Binding="{Binding Description}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
