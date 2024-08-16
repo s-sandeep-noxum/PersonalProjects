@@ -1,7 +1,7 @@
-﻿using WorkItemCreator.ViewModel;
+﻿using WorkManager.ViewModel;
 using System.Windows;
 
-namespace WorkItemCreator.View
+namespace WorkManager.View
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml

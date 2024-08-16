@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace WorkItemCreator.Converters
+namespace WorkManager.Converters
 {
 	public class ImageToSourceConverter : IValueConverter
 	{

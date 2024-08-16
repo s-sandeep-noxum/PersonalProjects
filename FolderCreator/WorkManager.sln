@@ -2,9 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkItemCreator", "FolderCreator\WorkItemCreator.csproj", "{42FCC874-26FC-4788-BA0D-968FFD7A28BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkManager", "FolderCreator\WorkManager.csproj", "{42FCC874-26FC-4788-BA0D-968FFD7A28BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconsLibrary", "IconsLibrary\IconsLibrary.csproj", "{4C63B72F-1743-4A2A-8D56-8F49C8939F4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IconsLibrary", "IconsLibrary\IconsLibrary.csproj", "{4C63B72F-1743-4A2A-8D56-8F49C8939F4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

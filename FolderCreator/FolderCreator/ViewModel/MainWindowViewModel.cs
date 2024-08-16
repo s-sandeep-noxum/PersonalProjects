@@ -16,12 +16,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
-using WorkItemCreator.Commands;
-using WorkItemCreator.ConnectionItems;
-using WorkItemCreator.Data;
+using WorkManager.Commands;
+using WorkManager.ConnectionItems;
+using WorkManager.Data;
 using WorkItemFolder.Data;
 
-namespace WorkItemCreator.ViewModel
+namespace WorkManager.ViewModel
 {
 	public class MainWindowViewModel : INotifyPropertyChanged, IDataErrorInfo
 	{

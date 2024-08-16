@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
-namespace WorkItemCreator.Helper
+namespace WorkManager.Helper
 {
 	public class RichTextBoxHelper : DependencyObject
 	{

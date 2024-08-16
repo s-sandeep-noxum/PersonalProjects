@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
-using WorkItemCreator.Commands;
-using WorkItemCreator.ViewModel;
+using WorkManager.Commands;
+using WorkManager.ViewModel;
 
-namespace WorkItemCreator.Data
+namespace WorkManager.Data
 {
 	public class WorkItemDetails
 	{
