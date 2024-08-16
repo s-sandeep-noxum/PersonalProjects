@@ -29,5 +29,25 @@
     </Style>
 
     <converters:ImageSourceConverter x:Key="ImageSourceConverter" x:Name="ImageSourceConverter" />
-    <converters:ImageToSourceConverter x:Key="ImageToSourceConverter" x:Name="ImageToSourceConverter" />    
+    <converters:ImageToSourceConverter x:Key="ImageToSourceConverter" x:Name="ImageToSourceConverter" />
+
+    <Style x:Key="DatePickerStyle_1" TargetType="{x:Type DatePicker}">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="IsTodayHighlighted" Value="True"/>
+        <Setter Property="SelectedDateFormat" Value="Long"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint=".5,0" StartPoint=".5,1">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="#FF617584" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>        
+    </Style>
 </ResourceDictionary>

@@ -22,7 +22,7 @@ namespace WorkManager.View
 	{
 		public LeaveDetails()
 		{
-			InitializeComponent();
+			InitializeComponent();			
 		}
 	}
 }
