@@ -1,7 +1,7 @@
 ﻿
 using System.Windows.Controls;
 
-namespace WorkItemFolder.Validations
+namespace WorkManager.Validations
 {
     public class DescriptionValidationRule : ValidationRule
 		{        

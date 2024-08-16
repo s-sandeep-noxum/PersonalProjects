@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorkItemFolder.Data
+namespace WorkManager.Data
 {
-    public class CalendarYear : IEquatable<CalendarYear>
-    {        
-        public string YearText { get; set; }
+	public class CalendarYear : IEquatable<CalendarYear>
+	{
+		public string YearText { get; set; }
 
 		public bool Equals(CalendarYear other)
 		{

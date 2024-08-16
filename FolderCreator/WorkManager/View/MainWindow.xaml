@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:validation="clr-namespace:WorkManager.Validations"
         xmlns:local="clr-namespace:WorkManager.ViewModel"
-        xmlns:validation="clr-namespace:WorkItemFolder.Validations"
+        xmlns:view="clr-namespace:WorkManager.View"
         mc:Ignorable="d"
         Title="Work Manager"
         Height="640"
@@ -415,6 +416,11 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
+        </TabItem>
+        
+        <!-- Third Tab -->
+        <TabItem Header="Leave Details">
+            <view:LeaveDetails/>
         </TabItem>
     </TabControl>
 </Window>

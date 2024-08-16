@@ -19,7 +19,6 @@ using System.Xml;
 using WorkManager.Commands;
 using WorkManager.ConnectionItems;
 using WorkManager.Data;
-using WorkItemFolder.Data;
 
 namespace WorkManager.ViewModel
 {

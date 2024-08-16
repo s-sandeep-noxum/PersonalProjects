@@ -1,9 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using WorkManager.Commands;
-using WorkManager.ViewModel;
 
 namespace WorkManager.Data
 {
@@ -70,7 +68,7 @@ namespace WorkManager.Data
 					FileName = url.ToString(),
 					UseShellExecute = true
 				});
-			}			
+			}
 		}
 	}
 }

@@ -2,8 +2,8 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
-		<RootNamespace>WorkItemFolder</RootNamespace>
-		<AssemblyName>WorkItemFolder</AssemblyName>
+		<RootNamespace>WorkManager</RootNamespace>
+		<AssemblyName>WorkManager</AssemblyName>
 		<IsWebBootstrapper>false</IsWebBootstrapper>
 		<PublishUrl>publish\</PublishUrl>
 		<Install>true</Install>
