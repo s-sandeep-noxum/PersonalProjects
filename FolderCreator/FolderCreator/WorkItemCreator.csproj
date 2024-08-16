@@ -42,10 +42,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="$(AppData)\microsoft\UserSecrets\$(UserSecretsId)\secrets.json" Link="secrets.json" />
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Remove="ViewModel\WorkItemViewModel.cs" />
-	</ItemGroup>
+	</ItemGroup>	
 	<ItemGroup>
 		<None Remove="Computer_icon-icons.com_55509.ico" />
 	</ItemGroup>

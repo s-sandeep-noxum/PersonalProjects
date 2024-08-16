@@ -77,8 +77,8 @@ namespace WorkItemCreator.ViewModel
 			}
 			set
 			{
-				if (currentQuery.QueryText == value.QueryText) return;
-				currentQuery.QueryText = value.QueryText;
+				if (currentQuery.QueryText == value?.QueryText) return;
+				currentQuery.QueryText = value?.QueryText;
 				OnPropertyChanged(nameof(CurrentQuery));
 			}
 		}

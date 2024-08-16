@@ -381,7 +381,7 @@
                     <DataGrid.Resources>
                         <ContextMenu x:Key="GridContextMenu">
                             <MenuItem Header="Open"
-							          Command="{Binding OpenCommand}" CommandTarget="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+							          Command="{Binding OpenCommand}" CommandParameter="{Binding Path=DataContext.SelectedProject.ProjectText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandTarget="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
                                 <MenuItem.Icon>
                                     <Image Source="{Binding Source={StaticResource OpenIcon}}"/>
                                 </MenuItem.Icon>

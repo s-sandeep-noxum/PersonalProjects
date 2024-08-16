@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Text;
 using System.Windows.Input;
 using WorkItemCreator.Commands;
+using WorkItemCreator.ViewModel;
 
 namespace WorkItemCreator.Data
 {
 	public class WorkItemDetails
 	{
 		private ICommand openCommand;
+
 		public WorkItemDetails(string description, int wiNumber, string state, string assignedTo, string tags, string wiType)
 		{
 			Description = description;
@@ -22,6 +26,7 @@ namespace WorkItemCreator.Data
 		}
 
 		public string AssignedTo { get; set; }
+
 		public bool CanExecute
 		{
 			get
@@ -32,11 +37,12 @@ namespace WorkItemCreator.Data
 		}
 
 		public string Description { get; set; }
+
 		public ICommand OpenCommand
 		{
 			get
 			{
-				return openCommand ?? (openCommand = new CommandHandler(() => OpenWorkItem(), () => CanExecute));
+				return openCommand ?? (openCommand = new RelayCommand(OpenWorkItem));
 			}
 		}
 
@@ -44,9 +50,27 @@ namespace WorkItemCreator.Data
 		public string Tags { get; set; }
 		public int WiNumber { get; set; }
 		public string WiType { get; set; }
-		private void OpenWorkItem()
+
+		private void OpenWorkItem(object selectedProject)
 		{
-			throw new NotImplementedException();
+
+			if (selectedProject is string)
+			{
+				StringBuilder url = new StringBuilder { Length = 0 };
+				url.Append(@"https://noxum.visualstudio.com");
+				url.Append(@"/");
+				url.Append(selectedProject);
+				url.Append(@"/");
+				url.Append("_workitems/edit");
+				url.Append(@"/");
+				url.Append(WiNumber);
+
+				System.Diagnostics.Process.Start(new ProcessStartInfo
+				{
+					FileName = url.ToString(),
+					UseShellExecute = true
+				});
+			}			
 		}
 	}
 }
