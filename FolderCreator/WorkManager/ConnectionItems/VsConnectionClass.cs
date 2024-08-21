@@ -5,7 +5,7 @@ using System;
 
 namespace WorkManager.ConnectionItems
 {
-	public static class ConnectionClass
+	public static class VsConnectionClass
 	{
 		private const String c_collectionUri = @"https://noxum.visualstudio.com/";		
 		private static VssConnection connection = null;

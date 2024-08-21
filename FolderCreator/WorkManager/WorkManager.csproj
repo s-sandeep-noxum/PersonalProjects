@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<RootNamespace>WorkManager</RootNamespace>
 		<AssemblyName>WorkManager</AssemblyName>
@@ -76,10 +76,13 @@
 			<Install>false</Install>
 		</BootstrapperPackage>
 	</ItemGroup>
-	<ItemGroup>
+	<ItemGroup>		
+		<PackageReference Include="EntityFramework" Version="6.0.0" />		
 		<PackageReference Include="IronWord" Version="2024.3.5" />
 		<PackageReference Include="Microsoft.Azure.Amqp" Version="2.6.3" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />		
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
 		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.16.0" />
 		<PackageReference Include="Microsoft.NETCore.Targets" Version="5.0.0" />

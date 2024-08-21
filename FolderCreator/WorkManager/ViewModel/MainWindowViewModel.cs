@@ -123,7 +123,7 @@ namespace WorkManager.ViewModel
 				if (this.projects == null)
 				{
 					this.projects = new List<Projects>();
-					ProjectHttpClient projectClient = ConnectionClass.Connection.GetClient<ProjectHttpClient>();
+					ProjectHttpClient projectClient = VsConnectionClass.Connection.GetClient<ProjectHttpClient>();
 					IEnumerable<TeamProjectReference> projectsWithAccess = projectClient.GetProjects().Result;
 
 					foreach (TeamProjectReference p in projectsWithAccess)
@@ -333,7 +333,7 @@ namespace WorkManager.ViewModel
 		private static WorkItemTrackingHttpClient GetMyQueriesFromProject(string ProjectName, out QueryHierarchyItem myQueriesFolder)
 		{
 			// Create instance of WorkItemTrackingHttpClient using VssConnection
-			WorkItemTrackingHttpClient witClient = ConnectionClass.Connection.GetClient<WorkItemTrackingHttpClient>();
+			WorkItemTrackingHttpClient witClient = VsConnectionClass.Connection.GetClient<WorkItemTrackingHttpClient>();
 
 			// Get 2 levels of query hierarchy items
 			List<QueryHierarchyItem> queryHierarchyItems = witClient.GetQueriesAsync(ProjectName, depth: 2).Result;

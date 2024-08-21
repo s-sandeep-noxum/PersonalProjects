@@ -15,6 +15,7 @@
     <BitmapImage x:Key="ProjectComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project-Black.png" />
     <BitmapImage x:Key="SearchComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Search-Black.png" />
     <BitmapImage x:Key="OpenIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Open-Black.png" />
+    <BitmapImage x:Key="LeaveIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Leave-Black.png" />
 
     <Style x:Key="FeatureGroupIconStyle" TargetType="Image">
         <Setter Property="Width" Value="20" />
@@ -28,14 +29,21 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
+    <Style x:Key="ButtonIconStyle_1" TargetType="Image">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
     <converters:ImageSourceConverter x:Key="ImageSourceConverter" x:Name="ImageSourceConverter" />
     <converters:ImageToSourceConverter x:Key="ImageToSourceConverter" x:Name="ImageToSourceConverter" />
+    <converters:ColourConverter x:Key="ColourConverter" x:Name="ColourConverter"/>
 
     <Style x:Key="DatePickerStyle_1" TargetType="{x:Type DatePicker}">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>
         <Setter Property="SelectedDateFormat" Value="Long"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Background" Value="FloralWhite"/>
         <Setter Property="Padding" Value="2"/>
         <Setter Property="BorderBrush">
             <Setter.Value>
@@ -48,6 +56,6 @@
             </Setter.Value>
         </Setter>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>        
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
     </Style>
 </ResourceDictionary>

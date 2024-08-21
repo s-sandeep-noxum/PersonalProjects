@@ -16,25 +16,67 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="1" Grid.Column="1" Content="Type Of Leave:" VerticalAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Type :" VerticalAlignment="Center"/>
         <ComboBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" ItemsSource="{Binding TypeOfLeaves}" SelectedValue="{Binding TypeOfLeave}"/>
 
-        <Label Grid.Row="1" Grid.Column="3" Content="Date:" Margin="10 0 0 0" VerticalAlignment="Center"/>
-        <DatePicker Grid.Row="1" Grid.Column="4" x:Name="DateSelected" Style="{StaticResource DatePickerStyle_1}" VerticalAlignment="Center" SelectedDate="{Binding Date}"/>
+        <Label Grid.Row="1" Grid.Column="3" Content="Day Type:" Margin="10 0 0 0" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" ItemsSource="{Binding DayTypes}" SelectedValue="{Binding DayType}"/>
 
+        <Label Grid.Row="1" Grid.Column="5" Content="Date:" Margin="10 0 0 0" VerticalAlignment="Center"/>
+        <DatePicker Grid.Row="1" Grid.Column="6" x:Name="DateSelected" Style="{StaticResource DatePickerStyle_1}" VerticalAlignment="Center" SelectedDate="{Binding Date}"/>
+
+        <Button Grid.Row="1" Grid.Column="7" x:Name="btnSave" HorizontalAlignment="Left" Margin="20 0 0 0" Command="{Binding SaveLeaveClick}" VerticalAlignment="Center" Width="80" Height="25">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{StaticResource SaveIcon}" Style="{StaticResource ButtonIconStyle_1}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                <TextBlock Text="Save" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+        <Label Grid.Row="2" Grid.Column="1" Content="Comment:" Margin="0 0 0 0" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="6" MaxLength="200" VerticalAlignment="Center" Text="{Binding Comment}" TextWrapping="Wrap"/>
+
+        <DataGrid 
+            Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" 
+            ItemsSource="{Binding LeaveDetails}" 
+            SelectedItem="{Binding SelectedLeaveDetail}" 
+            SelectionMode="Single" BorderThickness="1" CanUserSortColumns="False"                      
+            AutoGenerateColumns="False" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+            HorizontalAlignment="Stretch" CanUserResizeColumns="False" IsReadOnly="True" 
+            Background="White" RowBackground="White"  AlternatingRowBackground="AliceBlue" 
+            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">                    
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TypeOfLeave}" Value="Optional Leave">
+                            <Setter Property="Background" Value="Green"/>                            
+                            <Setter Property="FontWeight" Value="Bold"/>                            
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Type Of Leave" Binding="{Binding TypeOfLeave}" Width="100" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="100"/>
+                <DataGridTextColumn Header="Month" Binding="{Binding Month}" Width="100"/>
+                <DataGridTextColumn Header="Day" Binding="{Binding Day}" Width="100"/>
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
