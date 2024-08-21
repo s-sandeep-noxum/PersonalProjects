@@ -16,6 +16,7 @@
     <BitmapImage x:Key="SearchComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Search-Black.png" />
     <BitmapImage x:Key="OpenIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Open-Black.png" />
     <BitmapImage x:Key="LeaveIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Leave-Black.png" />
+    <BitmapImage x:Key="PrintIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Print-Black.png" />
 
     <Style x:Key="FeatureGroupIconStyle" TargetType="Image">
         <Setter Property="Width" Value="20" />
