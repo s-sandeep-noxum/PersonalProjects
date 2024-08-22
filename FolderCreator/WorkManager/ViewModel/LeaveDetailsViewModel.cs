@@ -17,6 +17,7 @@ namespace WorkManager.ViewModel
 		private string dayType;
 		private List<LeaveDetails> leaveDetails;
 		private ICommand saveLeaveClick;
+		private LeaveDetails selectedLeaveDetail;
 		private string typeOfLeave;
 		public LeaveDetailsViewModel()
 		{
@@ -89,8 +90,13 @@ namespace WorkManager.ViewModel
 				}
 			}
 		}
-
-		private LeaveDetails selectedLeaveDetail;
+		public ICommand SaveLeaveClick
+		{
+			get
+			{
+				return saveLeaveClick ?? (saveLeaveClick = new CommandHandler(() => SaveLeaveDetails(), () => true));
+			}
+		}
 
 		public LeaveDetails SelectedLeaveDetail
 		{
@@ -104,15 +110,6 @@ namespace WorkManager.ViewModel
 				}
 			}
 		}
-
-		public ICommand SaveLeaveClick
-		{
-			get
-			{
-				return saveLeaveClick ?? (saveLeaveClick = new CommandHandler(() => SaveLeaveDetails(), () => true));
-			}
-		}
-
 		public string TypeOfLeave
 		{
 			get
@@ -140,7 +137,7 @@ namespace WorkManager.ViewModel
 		private void FillLeaveDetails()
 		{
 			List<LeaveDetails> _leaveDetails = new List<LeaveDetails>();
-			dbContext.LeaveDetails.OrderBy(o => o.Date).ToList().ForEach(leave =>
+			dbContext.LeaveDetails.OrderByDescending(o => o.Date).ToList().ForEach(leave =>
 			{
 				_leaveDetails.Add(new LeaveDetails
 				{
@@ -171,6 +168,11 @@ namespace WorkManager.ViewModel
 		}
 		private void SaveLeaveDetails()
 		{
+			if(MessageBox.Show("Are you sure you want to save the leave details?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+			{
+				return;
+			}
+
 			dbContext.LeaveDetails.Add(new Leave
 			{
 				Date = this.Date,
@@ -182,6 +184,7 @@ namespace WorkManager.ViewModel
 			if (dbContext.SaveChanges() > 0)
 			{
 				MessageBox.Show("Leave details saved successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				FillLeaveDetails();
 				ResetFields();
 			}
 		}
