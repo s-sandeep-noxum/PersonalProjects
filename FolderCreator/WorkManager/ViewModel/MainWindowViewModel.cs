@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.Services.WebApi;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,7 +47,7 @@ namespace WorkManager.ViewModel
 
 		public MainWindowViewModel()
 		{
-			this.FolderPath = @"C:\Users\Sandeep.shenoy\OneDrive - Noxum GmbH\Work Details";			
+			this.FolderPath = ConfigurationManager.AppSettings["SavePath"].ToString();			
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

@@ -17,6 +17,7 @@ namespace WorkManager.ViewModel
 		private string dayType;
 		private List<LeaveDetails> leaveDetails;
 		private ICommand saveLeaveClick;
+		private ICommand refreshClick;
 		private LeaveDetails selectedLeaveDetail;
 		private string typeOfLeave;
 		public LeaveDetailsViewModel()
@@ -95,6 +96,14 @@ namespace WorkManager.ViewModel
 			get
 			{
 				return saveLeaveClick ?? (saveLeaveClick = new CommandHandler(() => SaveLeaveDetails(), () => true));
+			}
+		}
+
+		public ICommand RefreshClick
+		{
+			get
+			{
+				return refreshClick ?? (refreshClick = new CommandHandler(() => FillLeaveDetails(), () => true));
 			}
 		}
 

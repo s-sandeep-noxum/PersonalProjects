@@ -39,28 +39,28 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="169"/>
-                    <ColumnDefinition Width="68.563"/>
-                    <ColumnDefinition Width="96.937"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="10"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" Grid.ColumnSpan="4">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="Folder Path:" Width="140"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FolderPath, Mode=TwoWay}" Margin="3" Name="txtFolderPath" IsEnabled="False" Width="260"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FolderPath, Mode=TwoWay}" HorizontalAlignment="Left" Margin="3" Name="txtFolderPath" IsEnabled="False" Width="300"/>
                 </Grid>
-                <Grid Grid.Row="1" Grid.Column="4" Margin="30,0,0,5" Grid.ColumnSpan="3" Height="auto" VerticalAlignment="Center">
+                <Grid Grid.Row="1" Grid.Column="5" Margin="10,0,0,5" Grid.ColumnSpan="3" Height="auto" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -80,7 +80,7 @@
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" Grid.ColumnSpan="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -89,9 +89,9 @@
                     <Label Grid.Row="0" Grid.Column="0" Content="Work Item Number:" Width="140"/>
                     <TextBox Grid.Row="0" Grid.Column="1" Width="120" Text="{Binding WiNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[WiNumber]}" Name="txtWorkItemNumber" Margin="3" HorizontalAlignment="Left"/>
                 </Grid>
-                <Grid Grid.Row="2" Grid.Column="4" Margin="30 0 0 5" Grid.ColumnSpan="3">
+                <Grid Grid.Row="2" Grid.Column="5" Margin="10 0 0 5" Grid.ColumnSpan="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
