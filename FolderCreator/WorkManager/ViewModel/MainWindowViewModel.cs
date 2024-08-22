@@ -300,10 +300,7 @@ namespace WorkManager.ViewModel
 		{
 			try
 			{
-				Application.Current.Dispatcher.Invoke(() =>
-				{
-					Mouse.OverrideCursor = Cursors.Wait;
-				});
+				Common.CommonHelper.WaitCursor();
 
 				if (string.IsNullOrEmpty(CurrentQuery.QueryText)) return;
 				var workItems = GetWorkItems(CurrentQuery.QueryText);
@@ -312,12 +309,11 @@ namespace WorkManager.ViewModel
 			}
 			finally
 			{
-				Application.Current.Dispatcher.Invoke(() =>
-				{
-					Mouse.OverrideCursor = null;
-				});
+				Common.CommonHelper.NormalCursor();
 			}
 		}
+
+		
 
 		private static string GetAssignedTo(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem workItem)
 		{

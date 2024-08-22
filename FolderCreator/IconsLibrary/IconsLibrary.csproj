@@ -15,4 +15,10 @@
 	  <Resource Include="UI-48\**" />	  
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="Background\Noxum-Banner.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

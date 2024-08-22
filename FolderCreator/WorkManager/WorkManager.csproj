@@ -79,7 +79,8 @@
 	<ItemGroup>		
 		<PackageReference Include="EntityFramework" Version="6.0.0" />		
 		<PackageReference Include="IronWord" Version="2024.3.5" />		
-		<PackageReference Include="itext7" Version="8.0.5" />
+		<PackageReference Include="itext7" Version="8.0.5" />		
+		<PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.5" />
 		<PackageReference Include="Microsoft.Azure.Amqp" Version="2.6.3" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />

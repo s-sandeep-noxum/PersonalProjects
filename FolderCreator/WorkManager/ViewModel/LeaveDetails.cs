@@ -1,10 +1,13 @@
-﻿using System;
+﻿using iText.IO.Font.Constants;
+using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WorkManager.Commands;
+using WorkManager.PDF;
 
 namespace WorkManager.ViewModel
 {
@@ -32,13 +35,8 @@ namespace WorkManager.ViewModel
 		{
 			get
 			{
-				return exportCommand ?? (exportCommand = new RelayCommand(PrintLeaves));
+				return exportCommand ?? (exportCommand = new RelayCommand(CreatePDF.CreatePDFDocument));
 			}
-		}
-
-		private void PrintLeaves(object obj)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }
