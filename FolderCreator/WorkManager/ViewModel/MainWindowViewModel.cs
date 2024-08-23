@@ -47,7 +47,7 @@ namespace WorkManager.ViewModel
 
 		public MainWindowViewModel()
 		{
-			this.FolderPath = ConfigurationManager.AppSettings["SavePath"].ToString();			
+			this.FolderPath = ConfigurationManager.AppSettings["SavePath"].ToString();
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -303,9 +303,18 @@ namespace WorkManager.ViewModel
 				Common.CommonHelper.WaitCursor();
 
 				if (string.IsNullOrEmpty(CurrentQuery.QueryText)) return;
+
 				var workItems = GetWorkItems(CurrentQuery.QueryText);
-				if (workItems == null || workItems.Count == 0) { MessageBox.Show("Search did not return any result!!"); }
-				else { WiDetails = workItems; }
+
+				if (workItems == null || workItems.Count == 0) 
+				{
+					WiDetails = null;
+					MessageBox.Show("Search did not return any result!!"); 
+				}
+				else 
+				{ 
+					WiDetails = workItems; 
+				}
 			}
 			finally
 			{
@@ -313,7 +322,7 @@ namespace WorkManager.ViewModel
 			}
 		}
 
-		
+
 
 		private static string GetAssignedTo(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem workItem)
 		{

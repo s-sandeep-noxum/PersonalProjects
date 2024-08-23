@@ -39,7 +39,7 @@ namespace WorkManager.PDF
 					Color rowColour = new DeviceRgb(204, 255, 255);
 
 
-					document.Add(new Image(ImageDataFactory.Create(path)));
+					document.Add(new Image(ImageDataFactory.Create(path)));			
 					document.Add(new Paragraph());
 					document.Add(new Paragraph("Leave Details").SetFont(bold).SetFontSize(15).SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT).SetUnderline());
 
@@ -58,26 +58,26 @@ namespace WorkManager.PDF
 
 						table.StartNewRow();
 						table.AddCell(new Paragraph((++rowCount).ToString()).SetFont(font)
-																																.SetBackgroundColor(rowColour)
-																																.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+								.SetBackgroundColor(rowColour)
+								.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 						table.AddCell(new Paragraph(details.TypeOfLeave).SetFont(font)
-																														.SetBackgroundColor(rowColour)
-																														.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+								.SetBackgroundColor(rowColour)
+								.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 						table.AddCell(new Paragraph(details.DayType).SetFont(font)
-																												.SetBackgroundColor(rowColour)
-																												.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+								.SetBackgroundColor(rowColour)
+								.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 						table.AddCell(new Paragraph(details.Date).SetFont(font)
-																										.SetBackgroundColor(rowColour)
-																										.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+								.SetBackgroundColor(rowColour)
+								.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 						table.AddCell(new Paragraph(details.Month).SetFont(font)
-																											.SetBackgroundColor(rowColour)
-																											.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+								.SetBackgroundColor(rowColour)
+								.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 						table.AddCell(new Paragraph(details.Day).SetFont(font)
-																											.SetBackgroundColor(rowColour)
-																											.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+								.SetBackgroundColor(rowColour)
+								.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 						table.AddCell(new Paragraph(details.Comment == null ? string.Empty : details.Comment).SetFont(font)
-																																.SetBackgroundColor(rowColour)
-																																.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+								.SetBackgroundColor(rowColour)
+								.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 					}
 
 					document.Add(table);
