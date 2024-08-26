@@ -67,7 +67,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="Year:" Width="100" HorizontalAlignment="Left"/>
-                    <ComboBox Grid.Row="0" Grid.Column="1" Height="20" HorizontalAlignment="Left" Name="cmbYear" MinWidth="80" ItemsSource="{Binding YearData}" SelectedItem="{Binding CurrentYear}">
+                    <ComboBox Grid.Row="0" Grid.Column="1" Height="20" HorizontalAlignment="Left" Name="cmbYear" MinWidth="80" ItemsSource="{Binding YearData}" SelectedItem="{Binding SelectedYear}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

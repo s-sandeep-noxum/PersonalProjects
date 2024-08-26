@@ -10,9 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -48,6 +46,7 @@ namespace WorkManager.ViewModel
 		public MainWindowViewModel()
 		{
 			this.FolderPath = ConfigurationManager.AppSettings["SavePath"].ToString();
+			this.SelectedYear = new CalendarYear { YearText = DateTime.Now.Year.ToString() };
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -185,7 +184,7 @@ namespace WorkManager.ViewModel
 
 		public CalendarYear SelectedYear
 		{
-			get { return new CalendarYear { YearText = DateTime.Now.Year.ToString() }; }
+			get { return new CalendarYear { YearText = selectedYear.YearText.ToString() }; }
 			set
 			{
 				if (selectedYear?.YearText == value.YearText) return;
@@ -251,13 +250,7 @@ namespace WorkManager.ViewModel
 		}
 		public List<CalendarYear> YearData
 		{
-			get { return LoadData(); }
-			set
-			{
-				if (_yearData == value) return;
-				_yearData = value;
-				OnPropertyChanged(nameof(YearData));
-			}
+			get { return FillYearDetails(); }
 		}
 
 		public string this[string objectName]
@@ -306,14 +299,14 @@ namespace WorkManager.ViewModel
 
 				var workItems = GetWorkItems(CurrentQuery.QueryText);
 
-				if (workItems == null || workItems.Count == 0) 
+				if (workItems == null || workItems.Count == 0)
 				{
 					WiDetails = null;
-					MessageBox.Show("Search did not return any result!!"); 
+					MessageBox.Show("Search did not return any result!!");
 				}
-				else 
-				{ 
-					WiDetails = workItems; 
+				else
+				{
+					WiDetails = workItems;
 				}
 			}
 			finally
@@ -321,8 +314,6 @@ namespace WorkManager.ViewModel
 				Common.CommonHelper.NormalCursor();
 			}
 		}
-
-
 
 		private static string GetAssignedTo(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem workItem)
 		{
@@ -393,7 +384,7 @@ namespace WorkManager.ViewModel
 			title.Style = new TextStyle()
 			{
 				FontFamily = "Verdana",
-				FontSize = 36,
+				FontSize = 20,
 				TextColor = new IronColor(Color.Blue),
 				IsBold = true,
 				IsItalic = false,
@@ -427,13 +418,7 @@ namespace WorkManager.ViewModel
 				if (!string.IsNullOrEmpty(Description))
 				{
 					string FileName = folderName.Trim() + "\\" + "Description.docx";
-					//CreateDescriptionFile(FileName, description);
-					using (FileStream fs = File.Create(FileName))
-					{
-						Byte[] info = new UTF8Encoding(true).GetBytes(Description);
-						// Add some information to the file.
-						fs.Write(info, 0, info.Length);
-					}
+					CreateDescriptionFile(FileName, description);					
 				}
 				return true;
 			}
@@ -442,6 +427,22 @@ namespace WorkManager.ViewModel
 				MessageBox.Show(ex.Message);
 				return false;
 			}
+		}
+
+		private List<CalendarYear> FillYearDetails()
+		{
+			XmlDocument xmlDocument = new XmlDocument();
+			xmlDocument.Load(@"Data\YearData.xml");
+			XmlNodeList xmlNodeList = xmlDocument.GetElementsByTagName("Year");
+
+			_yearData = new List<CalendarYear>();
+
+			foreach (XmlNode node in xmlNodeList)
+			{
+				_yearData.Add(new CalendarYear { YearText = node.InnerText });
+			}
+
+			return _yearData;
 		}
 
 		private string GetFolderName()
@@ -571,22 +572,6 @@ namespace WorkManager.ViewModel
 			}
 
 			return (string)identityOjbect;
-		}
-
-		private List<CalendarYear> LoadData()
-		{
-			XmlDocument xmlDocument = new XmlDocument();
-			xmlDocument.Load(@"Data\YearData.xml");
-			XmlNodeList xmlNodeList = xmlDocument.GetElementsByTagName("Year");
-
-			_yearData = new List<CalendarYear>();
-
-			foreach (XmlNode node in xmlNodeList)
-			{
-				_yearData.Add(new CalendarYear { YearText = node.InnerText });
-			}
-
-			return _yearData;
 		}
 
 		private void OnPropertyChanged(string propertyName)
