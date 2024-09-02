@@ -23,11 +23,15 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
         
+        <!--Data Templates-->
         <DataTemplate DataType="{x:Type vm:WorkItemsViewModel}">
             <view:WorkItems/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:FoldersViewModel}">
             <view:Folders/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LeaveDetailsViewModel}">
+            <view:LeaveDetails/>
         </DataTemplate>
     </Window.Resources>
 

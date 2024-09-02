@@ -36,18 +36,18 @@ namespace ResponsiveWorkManager.ViewModels
 
 		private void CreateWorkItemObject(object windowName)
 		{
-			if(windowName.ToString() == "WorkItems")
+			switch((WindowName)windowName)
 			{
-				SelectedWindow = new WorkItemsViewModel();
-			}
-			else if (windowName.ToString() == "Folders")
-			{
-				SelectedWindow = new FoldersViewModel();
-			}
-			else if (windowName.ToString() == "LeaveDetails")
-			{
-				//SelectedWindow = new LeaveDetailsViewModel();
-			}			
+				case WindowName.WorkItems:
+					SelectedWindow = new WorkItemsViewModel();
+					break;
+				case WindowName.Folders:
+					SelectedWindow = new FoldersViewModel();
+					break;
+				case WindowName.LeaveDetails:
+					SelectedWindow = new LeaveDetailsViewModel();
+					break;
+			}					
 		}
 		
 	}
