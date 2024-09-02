@@ -3,16 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ResponsiveWorkManager.Views"
+             xmlns:local="clr-namespace:ResponsiveWorkManager.Views"             
              x:Name="winWorkItems"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/MenuStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Work Items" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" HorizontalAlignment="Center" Foreground="#121518"/>
+        <TextBlock Text="Work Items" Style="{StaticResource txtMenuItemHeading}" Grid.Row="0"/>
     </Grid>
 </UserControl>

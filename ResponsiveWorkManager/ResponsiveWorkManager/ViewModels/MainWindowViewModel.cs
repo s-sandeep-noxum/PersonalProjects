@@ -12,7 +12,7 @@ namespace ResponsiveWorkManager.ViewModels
 
 		public MainWindowViewModel()
 		{
-
+			this.selectedWindow = new WorkItemsViewModel();
 		}
 		public ViewModelBase SelectedWindow
 		{

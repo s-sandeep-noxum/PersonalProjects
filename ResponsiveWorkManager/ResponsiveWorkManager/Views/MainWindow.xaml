@@ -36,7 +36,7 @@
     </Window.Resources>
 
     <Border Background="#eff2f7"
-                BorderBrush="Purple"
+                BorderBrush="#737171"
                 BorderThickness="5"
                 CornerRadius="30,30,0,30"
                 MouseDown="Border_MouseDown"
@@ -60,7 +60,7 @@
                     <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15"/>
                 </Button>
 
-                <Border Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 30">
+                <Border Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 27">
                     <DockPanel>
                         <!--Menu Logo-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" 
@@ -121,19 +121,14 @@
             </Grid>
 
             <!-- Main Content-->
-            <Grid Grid.Column="1" Margin="30 20">
+            <Grid Grid.Column="1" Margin="5 35 0 0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>                  
+                    <RowDefinition Height="*"/>                   
                 </Grid.RowDefinitions>
 
-                <!-- Search TextBox-->
-                <Grid Width="300" HorizontalAlignment="Left">
+                <!-- Search TextBox Hidden-->
+                <Grid Width="300" HorizontalAlignment="Left" Visibility="Hidden">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" 
                                Panel.ZIndex="1" Text="Search Here.." Visibility="{Binding ElementName=txtSearch,Path=Text.IsEpty,Converter={StaticResource BoolToVisibility}}"/>
                     <TextBox x:Name="txtSearch" Style="{StaticResource textBoxSearch}" />
@@ -152,20 +147,9 @@
                 </Button>
 
                 <!--Page Title-->
-                <ContentControl Grid.Row="1" Content="{Binding SelectedWindow}">
-                    <!--<ContentControl.Style>
-                        <Style>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding SelectedWindow}" Value="WorkItems">
-                                    <Setter Property="ContentControl.Content" Value="{StaticResource WorkItems}"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding SelectedWindow}" Value="Folders">
-                                    <Setter Property="ContentControl.Content" Value="{StaticResource Folders}"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ContentControl.Style>-->
-                </ContentControl>
+                <Border Grid.Row ="1" CornerRadius="50 0 0 0" Background="#623ed0" >
+                    <ContentControl Content="{Binding SelectedWindow}"/>
+                </Border>
 
             </Grid>
         </Grid>
