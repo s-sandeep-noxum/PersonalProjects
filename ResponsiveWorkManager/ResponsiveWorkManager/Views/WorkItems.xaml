@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ResponsiveWorkManager.Views"             
+             xmlns:local="clr-namespace:ResponsiveWorkManager.Views"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              x:Name="winWorkItems"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -14,12 +15,112 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="Auto"/>
+            <RowDefinition Height ="*"/>
+            <RowDefinition Height ="0"/>
+        </Grid.RowDefinitions>
 
-        <TextBlock Text="Work Items" Style="{StaticResource txtMenuItemHeading}" Grid.Row="0"/>
+        <!--Heading-->
+        <TextBlock Grid.Row="0" Text="Work Items" Style="{StaticResource txtMenuItemHeading}"/>
+
+        <!--Details-->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <!-- Search Settings Row -->
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                    <Image Source="{Binding Source={StaticResource ProjectIcon}}" Style="{Binding Source={StaticResource menuItemIcon}}"/>
+                    <TextBlock Text="Project:" Style="{StaticResource txtMenuItems}"/>
+                </StackPanel>
+                <ComboBox Grid.Row="0" Grid.Column="1" Name="cmbProjects" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}"
+                           Style="{StaticResource MenuComboBox}" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Source={StaticResource ProjectComboIcon}}" Style="{StaticResource FeatureGroupIconStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Path= ProjectText}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                    <Image Source="{Binding Source={StaticResource QueryIcon}}" Style="{StaticResource menuItemIcon}"/>
+                    <TextBlock Text="Query:" Style="{StaticResource txtMenuItems}"/>
+                </StackPanel>
+                <ComboBox Grid.Row="0" Grid.Column="3"  Name="cmbQuery" ItemsSource="{Binding Queries}" SelectedItem="{Binding CurrentQuery}"
+                          Style="{StaticResource MenuComboBox}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Source={StaticResource SearchComboIcon}}" Style="{StaticResource FeatureGroupIconStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Path= QueryText}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" 
+                        Style="{StaticResource menuWiButton}" >
+                    <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="NoteSearch" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0"/>
+                        <TextBlock Text="Search" Style="{StaticResource txtMenuItems}" Margin="10 0 0 0" Foreground="#d0c0ff"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+            <!--Grid Data-->
+            <DataGrid Style="{StaticResource EmptyTemplate}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0" 
+              x:Name="dgvWorkItems" RowHeight="20" 
+              AutoGenerateColumns="False" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch" CanUserResizeColumns="False" IsReadOnly="True" Background="White" RowBackground="White" AlternatingRowBackground="AliceBlue" 
+              ItemsSource="{Binding WiDetails}" SelectedItem="{Binding WorkItemDetail, Mode=TwoWay}">
+                <DataGrid.Resources>
+                    <ContextMenu x:Key="GridContextMenu">
+                        <MenuItem Header="Open" Command="{Binding OpenCommand}" CommandParameter="{Binding Path=DataContext.SelectedProject.ProjectText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandTarget="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem.Icon>
+                                <Image Source="{Binding Source={StaticResource OpenIcon}}"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                        <Setter Property="ContextMenu" Value="{StaticResource GridContextMenu}"/>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Work Item ID" Width="100" Binding="{Binding WiNumber}"/>
+                    <DataGridTextColumn Header="Work Item Type" Width="100" Binding="{Binding WiType}"/>
+                    <DataGridTextColumn Header="State" Width="100" Binding="{Binding State}"/>
+                    <DataGridTextColumn Header="Assigned To" Width="100" Binding="{Binding AssignedTo}"/>
+                    <DataGridTextColumn Header="Tags" Width="auto" Binding="{Binding Tags}"/>
+                    <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Description}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
     </Grid>
 </UserControl>

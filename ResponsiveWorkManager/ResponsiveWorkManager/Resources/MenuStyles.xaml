@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:icons ="clr-namespace:IconsLibrary;assembly=IconsLibrary">
     
     
     <Style x:Key="txtMenuItemHeading" TargetType="TextBlock">
@@ -8,9 +9,185 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="10 5"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="10 40 0 5"/>
         <Setter Property="FontSize" Value="25"/>
         <Setter Property="FontWeight" Value="SemiBold"/>        
     </Style>
+
+    <Style x:Key="txtMenuItems" TargetType="TextBlock">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Width" Value="80"/>        
+    </Style>
+
+    <Style x:Key="menuWiButton" TargetType="Button">
+        <Setter Property="Background" Value="WhiteSmoke"/>
+        <Setter Property="Foreground" Value="#d0c0ff"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="15 3"/>        
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#7b5cd6"/>
+                <Setter Property="Background" Value="#FFFFCC"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="FeatureGroupIconStyle" TargetType="Image">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Margin" Value="0 0 5 0" />
+    </Style>
+
+    <Style x:Key="ButtonIconStyle" TargetType="Image">
+        <Setter Property="Width" Value="25" />
+        <Setter Property="Height" Value="25" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="ButtonIconStyle_1" TargetType="Image">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="menuItemIcon" TargetType="Image">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="0 0 5 0"/>
+    </Style>
+
+    <Style x:Key="DatePickerStyle_1" TargetType="{x:Type DatePicker}">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="IsTodayHighlighted" Value="True"/>
+        <Setter Property="SelectedDateFormat" Value="Long"/>
+        <Setter Property="Background" Value="FloralWhite"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint=".5,0" StartPoint=".5,1">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="#FF617584" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    </Style>
+
+    <Style x:Key="EmptyTemplate" TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding HasItems, RelativeSource={RelativeSource Self}}" Value="false">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <!-- <Original Template> -->
+                        <ControlTemplate TargetType="{x:Type DataGrid}">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                <ScrollViewer x:Name="DG_ScrollViewer" Focusable="False">
+                                    <ScrollViewer.Template>
+                                        <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Button Command="ApplicationCommands.SelectAll" Focusable="False" Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type DataGrid}}}">
+                                                    <Button.Visibility>
+                                                        <Binding Path="HeadersVisibility" RelativeSource="{RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type DataGrid}}">
+                                                            <Binding.ConverterParameter>
+                                                                <DataGridHeadersVisibility>All</DataGridHeadersVisibility>
+                                                            </Binding.ConverterParameter>
+                                                        </Binding>
+                                                    </Button.Visibility>
+                                                </Button>
+                                                <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" Grid.Column="1">
+                                                    <DataGridColumnHeadersPresenter.Visibility>
+                                                        <Binding Path="HeadersVisibility" RelativeSource="{RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type DataGrid}}">
+                                                            <Binding.ConverterParameter>
+                                                                <DataGridHeadersVisibility>Column</DataGridHeadersVisibility>
+                                                            </Binding.ConverterParameter>
+                                                        </Binding>
+                                                    </DataGridColumnHeadersPresenter.Visibility>
+                                                </DataGridColumnHeadersPresenter>
+
+                                                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" Grid.ColumnSpan="2" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Grid.Row="1" />
+                                                <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="2" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Grid.Row="1" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" />
+                                                <Grid Grid.Column="1" Grid.Row="2">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type DataGrid}}}" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="1" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" />
+                                                </Grid>
+
+                                                <!-- This is the only Modification to the original Template -->
+                                                <Label Content="No data found" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
+                                                <!-- -->
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </ScrollViewer.Template>
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </ScrollViewer>
+                            </Border>
+                        </ControlTemplate>
+                        <!-- </Original Template> -->
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MenuComboBox" TargetType="ComboBox">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="10 5 10 5"/>
+        <Setter Property="MinWidth" Value="200"/>        
+    </Style>
+
+    <!--Icons-->
+    <BitmapImage x:Key="ProjectIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project.png" />
+    <BitmapImage x:Key="QueryIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Query.png" />
+    <BitmapImage x:Key="FolderIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Folder-Black.png" />
+    <BitmapImage x:Key="WorkItemIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/WorkItem-Black.png" />
+    <BitmapImage x:Key="SaveIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Save-Black.png" />
+    <BitmapImage x:Key="CloseIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Close-Black.png" />
+    <BitmapImage x:Key="CalendarIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Calendar-Black.png" />
+    <BitmapImage x:Key="ProjectComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project-Black.png" />
+    <BitmapImage x:Key="SearchComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Search-Black.png" />
+    <BitmapImage x:Key="OpenIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Open-Black.png" />
+    <BitmapImage x:Key="LeaveIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Leave-Black.png" />
+    <BitmapImage x:Key="PrintIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Print-Black.png" />
+    <BitmapImage x:Key="RefreshIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Refresh-Black.png" />
+
 </ResourceDictionary>

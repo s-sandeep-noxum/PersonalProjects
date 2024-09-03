@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="UI-48\bookmark.png" />
+    <None Remove="UI-48\Calendar-Black.png" />
+    <None Remove="UI-48\Close-Black.png" />
+    <None Remove="UI-48\Computer.png" />
+    <None Remove="UI-48\ComputerNew.png" />
+    <None Remove="UI-48\Folder-Black.png" />
+    <None Remove="UI-48\Leave-Black.png" />
+    <None Remove="UI-48\Open-Black.png" />
+    <None Remove="UI-48\Print-Black.png" />
+    <None Remove="UI-48\Project-Black.png" />
+    <None Remove="UI-48\Project.png" />
+    <None Remove="UI-48\Query.png" />
+    <None Remove="UI-48\Refresh-Black.png" />
+    <None Remove="UI-48\Save-Black.png" />
+    <None Remove="UI-48\Search-Black.png" />
+    <None Remove="UI-48\Taskbar-Icon.ico" />
+    <None Remove="UI-48\WorkItem-Black.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="UI-48\bookmark.png" />
+    <Resource Include="UI-48\Calendar-Black.png" />
+    <Resource Include="UI-48\Close-Black.png" />
+    <Resource Include="UI-48\Computer.png" />
+    <Resource Include="UI-48\ComputerNew.png" />
+    <Resource Include="UI-48\Folder-Black.png" />
+    <Resource Include="UI-48\Leave-Black.png" />
+    <Resource Include="UI-48\Open-Black.png" />
+    <Resource Include="UI-48\Print-Black.png" />
+    <Resource Include="UI-48\Project-Black.png" />
+    <Resource Include="UI-48\Project.png" />
+    <Resource Include="UI-48\Query.png" />
+    <Resource Include="UI-48\Refresh-Black.png" />
+    <Resource Include="UI-48\Save-Black.png" />
+    <Resource Include="UI-48\Search-Black.png" />
+    <Resource Include="UI-48\Taskbar-Icon.ico" />
+    <Resource Include="UI-48\WorkItem-Black.png" />
+  </ItemGroup>
+
+</Project>

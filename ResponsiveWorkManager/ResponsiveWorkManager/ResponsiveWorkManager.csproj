@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IconsLibrary\IconsLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\Profile_3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
