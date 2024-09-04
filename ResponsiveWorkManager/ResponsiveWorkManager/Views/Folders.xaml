@@ -92,7 +92,8 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="US Number:" Style="{StaticResource txtMenuItems}"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Width="120" ToolTip="{Binding ErrorCollection[WiNumber]}" Name="txtWorkItemNumber" Margin="3" HorizontalAlignment="Left" Text="{Binding WiNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Row="0" Grid.Column="1" Width="120" ToolTip="{Binding ErrorCollection[WiNumber]}" Name="txtWorkItemNumber" Margin="3" HorizontalAlignment="Left" 
+                         Text="{Binding WiNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
             <Grid Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
@@ -107,7 +108,7 @@
                     <TextBox.Text>
                         <Binding Path="Title" ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
-                                <validation:DescriptionValidationRule/>
+                                <validation:DescriptionValidationRule ValidatesOnTargetUpdated="True"/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>

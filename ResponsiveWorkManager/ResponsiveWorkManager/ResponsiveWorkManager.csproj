@@ -7,6 +7,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <UserSecretsId>011cf0df-752c-481d-96cc-728b1efb92fe</UserSecretsId>
+    <ApplicationIcon>Main-Icon.ico</ApplicationIcon>
+    <PackageIcon>Main-Icon.png</PackageIcon>
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="EntityFramework" Version="6.0.0" />
@@ -38,6 +40,13 @@
     <Content Include="DataObjects\YearData.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Main-Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\IconsLibrary\UI-48\Main-Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

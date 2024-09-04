@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\Main-Icon.ico" />
     <None Remove="UI-48\bookmark.png" />
     <None Remove="UI-48\Calendar-Black.png" />
     <None Remove="UI-48\Close-Black.png" />
@@ -15,6 +16,7 @@
     <None Remove="UI-48\ComputerNew.png" />
     <None Remove="UI-48\Folder-Black.png" />
     <None Remove="UI-48\Leave-Black.png" />
+    <None Remove="UI-48\Main-Icon.png" />
     <None Remove="UI-48\Open-Black.png" />
     <None Remove="UI-48\Print-Black.png" />
     <None Remove="UI-48\Project-Black.png" />
@@ -28,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Icons\Main-Icon.ico" />
     <Resource Include="UI-48\bookmark.png" />
     <Resource Include="UI-48\Calendar-Black.png" />
     <Resource Include="UI-48\Close-Black.png" />
@@ -35,6 +38,7 @@
     <Resource Include="UI-48\ComputerNew.png" />
     <Resource Include="UI-48\Folder-Black.png" />
     <Resource Include="UI-48\Leave-Black.png" />
+    <Resource Include="UI-48\Main-Icon.png" />
     <Resource Include="UI-48\Open-Black.png" />
     <Resource Include="UI-48\Print-Black.png" />
     <Resource Include="UI-48\Project-Black.png" />
