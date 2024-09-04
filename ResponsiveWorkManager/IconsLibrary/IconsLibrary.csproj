@@ -47,4 +47,10 @@
     <Resource Include="UI-48\WorkItem-Black.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Background\Noxum-Banner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

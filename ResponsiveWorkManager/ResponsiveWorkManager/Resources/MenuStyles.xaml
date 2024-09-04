@@ -23,7 +23,7 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Width" Value="80"/>
+        <Setter Property="Width" Value="auto"/>
         <Setter Property="Margin" Value="5 3"/>
     </Style>
 
@@ -103,7 +103,7 @@
     </Style>
 
     <Style x:Key="EmptyTemplate" TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
-        <Setter Property="Background" Value="#eff2f7"/>       
+        <Setter Property="Background" Value="#eff2f7"/>
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -192,7 +192,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="HeadersVisibility" Value="Column"/>
     </Style>
 

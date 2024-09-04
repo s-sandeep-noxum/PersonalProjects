@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ResponsiveWorkManager.ViewModels"
         xmlns:view="clr-namespace:ResponsiveWorkManager.Views"
+        Icon="pack://application:,,,/IconsLibrary;component/UI-48/Taskbar-Icon.ico"
         mc:Ignorable="d"
         x:Name="winMainWindow"
         Title="MainWindow" 

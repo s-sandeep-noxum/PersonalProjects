@@ -139,6 +139,7 @@ namespace ResponsiveWorkManager.ViewModels
 
 		private void FillLeaveDetails()
 		{
+			Common.CommonHelper.WaitCursor();
 			List<LeaveDetails> _leaveDetails = new List<LeaveDetails>();
 			dbContext.LeaveDetails.OrderByDescending(o => o.Date).ToList().ForEach(leave =>
 			{
@@ -155,6 +156,7 @@ namespace ResponsiveWorkManager.ViewModels
 			});
 
 			LeaveDetails = _leaveDetails;
+			Common.CommonHelper.NormalCursor();
 		}
 		private void ResetFields()
 		{
