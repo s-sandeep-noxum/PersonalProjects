@@ -91,16 +91,14 @@
                 <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" 
                         Style="{StaticResource menuWiButton}" >
                     <StackPanel Orientation="Horizontal">
-                    <Icon:PackIconMaterial Kind="NoteSearch" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0"/>
+                        <Icon:PackIconMaterial Kind="NoteSearch" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0"/>
                         <TextBlock Text="Search" Style="{StaticResource txtMenuItems}" Margin="10 0 0 0" Foreground="#d0c0ff"/>
                     </StackPanel>
                 </Button>
             </Grid>
             <!--Grid Data-->
-            <DataGrid Style="{StaticResource EmptyTemplate}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0" 
-              x:Name="dgvWorkItems" RowHeight="20" 
-              AutoGenerateColumns="False" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch" CanUserResizeColumns="False" IsReadOnly="True" Background="White" RowBackground="White" AlternatingRowBackground="AliceBlue" 
-              ItemsSource="{Binding WiDetails}" SelectedItem="{Binding WorkItemDetail, Mode=TwoWay}">
+            <DataGrid Style="{StaticResource EmptyTemplate}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 10 0 0" x:Name="dgvWorkItems" AlternatingRowBackground="AliceBlue"
+                      ItemsSource="{Binding WiDetails}" SelectedItem="{Binding WorkItemDetail, Mode=TwoWay}">
                 <DataGrid.Resources>
                     <ContextMenu x:Key="GridContextMenu">
                         <MenuItem Header="Open" Command="{Binding OpenCommand}" 
@@ -118,12 +116,12 @@
                     </Style>
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Work Item ID" Width="100" Binding="{Binding WiNumber}"/>
-                    <DataGridTextColumn Header="Work Item Type" Width="100" Binding="{Binding WiType}"/>
-                    <DataGridTextColumn Header="State" Width="100" Binding="{Binding State}"/>
-                    <DataGridTextColumn Header="Assigned To" Width="100" Binding="{Binding AssignedTo}"/>
-                    <DataGridTextColumn Header="Tags" Width="auto" Binding="{Binding Tags}"/>
-                    <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Description}"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Work Item ID" Width="100" Binding="{Binding WiNumber}"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Work Item Type" Width="100" Binding="{Binding WiType}"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="State" Width="100" Binding="{Binding State}"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Assigned To" Width="100" Binding="{Binding AssignedTo}"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Tags" Width="100" Binding="{Binding Tags}"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Description" Width="*" Binding="{Binding Description}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

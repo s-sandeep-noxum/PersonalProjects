@@ -100,13 +100,25 @@
     </Style>
 
     <Style x:Key="EmptyTemplate" TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+        <Setter Property="Background" Value="#eff2f7"/>       
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="RowHeight" Value="20"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="CanUserDeleteRows" Value="False"/>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding HasItems, RelativeSource={RelativeSource Self}}" Value="false">
+            <DataTrigger Binding="{Binding HasItems, RelativeSource={RelativeSource Self}}" Value="false">                
                 <Setter Property="Template">
                     <Setter.Value>
                         <!-- <Original Template> -->
                         <ControlTemplate TargetType="{x:Type DataGrid}">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    Background="{TemplateBinding Background}" 
+                                    Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
                                 <ScrollViewer x:Name="DG_ScrollViewer" Focusable="False">
                                     <ScrollViewer.Template>
                                         <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -174,6 +186,18 @@
         <Setter Property="Margin" Value="10 5 10 5"/>
         <Setter Property="MinWidth" Value="250"/>
         <Setter Property="Width" Value="auto"/>
+    </Style>
+
+    <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="VerticalContentAlignment" Value="Center" />        
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="#623ed0" />
+        <Setter Property="BorderBrush" Value="AntiqueWhite"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="SeparatorBrush" Value="GhostWhite" />
+        <Setter Property="FontWeight" Value="SemiBold" />       
     </Style>
 
     <!--Icons-->
