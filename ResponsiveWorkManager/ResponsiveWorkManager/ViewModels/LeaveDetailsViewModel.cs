@@ -13,18 +13,20 @@ namespace ResponsiveWorkManager.ViewModels
 		private DateTime date;
 		private string dayType;
 		private List<LeaveDetails> leaveDetails;
-		private ICommand saveLeaveClick;
 		private ICommand refreshClick;
+		private ICommand saveLeaveClick;
 		private LeaveDetails selectedLeaveDetail;
 		private string typeOfLeave;
 		public LeaveDetailsViewModel()
 		{
-			ResetFields();
+			Common.CommonHelper.WaitCursor();
+			this.ResetFields();
 			if (!dbContext.Database.EnsureCreated())
 			{
-				FillLeaveDetails();
+				this.FillLeaveDetails();
 			}
-		}		
+			Common.CommonHelper.NormalCursor();
+		}
 		public string Comment
 		{
 			get { return comment; }
@@ -85,14 +87,6 @@ namespace ResponsiveWorkManager.ViewModels
 				}
 			}
 		}
-		public ICommand SaveLeaveClick
-		{
-			get
-			{
-				return saveLeaveClick ?? (saveLeaveClick = new CommandHandler(() => SaveLeaveDetails(), () => true));
-			}
-		}
-
 		public ICommand RefreshClick
 		{
 			get
@@ -101,6 +95,13 @@ namespace ResponsiveWorkManager.ViewModels
 			}
 		}
 
+		public ICommand SaveLeaveClick
+		{
+			get
+			{
+				return saveLeaveClick ?? (saveLeaveClick = new CommandHandler(() => SaveLeaveDetails(), () => true));
+			}
+		}
 		public LeaveDetails SelectedLeaveDetail
 		{
 			get { return selectedLeaveDetail; }
@@ -139,7 +140,6 @@ namespace ResponsiveWorkManager.ViewModels
 
 		private void FillLeaveDetails()
 		{
-			Common.CommonHelper.WaitCursor();
 			List<LeaveDetails> _leaveDetails = new List<LeaveDetails>();
 			dbContext.LeaveDetails.OrderByDescending(o => o.Date).ToList().ForEach(leave =>
 			{
@@ -156,7 +156,6 @@ namespace ResponsiveWorkManager.ViewModels
 			});
 
 			LeaveDetails = _leaveDetails;
-			Common.CommonHelper.NormalCursor();
 		}
 		private void ResetFields()
 		{

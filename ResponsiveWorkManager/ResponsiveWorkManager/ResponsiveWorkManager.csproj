@@ -31,7 +31,13 @@
 		<PackageReference Include="System.Private.Uri" Version="4.3.2" />
 	</ItemGroup>
   <ItemGroup>
+    <None Remove="DataObjects\YearData.xml" />
     <None Remove="Images\Profile_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataObjects\YearData.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
