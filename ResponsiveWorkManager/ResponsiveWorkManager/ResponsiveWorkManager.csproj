@@ -42,6 +42,18 @@
     </Content>
     <Content Include="Main-Icon.ico" />
   </ItemGroup>
+	<ItemGroup>
+		<PublishFile Include="DataObjects\YearData.xml">
+			<Visible>False</Visible>
+			<Group>
+			</Group>
+			<TargetPath>
+			</TargetPath>
+			<PublishState>Include</PublishState>
+			<IncludeHash>True</IncludeHash>
+			<FileType>File</FileType>
+		</PublishFile>
+	</ItemGroup>
   <ItemGroup>
     <None Include="..\IconsLibrary\UI-48\Main-Icon.png">
       <Pack>True</Pack>
