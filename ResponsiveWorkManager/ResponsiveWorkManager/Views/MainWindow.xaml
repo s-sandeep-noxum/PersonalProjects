@@ -108,7 +108,7 @@
 
                         </StackPanel>
 
-                        <Button Style="{StaticResource menuButton}" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="15 0 15 20">
+                        <Button Style="{StaticResource menuButton}" Command="{Binding LogoutClick}" CommandParameter="{Binding ElementName=winMainWindow}" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Logout"/>

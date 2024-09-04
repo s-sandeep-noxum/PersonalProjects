@@ -172,7 +172,8 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Margin" Value="10 5 10 5"/>
-        <Setter Property="MinWidth" Value="200"/>        
+        <Setter Property="MinWidth" Value="250"/>
+        <Setter Property="Width" Value="auto"/>
     </Style>
 
     <!--Icons-->

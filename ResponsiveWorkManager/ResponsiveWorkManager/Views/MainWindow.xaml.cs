@@ -37,7 +37,7 @@ namespace ResponsiveWorkManager.Views
 				if (IsMaximized)
 				{
 					WindowState = WindowState.Normal;
-					this.Width = 1080;
+					this.Width = 1350;
 					this.Height = 720;
 					IsMaximized = false;
 				}

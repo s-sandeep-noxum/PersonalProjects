@@ -418,7 +418,7 @@ namespace WorkManager.ViewModel
 				if (!string.IsNullOrEmpty(Description))
 				{
 					string FileName = folderName.Trim() + "\\" + "Description.docx";
-					CreateDescriptionFile(FileName, description);					
+					CreateDescriptionFile(FileName, description);
 				}
 				return true;
 			}

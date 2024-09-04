@@ -1,5 +1,6 @@
 ﻿using ResponsiveWorkManager.Commands;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ResponsiveWorkManager.ViewModels
@@ -9,6 +10,7 @@ namespace ResponsiveWorkManager.ViewModels
 		private ViewModelBase selectedWindow;
 
 		private ICommand menuItemClick;
+		private ICommand logoutClick;
 
 		public MainWindowViewModel()
 		{
@@ -34,9 +36,23 @@ namespace ResponsiveWorkManager.ViewModels
 			}
 		}
 
+		public ICommand LogoutClick
+		{
+			get
+			{
+				return logoutClick ?? (logoutClick = new RelayCommand(CloseWindow));
+			}
+		}
+
+		private void CloseWindow(object winHandle)
+		{
+			var myWindow = (Window)winHandle;
+			myWindow.Close();
+		}
+
 		private void CreateWorkItemObject(object windowName)
 		{
-			switch((WindowName)windowName)
+			switch ((WindowName)windowName)
 			{
 				case WindowName.WorkItems:
 					SelectedWindow = new WorkItemsViewModel();
@@ -47,8 +63,8 @@ namespace ResponsiveWorkManager.ViewModels
 				case WindowName.LeaveDetails:
 					SelectedWindow = new LeaveDetailsViewModel();
 					break;
-			}					
+			}
 		}
-		
+
 	}
 }
