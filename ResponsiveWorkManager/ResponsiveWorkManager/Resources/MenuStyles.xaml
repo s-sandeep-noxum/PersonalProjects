@@ -17,13 +17,14 @@
 
     <Style x:Key="txtMenuItems" TargetType="TextBlock">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="#d0c0ff"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Width" Value="80"/>        
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Margin" Value="5 3"/>
     </Style>
 
     <Style x:Key="menuWiButton" TargetType="Button">
@@ -85,6 +86,8 @@
         <Setter Property="SelectedDateFormat" Value="Long"/>
         <Setter Property="Background" Value="FloralWhite"/>
         <Setter Property="Padding" Value="2"/>
+        <Setter Property="MinWidth" Value="150"/>
+        <Setter Property="Margin" Value="10 5 10 5"/>
         <Setter Property="BorderBrush">
             <Setter.Value>
                 <LinearGradientBrush EndPoint=".5,0" StartPoint=".5,1">
@@ -178,6 +181,20 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="LeaveTemplate" TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CanUserSortColumns" Value="False"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="Background" Value="#eff2f7"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+    </Style>
 
     <Style x:Key="MenuComboBox" TargetType="ComboBox">
         <Setter Property="Height" Value="25"/>
@@ -187,6 +204,16 @@
         <Setter Property="MinWidth" Value="250"/>
         <Setter Property="Width" Value="auto"/>
     </Style>
+
+    <Style x:Key="MenuComboBoxSmall" TargetType="ComboBox">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="10 5 10 5"/>
+        <Setter Property="MinWidth" Value="150"/>
+        <Setter Property="Width" Value="auto"/>
+    </Style>   
+    
 
     <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center" />        

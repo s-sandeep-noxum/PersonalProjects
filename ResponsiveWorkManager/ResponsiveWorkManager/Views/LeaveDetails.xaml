@@ -4,14 +4,125 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ResponsiveWorkManager.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:vm="clr-namespace:ResponsiveWorkManager.ViewModels"
+             xmlns:icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d"
+             x:Name="winLeaveDetails"
+             d:DesignHeight="720" d:DesignWidth="1080">
+    <UserControl.DataContext>
+        <vm:LeaveDetailsViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/MenuStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="Auto"/>
+            <RowDefinition Height ="*"/>
+            <RowDefinition Height ="0"/>
+        </Grid.RowDefinitions>
+        <!--Heading-->
+        <TextBlock Grid.Row="0" Text="Leave Details" Style="{StaticResource txtMenuItemHeading}"/>
+        
+        <!--Details-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Grid.Column="1" Content="Type:" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="1" Grid.Column="2" Style="{StaticResource MenuComboBoxSmall}" ItemsSource="{Binding TypeOfLeaves}" SelectedValue="{Binding TypeOfLeave}"/>
 
-        <TextBlock Text="Leave Details" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" HorizontalAlignment="Center" Foreground="#121518"/>
+            <Label Grid.Row="1" Grid.Column="3" Content="Day Type:" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="1" Grid.Column="4" Style="{StaticResource MenuComboBoxSmall}" ItemsSource="{Binding DayTypes}" SelectedValue="{Binding DayType}"/>
+
+            <Label Grid.Row="2" Grid.Column="1" Content="Date:" VerticalAlignment="Center"/>
+            <DatePicker Grid.Row="2" Grid.Column="2" x:Name="DateSelected" Style="{StaticResource DatePickerStyle_1}" VerticalAlignment="Center" SelectedDate="{Binding Date}"/>
+
+            <Button Grid.Row="2" Grid.Column="5" x:Name="btnRefresh" Style="{StaticResource menuWiButton}" Command="{Binding RefreshClick}">
+                <StackPanel Orientation="Horizontal">
+                    <icon:PackIconMaterial Kind="Refresh" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0"/>
+                    <TextBlock Text="Refresh" Style="{StaticResource txtMenuItems}" />
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Row="2" Grid.Column="6" x:Name="btnSave" Style="{StaticResource menuWiButton}" Command="{Binding SaveLeaveClick}">
+                <StackPanel Orientation="Horizontal">
+                    <icon:PackIconMaterial Kind="ContentSave" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0"/>
+                    <TextBlock Text="Save" Style="{StaticResource txtMenuItems}"/>
+                </StackPanel>
+            </Button>
+
+            <Label Grid.Row="3" Grid.Column="1" Content="Comment:" Margin="0 0 0 0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="7" Text="{Binding Comment}" MaxLength="200" MinHeight="25" Margin="10 5 0 5" VerticalAlignment="Center"  TextWrapping="Wrap"/>
+
+            <DataGrid 
+                Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" 
+                ItemsSource="{Binding LeaveDetails}" 
+                SelectedItem="{Binding SelectedLeaveDetail}"
+                Style="{StaticResource LeaveTemplate}">
+                <DataGrid.Resources>
+                    <ContextMenu x:Key="GridContextMenu">
+                        <MenuItem Header="Export to PDF" Command="{Binding ExportCommand}" 
+                          CommandParameter="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                          CommandTarget="{Binding Path=PlacementTarget, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}">
+                            <MenuItem.Icon>
+                                <Image Source="{Binding Source={StaticResource PrintIcon}}"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                        <Setter Property="ContextMenu" Value="{StaticResource GridContextMenu}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TypeOfLeave}" Value="Optional Leave">
+                                <Setter Property="Background" Value="LightGreen"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding TypeOfLeave}" Value="Casual Leave">
+                                <Setter Property="Background" Value="LightSeaGreen"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding TypeOfLeave}" Value="Sick Leave">
+                                <Setter Property="Background" Value="Orange"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding TypeOfLeave}" Value="Vacation Leave">
+                                <Setter Property="Background" Value="NavajoWhite"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Type Of Leave" Binding="{Binding TypeOfLeave}" Width="100" />
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Date" Binding="{Binding Date}" Width="100"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Month" Binding="{Binding Month}" Width="100"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Day" Binding="{Binding Day}" Width="100"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Comment" Binding="{Binding Comment}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

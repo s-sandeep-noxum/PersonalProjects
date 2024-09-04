@@ -8,7 +8,7 @@
              xmlns:vm="clr-namespace:ResponsiveWorkManager.ViewModels"
              x:Name="winWorkItems"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1080">
+             d:DesignHeight="720" d:DesignWidth="1080">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -92,7 +92,7 @@
                         Style="{StaticResource menuWiButton}" >
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="NoteSearch" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0"/>
-                        <TextBlock Text="Search" Style="{StaticResource txtMenuItems}" Margin="10 0 0 0" Foreground="#d0c0ff"/>
+                        <TextBlock Text="Search" Style="{StaticResource txtMenuItems}" Margin="10 0 0 0" />
                     </StackPanel>
                 </Button>
             </Grid>
