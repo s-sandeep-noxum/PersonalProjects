@@ -60,7 +60,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
                     <Image Source="{Binding Source={StaticResource ProjectIcon}}" Style="{Binding Source={StaticResource menuItemIcon}}"/>
-                    <TextBlock Text="Project:" Style="{StaticResource txtMenuItems}"/>
+                    <TextBlock Text="Project:" Style="{StaticResource txtMenuItemsText}"/>
                 </StackPanel>
                 <ComboBox Grid.Row="0" Grid.Column="1" Name="cmbProjects" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}"
                            Style="{StaticResource MenuComboBox}" >
@@ -75,7 +75,7 @@
                 </ComboBox>
                 <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
                     <Image Source="{Binding Source={StaticResource QueryIcon}}" Style="{StaticResource menuItemIcon}"/>
-                    <TextBlock Text="Query:" Style="{StaticResource txtMenuItems}"/>
+                    <TextBlock Text="Query:" Style="{StaticResource txtMenuItemsText}"/>
                 </StackPanel>
                 <ComboBox Grid.Row="0" Grid.Column="3"  Name="cmbQuery" ItemsSource="{Binding Queries}" SelectedItem="{Binding CurrentQuery}"
                           Style="{StaticResource MenuComboBox}">
@@ -89,7 +89,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Button Grid.Row="0" Grid.Column="4" x:Name="btnQuerySearch" Command="{Binding SearchClick}" 
-                        Style="{StaticResource menuWiButton}" >
+                        Style="{StaticResource NewGameButtonStyle}" >
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="NoteSearch" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0"/>
                         <TextBlock Text="Search" Style="{StaticResource txtMenuItems}" Margin="10 0 0 0" />

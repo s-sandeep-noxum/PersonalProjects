@@ -1,10 +1,10 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:icons ="clr-namespace:IconsLibrary;assembly=IconsLibrary">
-    
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:icons="clr-namespace:IconsLibrary;assembly=IconsLibrary">
     
     <Style x:Key="txtMenuItemHeading" TargetType="TextBlock">
-        <Setter Property="Background" Value="Transparent"/>        
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Height" Value="35"/>
@@ -12,12 +12,23 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Margin" Value="10 40 0 5"/>
         <Setter Property="FontSize" Value="25"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>        
+        <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
-
+    
     <Style x:Key="txtMenuItems" TargetType="TextBlock">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#d0c0ff"/>
+        <Setter Property="Foreground" Value="#5E445C"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="Margin" Value="5 3"/>
+    </Style>
+    <Style x:Key="txtMenuItemsText" TargetType="TextBlock">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#A6DFE4"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -35,8 +46,8 @@
                     <Setter.Value>
                         <ControlTemplate>
                             <StackPanel>
-                                <AdornedElementPlaceholder x:Name="placeholder" />
-                                <TextBlock FontSize="11" FontStyle="Italic" Foreground="Red" Text="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                                <AdornedElementPlaceholder x:Name="placeholder"/>
+                                <TextBlock FontSize="11" FontStyle="Italic" Foreground="Red" Text="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
                             </StackPanel>
                         </ControlTemplate>
                     </Setter.Value>
@@ -44,13 +55,13 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
+    
     <Style x:Key="menuWiButton" TargetType="Button">
         <Setter Property="Background" Value="WhiteSmoke"/>
         <Setter Property="Foreground" Value="#d0c0ff"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Height" Value="30"/>
-        <Setter Property="Margin" Value="15 3"/>        
+        <Setter Property="Margin" Value="15 3"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Width" Value="120"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -63,33 +74,231 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#7b5cd6"/>
                 <Setter Property="Background" Value="#FFFFCC"/>
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    <Style x:Key="menuButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#d0c0ff"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="15 3"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FFFFCC"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="ShadowStyle">
+        <Setter Property="Control.Foreground" Value="LightGray"/>
+    </Style>
+    
+    <Style x:Key="MyFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="3 2">
+                        <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                        <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}" CornerRadius="2" BorderThickness="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="OrangeButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontSize" Value="11px"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#FFFFD190" Offset="0.2"/>
+                    <GradientStop Color="Orange" Offset="0.85"/>
+                    <GradientStop Color="#FFFFD190" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" BorderThickness="1" Padding="4,2" BorderBrush="DarkGray" CornerRadius="3" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="contentShadow" Style="{StaticResource ShadowStyle}">
+                                <ContentPresenter.RenderTransform>
+                                    <TranslateTransform X="1.0" Y="1.0"/>
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8"/>
+                            <Setter Property="Foreground" Value="#FF4788c8"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#FFFFD190" Offset="0.35"/>
+                                        <GradientStop Color="Orange" Offset="0.95"/>
+                                        <GradientStop Color="#FFFFD190" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="content" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform Y="1.0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF282828"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF282828"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+    <Style x:Key="MyFocusVisual2">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="8">
+                        <Ellipse Name="r1" Stroke="Black" StrokeDashArray="2 2" StrokeThickness="1"/>
+                        <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}" BorderThickness="1" CornerRadius="2"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+    <Style x:Key="NewGameButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="Resources/teen bd.ttf#Teen"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border BorderThickness="2" CornerRadius="4" Padding="3" x:Name="ButtonBorder" Background="AliceBlue">
+                            <Border.BorderBrush>
+                                <SolidColorBrush x:Name="ButtonBorderBrush" Color="#919191"/>
+                            </Border.BorderBrush>
+                            <ContentPresenter VerticalAlignment="Center" Margin="4,2"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="#FFFFCC"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CircleButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual2}"/>
+        <Setter Property="Background" Value="#FF6DB4EF"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse Fill="{TemplateBinding Background}"/>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Offset="0" Color="#00000000"/>
+                                    <GradientStop Offset="0.88" Color="#00000000"/>
+                                    <GradientStop Offset="1" Color="#80000000"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Ellipse Margin="10" x:Name="highlightCircle" >
+                            <Ellipse.Fill >
+                                <LinearGradientBrush >
+                                    <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                    <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                    <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                </LinearGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="highlightCircle" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.3,0" EndPoint="0.7,1">
+                                        <GradientStop Offset="0" Color="#50FFFFFF"/>
+                                        <GradientStop Offset="0.5" Color="#00FFFFFF"/>
+                                        <GradientStop Offset="1" Color="#50FFFFFF"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="content" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform Y="0.5" X="0.5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style x:Key="FeatureGroupIconStyle" TargetType="Image">
-        <Setter Property="Width" Value="20" />
-        <Setter Property="Height" Value="20" />
-        <Setter Property="Margin" Value="0 0 5 0" />
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="0 0 5 0"/>
     </Style>
-
+    
     <Style x:Key="ButtonIconStyle" TargetType="Image">
-        <Setter Property="Width" Value="25" />
-        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Height" Value="25"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
-
+    
     <Style x:Key="ButtonIconStyle_1" TargetType="Image">
-        <Setter Property="Width" Value="20" />
-        <Setter Property="Height" Value="20" />
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
-
+    
     <Style x:Key="menuItemIcon" TargetType="Image">
         <Setter Property="Width" Value="20"/>
         <Setter Property="Height" Value="20"/>
@@ -97,7 +306,7 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Margin" Value="0 0 5 0"/>
     </Style>
-
+    
     <Style x:Key="DatePickerStyle_1" TargetType="{x:Type DatePicker}">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>
@@ -119,7 +328,7 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
     </Style>
-
+    
     <Style x:Key="EmptyTemplate" TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
         <Setter Property="Background" Value="#eff2f7"/>
         <Setter Property="AutoGenerateColumns" Value="False"/>
@@ -131,28 +340,25 @@
         <Setter Property="CanUserAddRows" Value="False"/>
         <Setter Property="CanUserDeleteRows" Value="False"/>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding HasItems, RelativeSource={RelativeSource Self}}" Value="false">                
+            <DataTrigger Binding="{Binding HasItems, RelativeSource={RelativeSource Self}}" Value="false">
                 <Setter Property="Template">
                     <Setter.Value>
                         <!-- <Original Template> -->
                         <ControlTemplate TargetType="{x:Type DataGrid}">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" 
-                                    BorderThickness="{TemplateBinding BorderThickness}" 
-                                    Background="{TemplateBinding Background}" 
-                                    Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
                                 <ScrollViewer x:Name="DG_ScrollViewer" Focusable="False">
                                     <ScrollViewer.Template>
                                         <ControlTemplate TargetType="{x:Type ScrollViewer}">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto"/>
                                                 </Grid.RowDefinitions>
                                                 <Button Command="ApplicationCommands.SelectAll" Focusable="False" Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type DataGrid}}}">
                                                     <Button.Visibility>
@@ -172,24 +378,22 @@
                                                         </Binding>
                                                     </DataGridColumnHeadersPresenter.Visibility>
                                                 </DataGridColumnHeadersPresenter>
-
-                                                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" Grid.ColumnSpan="2" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Grid.Row="1" />
-                                                <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="2" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Grid.Row="1" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" />
+                                                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" Grid.ColumnSpan="2" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Grid.Row="1"/>
+                                                <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="2" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Grid.Row="1" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}"/>
                                                 <Grid Grid.Column="1" Grid.Row="2">
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type DataGrid}}}" />
-                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type DataGrid}}}"/>
+                                                        <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="1" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" />
+                                                    <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="1" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}"/>
                                                 </Grid>
-
                                                 <!-- This is the only Modification to the original Template -->
-                                                <Label Content="No data found" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" />
+                                                <Label Content="No data found" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"/>
                                                 <!-- -->
                                             </Grid>
                                         </ControlTemplate>
                                     </ScrollViewer.Template>
-                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                 </ScrollViewer>
                             </Border>
                         </ControlTemplate>
@@ -199,6 +403,7 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    
     <Style x:Key="LeaveTemplate" TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -213,7 +418,7 @@
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="HeadersVisibility" Value="Column"/>
     </Style>
-
+    
     <Style x:Key="MenuComboBox" TargetType="ComboBox">
         <Setter Property="Height" Value="25"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -222,7 +427,7 @@
         <Setter Property="MinWidth" Value="250"/>
         <Setter Property="Width" Value="auto"/>
     </Style>
-
+    
     <Style x:Key="MenuComboBoxSmall" TargetType="ComboBox">
         <Setter Property="Height" Value="25"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -230,34 +435,31 @@
         <Setter Property="Margin" Value="10 5 10 5"/>
         <Setter Property="MinWidth" Value="150"/>
         <Setter Property="Width" Value="auto"/>
-    </Style>   
+    </Style>
     
-
     <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="VerticalContentAlignment" Value="Center" />        
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="Background" Value="#623ed0" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="#623ed0"/>
         <Setter Property="BorderBrush" Value="AntiqueWhite"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="Height" Value="35" />
-        <Setter Property="SeparatorBrush" Value="GhostWhite" />
-        <Setter Property="FontWeight" Value="SemiBold" />       
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="SeparatorBrush" Value="GhostWhite"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
-
     <!--Icons-->
-    <BitmapImage x:Key="ProjectIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project.png" />
-    <BitmapImage x:Key="QueryIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Query.png" />
-    <BitmapImage x:Key="FolderIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Folder-Black.png" />
-    <BitmapImage x:Key="WorkItemIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/WorkItem-Black.png" />
-    <BitmapImage x:Key="SaveIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Save-Black.png" />
-    <BitmapImage x:Key="CloseIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Close-Black.png" />
-    <BitmapImage x:Key="CalendarIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Calendar-Black.png" />
-    <BitmapImage x:Key="ProjectComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project-Black.png" />
-    <BitmapImage x:Key="SearchComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Search-Black.png" />
-    <BitmapImage x:Key="OpenIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Open-Black.png" />
-    <BitmapImage x:Key="LeaveIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Leave-Black.png" />
-    <BitmapImage x:Key="PrintIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Print-Black.png" />
-    <BitmapImage x:Key="RefreshIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Refresh-Black.png" />
-
+    <BitmapImage x:Key="ProjectIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project.png"/>
+    <BitmapImage x:Key="QueryIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Query.png"/>
+    <BitmapImage x:Key="FolderIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Folder-Black.png"/>
+    <BitmapImage x:Key="WorkItemIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/WorkItem-Black.png"/>
+    <BitmapImage x:Key="SaveIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Save-Black.png"/>
+    <BitmapImage x:Key="CloseIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Close-Black.png"/>
+    <BitmapImage x:Key="CalendarIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Calendar-Black.png"/>
+    <BitmapImage x:Key="ProjectComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Project-Black.png"/>
+    <BitmapImage x:Key="SearchComboIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Search-Black.png"/>
+    <BitmapImage x:Key="OpenIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Open-Black.png"/>
+    <BitmapImage x:Key="LeaveIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Leave-Black.png"/>
+    <BitmapImage x:Key="PrintIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Print-Black.png"/>
+    <BitmapImage x:Key="RefreshIcon" UriSource="pack://application:,,,/IconsLibrary;component/UI-48/Refresh-Black.png"/>
 </ResourceDictionary>

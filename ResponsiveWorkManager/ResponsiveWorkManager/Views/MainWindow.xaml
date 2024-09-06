@@ -37,7 +37,7 @@
     </Window.Resources>
 
     <Border Background="#eff2f7"
-                BorderBrush="#737171"
+                BorderBrush="#9E1895"
                 BorderThickness="5"
                 CornerRadius="30,30,0,30"
                 MouseDown="Border_MouseDown"

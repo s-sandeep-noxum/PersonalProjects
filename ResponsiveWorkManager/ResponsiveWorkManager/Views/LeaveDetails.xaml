@@ -36,44 +36,44 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="35"/>
+                <RowDefinition Height="37"/>
+                <RowDefinition Height="37"/>
+                <RowDefinition Height="37"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="Type:" VerticalAlignment="Center" Style="{StaticResource txtMenuItems}" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Type:" VerticalAlignment="Center" Style="{StaticResource txtMenuItemsText}" HorizontalAlignment="Left"/>
             <ComboBox Grid.Row="1" Grid.Column="2" Style="{StaticResource MenuComboBoxSmall}" ItemsSource="{Binding TypeOfLeaves}" SelectedValue="{Binding TypeOfLeave}"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="3" Text="Day Type:" VerticalAlignment="Center" Style="{StaticResource txtMenuItems}" HorizontalAlignment="Left" />
+            <TextBlock Grid.Row="1" Grid.Column="3" Text="Day Type:" VerticalAlignment="Center" Style="{StaticResource txtMenuItemsText}" HorizontalAlignment="Left" />
             <ComboBox Grid.Row="1" Grid.Column="4" Style="{StaticResource MenuComboBoxSmall}" ItemsSource="{Binding DayTypes}" SelectedValue="{Binding DayType}"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="Date:" VerticalAlignment="Center" Style="{StaticResource txtMenuItems}" HorizontalAlignment="Left" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Date:" VerticalAlignment="Center" Style="{StaticResource txtMenuItemsText}" HorizontalAlignment="Left" />
             <DatePicker Grid.Row="2" Grid.Column="2" x:Name="DateSelected" Style="{StaticResource DatePickerStyle_1}" VerticalAlignment="Center" SelectedDate="{Binding Date}"/>
 
-            <Button Grid.Row="1" Grid.Column="5" x:Name="btnRefresh" Style="{StaticResource menuWiButton}" Command="{Binding RefreshClick}">
+            <Button Grid.Row="1" Grid.Column="5" x:Name="btnRefresh" Style="{StaticResource NewGameButtonStyle}" Command="{Binding RefreshClick}">
                 <StackPanel Orientation="Horizontal">
                     <icon:PackIconMaterial Kind="Refresh" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0"/>
                     <TextBlock Text="Refresh" Style="{StaticResource txtMenuItems}" />
                 </StackPanel>
             </Button>
 
-            <Button Grid.Row="1" Grid.Column="6" x:Name="btnSave" Style="{StaticResource menuWiButton}" Command="{Binding SaveLeaveClick}">
+            <Button Grid.Row="1" Grid.Column="6" x:Name="btnSave" Style="{StaticResource NewGameButtonStyle}" Command="{Binding SaveLeaveClick}" Margin="10 0 0 0 ">
                 <StackPanel Orientation="Horizontal">
                     <icon:PackIconMaterial Kind="ContentSave" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0"/>
                     <TextBlock Text="Save" Style="{StaticResource txtMenuItems}"/>
                 </StackPanel>
             </Button>
 
-            <TextBlock Grid.Row="2" Grid.Column="3" Text="Comment:" Style="{StaticResource txtMenuItems}" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Row="2" Grid.Column="3" Text="Comment:" Style="{StaticResource txtMenuItemsText}" HorizontalAlignment="Left"/>
             <TextBox Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="5" Text="{Binding Comment}" MaxLength="200" MinHeight="25" Margin="10 5 0 5" VerticalAlignment="Center"  TextWrapping="Wrap"/>
 
             <DataGrid 
