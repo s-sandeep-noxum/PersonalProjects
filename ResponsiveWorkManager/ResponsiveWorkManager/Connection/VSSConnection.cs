@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.TeamFoundation.Core.WebApi;
+using Microsoft.TeamFoundation.SourceControl.WebApi;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
 using ResponsiveWorkManager.DataObjects;
-using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
-using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
-using System;
-using Microsoft.VisualStudio.Services.TestManagement.TestPlanning.WebApi;
 using System.Windows;
 
 namespace ResponsiveWorkManager.Connection
@@ -34,6 +34,56 @@ namespace ResponsiveWorkManager.Connection
 				}
 				return connection;
 			}
+		}
+
+		public static List<string> GetProjects()
+		{
+			ProjectHttpClient projectClient = VSSConnection.Connection.GetClient<ProjectHttpClient>();
+			IEnumerable<TeamProjectReference> projectsInAzure = projectClient.GetProjects().Result;
+			List<string> projectNames = projectsInAzure.Select(p => p.Name).ToList();
+			return projectNames;
+		}
+
+		public static List<string> GetPullRequests()
+		{
+			List<string> pullRequestTitles = new List<string>();
+
+			// Create an instance of GitHttpClient using VssConnection
+			GitHttpClient gitClient = VSSConnection.Connection.GetClient<GitHttpClient>();
+
+			ProjectHttpClient projectClient = VSSConnection.Connection.GetClient<ProjectHttpClient>();
+			IEnumerable<TeamProjectReference> projectsInAzure = projectClient.GetProjects().Result;
+			List<string> projectNames = projectsInAzure.Select(p => p.Name).ToList();
+
+
+			foreach (var project in projectNames)
+			{
+				// Get all repositories in the project
+				List<GitRepository> repositories = gitClient.GetRepositoriesAsync(project).Result;
+
+				// Get all pull requests
+				foreach (var repository in repositories)
+				{
+					GitPullRequestSearchCriteria searchCriteria = new GitPullRequestSearchCriteria()
+					{
+						Status = PullRequestStatus.Active,
+						TargetRefName = "refs/heads/master",
+						SourceRefName = "refs/heads/develop",
+						RepositoryId = repository.Id,
+						CreatorId = Guid.Empty
+					};
+
+					List<GitPullRequest> pullRequests = gitClient.GetPullRequestsAsync(project, repository.Id, searchCriteria).Result;
+
+					// Extract the titles of the pull requests
+					foreach (var pullRequest in pullRequests)
+					{
+						pullRequestTitles.Add(pullRequest.Title);
+					}
+				}
+			}
+
+			return pullRequestTitles;
 		}
 
 		private static WorkItemTrackingHttpClient GetMyQueriesFromProject(string ProjectName, out QueryHierarchyItem myQueriesFolder)

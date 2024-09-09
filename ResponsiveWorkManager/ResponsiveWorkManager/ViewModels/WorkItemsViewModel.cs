@@ -1,8 +1,4 @@
-﻿using Microsoft.TeamFoundation.Core.WebApi;
-using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
-using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
-using Microsoft.VisualStudio.Services.TestManagement.TestPlanning.WebApi;
-using ResponsiveWorkManager.Commands;
+﻿using ResponsiveWorkManager.Commands;
 using ResponsiveWorkManager.Connection;
 using ResponsiveWorkManager.DataObjects;
 using System.Windows;
@@ -53,12 +49,11 @@ namespace ResponsiveWorkManager.ViewModels
 				if (this.projects == null)
 				{
 					this.projects = new List<Projects>();
-					ProjectHttpClient projectClient = VSSConnection.Connection.GetClient<ProjectHttpClient>();
-					IEnumerable<TeamProjectReference> projectsWithAccess = projectClient.GetProjects().Result;
+					List<string> projectsWithAccess = VSSConnection.GetProjects();
 
-					foreach (TeamProjectReference p in projectsWithAccess)
+					foreach (string project in projectsWithAccess)
 					{
-						this.projects.Add(new Projects { ProjectText = p.Name });
+						this.projects.Add(new Projects { ProjectText = project });
 					}
 				}
 				return this.projects.OrderBy(x => x.ProjectText).ToList();
@@ -138,7 +133,7 @@ namespace ResponsiveWorkManager.ViewModels
 
 				if (string.IsNullOrEmpty(CurrentQuery.QueryText)) return;
 
-				var workItems = VSSConnection.GetWorkItems(CurrentQuery.QueryText,SelectedProject.ProjectText);
+				var workItems = VSSConnection.GetWorkItems(CurrentQuery.QueryText, SelectedProject.ProjectText);
 
 				if (workItems == null || workItems.Count == 0)
 				{
