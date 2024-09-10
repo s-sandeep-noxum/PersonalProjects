@@ -1,13 +1,11 @@
-﻿using IronWord.Models;
-using IronWord;
-using ResponsiveWorkManager.Commands;
+﻿using ResponsiveWorkManager.Commands;
 using ResponsiveWorkManager.DataObjects;
+using ResponsiveWorkManager.FileCreation;
 using System.ComponentModel;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
-using System.Drawing;
 
 namespace ResponsiveWorkManager.ViewModels
 {
@@ -157,42 +155,13 @@ namespace ResponsiveWorkManager.ViewModels
 			}
 		}
 
-		private void CreateDescriptionFile(string fileName, string description)
-		{
-			IronWord.License.LicenseKey = "demo";
-			WordDocument wordDocument = new WordDocument();
-
-			string titleText = $"{WiNumber}:{Title}";
-			IronWord.Models.TextRun titleRun = new IronWord.Models.TextRun(titleText);
-			IronWord.Models.Paragraph title = new IronWord.Models.Paragraph();
-			title.Style = new TextStyle()
-			{
-				FontFamily = "Verdana",
-				FontSize = 20,
-				TextColor = new IronColor(Color.Blue),
-				IsBold = true,
-				IsItalic = false,
-				IsUnderline = true,
-				IsSuperscript = false,
-				IsStrikethrough = false,
-				IsSubscript = false
-			};
-			title.AddTextRun(titleRun);
-
-			IronWord.Models.TextRun bodyRun = new IronWord.Models.TextRun(description);
-			IronWord.Models.Paragraph body = new IronWord.Models.Paragraph();
-			body.AddTextRun(bodyRun);
-
-			wordDocument.AddParagraph(title);
-			wordDocument.AddParagraph(body);
-			wordDocument.SaveAs(fileName);
-		}
+		
 
 		private bool CreateFolders(ref string folderName)
 		{
 			try
-			{
-				folderName = FolderPath + "\\" + SelectedYear.YearText + "\\" + this.GetFolderName();
+			{				
+				folderName = $"{FolderPath}\\{SelectedYear.YearText}\\{this.GetFolderName()}";
 				bool exists = System.IO.Directory.Exists(folderName);
 
 				if (!exists)
@@ -200,9 +169,9 @@ namespace ResponsiveWorkManager.ViewModels
 					System.IO.Directory.CreateDirectory(folderName);
 				}
 				if (!string.IsNullOrEmpty(Description))
-				{
-					string FileName = folderName.Trim() + "\\" + "Description.docx";
-					CreateDescriptionFile(FileName, description);
+				{					
+					string fileName = $"{folderName}\\Description.docx";
+					CreateWord.CreateDescriptionFile(fileName, description,WiNumber,Title);
 				}
 				return true;
 			}

@@ -5,16 +5,15 @@ using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-using System.Collections.Generic;
+using ResponsiveWorkManager.Common;
+using ResponsiveWorkManager.DataObjects;
+using ResponsiveWorkManager.ViewModels;
 using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.Windows;
-using ResponsiveWorkManager.Common;
-using ResponsiveWorkManager.ViewModels;
-using ResponsiveWorkManager.DataObjects;
 
-namespace ResponsiveWorkManager.PDF
+namespace ResponsiveWorkManager.FileCreation
 {
 	public static class CreatePDF
 	{
@@ -89,12 +88,12 @@ namespace ResponsiveWorkManager.PDF
 			}
 			catch (System.Exception ex)
 			{
-				MessageBox.Show(ex.Message);
+				MessageBox.Show(ex.StackTrace);
 			}
 			finally
 			{
 				CommonHelper.NormalCursor();
 			}
-		}
+		}		
 	}
 }
