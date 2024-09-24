@@ -39,7 +39,7 @@ namespace ResponsiveWorkManager.ViewModels
 		{
 			this.WiNumber = string.Empty;
 			this.Title = string.Empty;
-			this.Description = string.Empty;			
+			this.Description = string.Empty;
 		}
 
 		public bool CanExecute => true;
@@ -155,12 +155,12 @@ namespace ResponsiveWorkManager.ViewModels
 			}
 		}
 
-		
+
 
 		private bool CreateFolders(ref string folderName)
 		{
 			try
-			{				
+			{
 				folderName = $"{FolderPath}\\{SelectedYear.YearText}\\{this.GetFolderName()}";
 				bool exists = System.IO.Directory.Exists(folderName);
 
@@ -169,9 +169,9 @@ namespace ResponsiveWorkManager.ViewModels
 					System.IO.Directory.CreateDirectory(folderName);
 				}
 				if (!string.IsNullOrEmpty(Description))
-				{					
-					string fileName = $"{folderName}\\Description.docx";
-					CreateWord.CreateDescriptionFile(fileName, description,WiNumber,Title);
+				{
+					string fileName = $"{folderName}\\Description";
+					CreateTextFile.CreateFile(fileName, description, WiNumber, Title);
 				}
 				return true;
 			}

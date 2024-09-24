@@ -10,6 +10,7 @@ namespace ResponsiveWorkManager.FileCreation
 		{
 			IronWord.License.LicenseKey = "demo";
 			WordDocument wordDocument = new WordDocument();
+			fileName = fileName + ".docx";
 
 			try
 			{
