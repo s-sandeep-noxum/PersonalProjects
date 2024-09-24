@@ -12,11 +12,28 @@ namespace ResponsiveWorkManager.ViewModels
 		private List<Projects> projects;
 		private List<Queries> queries;
 		private ICommand searchClick;
+		private ICommand advancedSearchClick;
 		private Projects selectedProject = new Projects();
 		private DataObjects.WorkItemDetails workItemDetail;
+
+		private bool isAdvancedSearchVisible;
+
+		public bool IsAdvancedSearchVisible
+		{
+			get { return isAdvancedSearchVisible; }
+			set 
+			{ 
+				if(isAdvancedSearchVisible != value)
+				{
+					isAdvancedSearchVisible = value;
+					OnPropertyChanged(nameof(IsAdvancedSearchVisible));
+				}
+			}
+		}
+
 		public WorkItemsViewModel()
 		{
-
+			this.IsAdvancedSearchVisible = false;
 		}
 
 		public bool CanExecute
@@ -95,6 +112,26 @@ namespace ResponsiveWorkManager.ViewModels
 				return searchClick ?? (searchClick = new CommandHandler(() => SearchAndFillWI(), () => CanExecute));
 			}
 		}
+		public ICommand AdvancedSearchClick
+		{
+			get
+			{
+				return advancedSearchClick ?? (advancedSearchClick = new CommandHandler(() => EnableDisableAdvancedSearch(), () => CanExecute));
+			}
+		}
+
+		private void EnableDisableAdvancedSearch()
+		{
+			if(IsAdvancedSearchVisible)
+			{
+				IsAdvancedSearchVisible = false;
+			}
+			else
+			{
+				IsAdvancedSearchVisible = true;
+			}
+		}
+
 		public Projects SelectedProject
 		{
 			get { return this.selectedProject; }
