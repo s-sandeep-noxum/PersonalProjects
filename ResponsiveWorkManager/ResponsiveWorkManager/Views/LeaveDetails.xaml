@@ -120,6 +120,7 @@
                     <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Date" Binding="{Binding Date}" Width="100"/>
                     <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Month" Binding="{Binding Month}" Width="100"/>
                     <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Day" Binding="{Binding Day}" Width="100"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Leave Type" Binding="{Binding DayType}" Width="100"/>
                     <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Comment" Binding="{Binding Comment}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>

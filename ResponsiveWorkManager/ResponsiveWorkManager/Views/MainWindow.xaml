@@ -81,8 +81,15 @@
                         <TextBlock Text="Noxum Gmbh" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" 
                                TextAlignment="Center"/>
 
+                        <Label Margin="15 0 15 0" FontSize="10" Foreground="#d0bfff" FontWeight="SemiBold" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="SwapVerticalCircle" Style="{StaticResource menuButtonIcon}" Margin="5 0"/>
+                                <TextBlock Text="Version 1.2"/>
+                            </StackPanel>
+                        </Label>
+
                         <!--Menu Seperator-->
-                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc" />
+                        <Separator Margin="20" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc" />
 
                         <!--Menu Buttons-->
                         <StackPanel DockPanel.Dock="Top">
@@ -109,12 +116,16 @@
 
                         </StackPanel>
 
-                        <Button Style="{StaticResource menuButton}" Command="{Binding LogoutClick}" CommandParameter="{Binding ElementName=winMainWindow}" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="15 0 15 20">
-                            <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Logout"/>
-                            </StackPanel>
-                        </Button>
+                        <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+                            <Button Style="{StaticResource menuButton}" Command="{Binding LogoutClick}" CommandParameter="{Binding ElementName=winMainWindow}" Margin="15 0 15 20">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Logout"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        
+                       
 
                     </DockPanel>
                 </Border>
