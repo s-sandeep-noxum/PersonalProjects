@@ -1,15 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>disable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-    <UserSecretsId>011cf0df-752c-481d-96cc-728b1efb92fe</UserSecretsId>
-    <ApplicationIcon>Main-Icon.ico</ApplicationIcon>
-    <PackageIcon>Main-Icon.png</PackageIcon>
-  </PropertyGroup>
+	<PropertyGroup>
+		<ApplicationIcon>Main-Icon.ico</ApplicationIcon>
+		<AssemblyName>ResponsiveWorkManager</AssemblyName>
+		<AssemblyTitle>ResponsiveWorkManager</AssemblyTitle>
+		<AssemblyVersion>2.0.0</AssemblyVersion>
+		<Company>Noxum GmbH</Company>
+		<Copyright>Copyright © Noxum 2021</Copyright>
+		<Description>Work Manager</Description>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<OutputType>WinExe</OutputType>
+		<PackageIcon>Main-Icon.png</PackageIcon>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<UserSecretsId>011cf0df-752c-481d-96cc-728b1efb92fe</UserSecretsId>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="EntityFramework" Version="6.0.0" />
 		<PackageReference Include="IronWord" Version="2024.3.5" />
@@ -32,16 +39,16 @@
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 		<PackageReference Include="System.Private.Uri" Version="4.3.2" />
 	</ItemGroup>
-  <ItemGroup>
-    <None Remove="DataObjects\YearData.xml" />
-    <None Remove="Images\Profile_3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DataObjects\YearData.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Main-Icon.ico" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="DataObjects\YearData.xml" />
+		<None Remove="Images\Profile_3.jpg" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="DataObjects\YearData.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Main-Icon.ico" />
+	</ItemGroup>
 	<ItemGroup>
 		<PublishFile Include="DataObjects\YearData.xml">
 			<Visible>False</Visible>
@@ -54,25 +61,25 @@
 			<FileType>File</FileType>
 		</PublishFile>
 	</ItemGroup>
-  <ItemGroup>
-    <None Include="..\IconsLibrary\UI-48\Main-Icon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\IconsLibrary\UI-48\Main-Icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="5.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MahApps.Metro.IconPacks.Material" Version="5.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\IconsLibrary\IconsLibrary.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\IconsLibrary\IconsLibrary.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Images\Profile_3.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Images\Profile_3.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
 
 </Project>

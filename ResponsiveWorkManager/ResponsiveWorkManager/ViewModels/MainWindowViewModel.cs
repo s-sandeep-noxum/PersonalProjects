@@ -1,5 +1,5 @@
 ﻿using ResponsiveWorkManager.Commands;
-using System.ComponentModel;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 
@@ -11,10 +11,26 @@ namespace ResponsiveWorkManager.ViewModels
 
 		private ICommand menuItemClick;
 		private ICommand logoutClick;
+		private string versionNumber;
+
+		public string VersionNumber
+		{
+			get { return versionNumber; }
+			set
+			{
+				if (versionNumber != value)
+				{
+					versionNumber = value;
+					OnPropertyChanged("VersionNumber");
+				}
+			}
+		}
+
 
 		public MainWindowViewModel()
 		{
 			this.selectedWindow = new WorkItemsViewModel();
+			this.VersionNumber = $"Ver - {Assembly.GetEntryAssembly().GetName().Version.ToString()}";
 		}
 		public ViewModelBase SelectedWindow
 		{
