@@ -92,7 +92,7 @@ namespace ResponsiveWorkManager.ViewModels
 					OnPropertyChanged(nameof(Queries));
 				}
 			}
-		}
+		}	
 		public DataObjects.WorkItemDetails WorkItemDetail
 		{
 			get

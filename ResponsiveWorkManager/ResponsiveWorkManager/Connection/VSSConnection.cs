@@ -163,9 +163,10 @@ namespace ResponsiveWorkManager.Connection
 										WiNumber = (int)workItem.Id,
 										Description = (string)workItem.Fields["System.Title"],
 										State = (string)workItem.Fields["System.State"],
-										AssignedTo = GetAssignedTo(workItem),
-										Tags = GetTagValues(workItem),
-										WiType = GetWorkItemType(workItem)
+										AssignedTo = GetDisplayValue(workItem, "System.AssignedTo"),
+										Tags = GetValue(workItem, "System.Tags"),
+										WiType = GetValue(workItem, "System.WorkItemType"),
+										Rank = GetValue(workItem, "NoxumAgile.CustomerStackrank")
 									});
 								}
 							}
@@ -190,42 +191,35 @@ namespace ResponsiveWorkManager.Connection
 			}
 		}
 
-		private static string GetAssignedTo(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem workItem)
+		private static string GetDisplayValue(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem workItem, string objectType)
 		{
-			object identityOjbect;
-			workItem.Fields.TryGetValue("System.AssignedTo", out identityOjbect);
-			if (identityOjbect == null)
-			{
-				return "Unassigned";
-			}
-
-			return ((IdentityRef)identityOjbect).DisplayName;
-		}
-
-		private static string GetTagValues(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem workItem)
-		{
-			object identityOjbect;
-			workItem.Fields.TryGetValue("System.Tags", out identityOjbect);
-
-			if (identityOjbect == null)
+			object wiObject;
+			workItem.Fields.TryGetValue(objectType, out wiObject);
+			if (wiObject == null)
 			{
 				return string.Empty;
 			}
 
-			return (string)identityOjbect;
+			return ((IdentityRef)wiObject).DisplayName;
 		}
 
-		private static string GetWorkItemType(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem workItem)
+		private static string GetValue(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItem workItem, string objectType)
 		{
-			object identityOjbect;
-			workItem.Fields.TryGetValue("System.WorkItemType", out identityOjbect);
-
-			if (identityOjbect == null)
+			object wiObject;
+			workItem.Fields.TryGetValue(objectType, out wiObject);
+			if (wiObject == null)
 			{
 				return string.Empty;
 			}
 
-			return (string)identityOjbect;
+			if (wiObject is string)
+			{
+				return (string)wiObject;
+			}
+			else
+			{
+				return wiObject.ToString();
+			}
 		}
 	}
 }

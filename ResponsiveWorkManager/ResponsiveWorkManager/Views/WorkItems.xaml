@@ -140,7 +140,8 @@
                     <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Work Item Type" Width="100" Binding="{Binding WiType}"/>
                     <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="State" Width="100" Binding="{Binding State}"/>
                     <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Assigned To" Width="100" Binding="{Binding AssignedTo}"/>
-                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Tags" Width="100" Binding="{Binding Tags}"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Tags" Width="120" Binding="{Binding Tags}"/>
+                    <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Rank" Width="100" Binding="{Binding Rank}"/>
                     <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" Header="Description" Width="*" Binding="{Binding Description}"/>
                 </DataGrid.Columns>
             </DataGrid>

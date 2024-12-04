@@ -44,6 +44,7 @@ namespace ResponsiveWorkManager.DataObjects
 			}
 		}
 
+		public string Rank { get; set; }
 		public string State { get; set; }
 		public string Tags { get; set; }
 		public int WiNumber { get; set; }
