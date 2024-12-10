@@ -7,6 +7,7 @@
         xmlns:vm="clr-namespace:ResponsiveWorkManager.ViewModels"
         xmlns:view="clr-namespace:ResponsiveWorkManager.Views"
         Icon="pack://application:,,,/IconsLibrary;component/UI-48/Taskbar-Icon.ico"
+        xmlns:sBar="clr-namespace:ResponsiveWorkManager.StatusBar"
         mc:Ignorable="d"
         x:Name="winMainWindow"
         Title="MainWindow" 
@@ -23,7 +24,7 @@
     </Window.DataContext>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
-        
+
         <!--Data Templates-->
         <DataTemplate DataType="{x:Type vm:WorkItemsViewModel}">
             <view:WorkItems/>
@@ -124,8 +125,8 @@
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        
-                       
+
+
 
                     </DockPanel>
                 </Border>
@@ -135,12 +136,13 @@
             <!-- Main Content-->
             <Grid Grid.Column="1" Margin="5 35 0 0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>                  
-                    <RowDefinition Height="*"/>                   
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
 
                 <!-- Search TextBox Hidden-->
-                <Grid Width="300" HorizontalAlignment="Left" Visibility="Hidden">
+                <Grid Width="300" HorizontalAlignment="Left" Visibility="Collapsed">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" 
                                Panel.ZIndex="1" Text="Search Here.." Visibility="{Binding ElementName=txtSearch,Path=Text.IsEpty,Converter={StaticResource BoolToVisibility}}"/>
                     <TextBox x:Name="txtSearch" Style="{StaticResource textBoxSearch}" />
@@ -163,6 +165,10 @@
                     <ContentControl Content="{Binding SelectedWindow}"/>
                 </Border>
 
+                <!--Status Bar-->
+                <ContentControl Grid.Row="2">
+                    <sBar:StatusBarControl/>
+                </ContentControl>
             </Grid>
         </Grid>
     </Border>
