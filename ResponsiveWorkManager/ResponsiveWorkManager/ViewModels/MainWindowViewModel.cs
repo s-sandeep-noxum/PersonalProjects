@@ -7,39 +7,11 @@ namespace ResponsiveWorkManager.ViewModels
 {
 	public class MainWindowViewModel : ViewModelBase
 	{
-		private ViewModelBase selectedWindow;
-
-		private ICommand menuItemClick;
 		private ICommand logoutClick;
-		private string versionNumber;
-
-		public string VersionNumber
-		{
-			get { return versionNumber; }
-			set
-			{
-				if (versionNumber != value)
-				{
-					versionNumber = value;
-					OnPropertyChanged("VersionNumber");
-				}
-			}
-		}
+		private ICommand menuItemClick;
+		private ViewModelBase selectedWindow;
 		private StatusBarViewModel statusBarVM;
-
-		public StatusBarViewModel StatusBarVM
-		{
-			get { return statusBarVM; }
-			set 
-			{
-				if (statusBarVM != value)
-				{
-					statusBarVM = value;
-					OnPropertyChanged("StatusBarVM");
-				}				
-			}
-		}
-
+		private string versionNumber;
 
 		public MainWindowViewModel()
 		{
@@ -47,6 +19,23 @@ namespace ResponsiveWorkManager.ViewModels
 			this.selectedWindow = new WorkItemsViewModel(this.StatusBarVM);
 			this.VersionNumber = $"Ver - {Assembly.GetEntryAssembly().GetName().Version.ToString()}";
 		}
+
+		public ICommand LogoutClick
+		{
+			get
+			{
+				return logoutClick ?? (logoutClick = new RelayCommand(CloseWindow));
+			}
+		}
+
+		public ICommand MenuItemClick
+		{
+			get
+			{
+				return menuItemClick ?? (menuItemClick = new RelayCommand(CreateWorkItemObject));
+			}
+		}
+
 		public ViewModelBase SelectedWindow
 		{
 			get { return selectedWindow; }
@@ -59,19 +48,30 @@ namespace ResponsiveWorkManager.ViewModels
 				}
 			}
 		}
-		public ICommand MenuItemClick
+
+		public StatusBarViewModel StatusBarVM
 		{
-			get
+			get { return statusBarVM; }
+			set
 			{
-				return menuItemClick ?? (menuItemClick = new RelayCommand(CreateWorkItemObject));
+				if (statusBarVM != value)
+				{
+					statusBarVM = value;
+					OnPropertyChanged("StatusBarVM");
+				}
 			}
 		}
 
-		public ICommand LogoutClick
+		public string VersionNumber
 		{
-			get
+			get { return versionNumber; }
+			set
 			{
-				return logoutClick ?? (logoutClick = new RelayCommand(CloseWindow));
+				if (versionNumber != value)
+				{
+					versionNumber = value;
+					OnPropertyChanged("VersionNumber");
+				}
 			}
 		}
 
@@ -88,14 +88,15 @@ namespace ResponsiveWorkManager.ViewModels
 				case WindowName.WorkItems:
 					SelectedWindow = new WorkItemsViewModel(this.StatusBarVM);
 					break;
+
 				case WindowName.Folders:
 					SelectedWindow = new FoldersViewModel();
 					break;
+
 				case WindowName.LeaveDetails:
 					SelectedWindow = new LeaveDetailsViewModel();
 					break;
 			}
 		}
-
 	}
 }
