@@ -25,11 +25,26 @@ namespace ResponsiveWorkManager.ViewModels
 				}
 			}
 		}
+		private StatusBarViewModel statusBarVM;
+
+		public StatusBarViewModel StatusBarVM
+		{
+			get { return statusBarVM; }
+			set 
+			{
+				if (statusBarVM != value)
+				{
+					statusBarVM = value;
+					OnPropertyChanged("StatusBarVM");
+				}				
+			}
+		}
 
 
 		public MainWindowViewModel()
 		{
-			this.selectedWindow = new WorkItemsViewModel();
+			this.StatusBarVM = new StatusBarViewModel();
+			this.selectedWindow = new WorkItemsViewModel(this.StatusBarVM);
 			this.VersionNumber = $"Ver - {Assembly.GetEntryAssembly().GetName().Version.ToString()}";
 		}
 		public ViewModelBase SelectedWindow
@@ -71,7 +86,7 @@ namespace ResponsiveWorkManager.ViewModels
 			switch ((WindowName)windowName)
 			{
 				case WindowName.WorkItems:
-					SelectedWindow = new WorkItemsViewModel();
+					SelectedWindow = new WorkItemsViewModel(this.StatusBarVM);
 					break;
 				case WindowName.Folders:
 					SelectedWindow = new FoldersViewModel();

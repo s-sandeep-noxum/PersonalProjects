@@ -1,6 +1,7 @@
 ﻿using ResponsiveWorkManager.Commands;
 using ResponsiveWorkManager.Connection;
 using ResponsiveWorkManager.DataObjects;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 
@@ -8,32 +9,32 @@ namespace ResponsiveWorkManager.ViewModels
 {
 	public class WorkItemsViewModel : ViewModelBase
 	{
+		private ICommand advancedSearchClick;
 		private Queries currentQuery = new Queries();
+		private bool isAdvancedSearchVisible;
 		private List<Projects> projects;
 		private List<Queries> queries;
 		private ICommand searchClick;
-		private ICommand advancedSearchClick;
 		private Projects selectedProject = new Projects();
+		private StatusBarViewModel statusBarVM;
+		private List<DataObjects.WorkItemDetails> wiDetails;
 		private DataObjects.WorkItemDetails workItemDetail;
-
-		private bool isAdvancedSearchVisible;
-
-		public bool IsAdvancedSearchVisible
-		{
-			get { return isAdvancedSearchVisible; }
-			set 
-			{ 
-				if(isAdvancedSearchVisible != value)
-				{
-					isAdvancedSearchVisible = value;
-					OnPropertyChanged(nameof(IsAdvancedSearchVisible));
-				}
-			}
-		}
-
-		public WorkItemsViewModel()
+		public WorkItemsViewModel(StatusBarViewModel statusBarViewModel)
 		{
 			this.IsAdvancedSearchVisible = false;
+
+			this.statusBarVM = statusBarViewModel;
+		}
+		public WorkItemsViewModel()
+		{	
+		}
+
+		public ICommand AdvancedSearchClick
+		{
+			get
+			{
+				return advancedSearchClick ?? (advancedSearchClick = new CommandHandler(() => EnableDisableAdvancedSearch(), () => CanExecute));
+			}
 		}
 
 		public bool CanExecute
@@ -59,6 +60,18 @@ namespace ResponsiveWorkManager.ViewModels
 			}
 		}
 
+		public bool IsAdvancedSearchVisible
+		{
+			get { return isAdvancedSearchVisible; }
+			set
+			{
+				if (isAdvancedSearchVisible != value)
+				{
+					isAdvancedSearchVisible = value;
+					OnPropertyChanged(nameof(IsAdvancedSearchVisible));
+				}
+			}
+		}
 		public List<Projects> Projects
 		{
 			get
@@ -92,43 +105,12 @@ namespace ResponsiveWorkManager.ViewModels
 					OnPropertyChanged(nameof(Queries));
 				}
 			}
-		}	
-		public DataObjects.WorkItemDetails WorkItemDetail
-		{
-			get
-			{
-				return workItemDetail;
-			}
-			set
-			{
-				workItemDetail = value;
-			}
 		}
-
 		public ICommand SearchClick
 		{
 			get
 			{
 				return searchClick ?? (searchClick = new CommandHandler(() => SearchAndFillWI(), () => CanExecute));
-			}
-		}
-		public ICommand AdvancedSearchClick
-		{
-			get
-			{
-				return advancedSearchClick ?? (advancedSearchClick = new CommandHandler(() => EnableDisableAdvancedSearch(), () => CanExecute));
-			}
-		}
-
-		private void EnableDisableAdvancedSearch()
-		{
-			if(IsAdvancedSearchVisible)
-			{
-				IsAdvancedSearchVisible = false;
-			}
-			else
-			{
-				IsAdvancedSearchVisible = true;
 			}
 		}
 
@@ -146,8 +128,6 @@ namespace ResponsiveWorkManager.ViewModels
 			}
 		}
 
-		private List<DataObjects.WorkItemDetails> wiDetails;
-
 		public List<DataObjects.WorkItemDetails> WiDetails
 		{
 			get
@@ -159,7 +139,20 @@ namespace ResponsiveWorkManager.ViewModels
 			{
 				if (this.wiDetails == value) return;
 				this.wiDetails = value;
+				this.SetStatusBar(WiDetails);
 				OnPropertyChanged(nameof(WiDetails));
+			}
+		}
+
+		public DataObjects.WorkItemDetails WorkItemDetail
+		{
+			get
+			{
+				return workItemDetail;
+			}
+			set
+			{
+				workItemDetail = value;
 			}
 		}
 		public void SearchAndFillWI()
@@ -186,6 +179,34 @@ namespace ResponsiveWorkManager.ViewModels
 			{
 				Common.CommonHelper.NormalCursor();
 			}
+		}
+
+		private void EnableDisableAdvancedSearch()
+		{
+			if (IsAdvancedSearchVisible)
+			{
+				IsAdvancedSearchVisible = false;
+			}
+			else
+			{
+				IsAdvancedSearchVisible = true;
+			}
+		}
+		private void SetStatusBar(List<WorkItemDetails> wiDetails)
+		{
+			if (wiDetails == null || wiDetails.Count == 0)
+			{
+				this.statusBarVM = new StatusBarViewModel("No Work Items found", string.Empty, string.Empty);
+				return;
+			}
+			StringBuilder status = new StringBuilder();
+			status.Append("Totals: ");
+			status.Append(wiDetails.Count);
+			status.Append(", UserStories: ");
+			status.Append(wiDetails.Count(x => x.WiType == "User Story"));
+			status.Append(", Bugs: ");
+			status.Append(wiDetails.Count(x => x.WiType == "Bug"));
+			this.statusBarVM = new StatusBarViewModel(status.ToString(), string.Empty, string.Empty);
 		}
 	}
 }

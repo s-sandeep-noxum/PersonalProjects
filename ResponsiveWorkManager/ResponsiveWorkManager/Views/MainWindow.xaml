@@ -140,6 +140,9 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
                 <!-- Search TextBox Hidden-->
                 <Grid Width="300" HorizontalAlignment="Left" Visibility="Collapsed">
@@ -167,7 +170,7 @@
 
                 <!--Status Bar-->
                 <ContentControl Grid.Row="2">
-                    <sBar:StatusBarControl/>
+                    <sBar:StatusBarControl DataContext="{Binding StatusBarVM}"/>
                 </ContentControl>
             </Grid>
         </Grid>

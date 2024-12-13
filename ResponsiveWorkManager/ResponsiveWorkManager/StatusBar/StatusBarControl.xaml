@@ -6,29 +6,36 @@
              xmlns:local="clr-namespace:ResponsiveWorkManager.StatusBar"
              mc:Ignorable="d" 
              d:DesignHeight="25" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/MenuStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <StatusBar>
-            <StatusBar.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                </ItemsPanelTemplate>
-            </StatusBar.ItemsPanel>
-            <StatusBarItem Grid.Column="0">
-                <TextBlock>Ready</TextBlock>
-            </StatusBarItem>
-            <StatusBarItem Grid.Column="1">
-                <TextBlock>Set</TextBlock>
-            </StatusBarItem>
-            <StatusBarItem Grid.Column="2">
-                <TextBlock>Go!</TextBlock>
-            </StatusBarItem>
-        </StatusBar>    
+        <StatusBar.ItemsPanel>
+            <ItemsPanelTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </ItemsPanelTemplate>
+        </StatusBar.ItemsPanel>
+        <StatusBarItem Grid.Column="0">
+            <TextBlock Text="{Binding LongStatus,Mode=TwoWay}"/>
+        </StatusBarItem>
+        <StatusBarItem Grid.Column="1">
+            <TextBlock Text="{Binding MiddleStatus,Mode=TwoWay}"/>
+        </StatusBarItem>
+        <StatusBarItem Grid.Column="2">
+            <TextBlock Text="{Binding EndStatus,Mode=TwoWay}"/>
+        </StatusBarItem>
+    </StatusBar>
 </UserControl>
