@@ -14,7 +14,7 @@ namespace ResponsiveWorkManager.ViewModels
 		private string versionNumber;
 
 		public MainWindowViewModel()
-		{
+		{			
 			this.StatusBarVM = new StatusBarViewModel();
 			this.selectedWindow = new WorkItemsViewModel(this.StatusBarVM);
 			this.VersionNumber = $"Ver - {Assembly.GetEntryAssembly().GetName().Version.ToString()}";
@@ -44,20 +44,20 @@ namespace ResponsiveWorkManager.ViewModels
 				if (selectedWindow != value)
 				{
 					selectedWindow = value;
-					OnPropertyChanged("SelectedWindow");
+					OnPropertyChanged(nameof(SelectedWindow));
 				}
 			}
-		}
+		}	
 
 		public StatusBarViewModel StatusBarVM
 		{
 			get { return statusBarVM; }
-			set
+			set 
 			{
 				if (statusBarVM != value)
 				{
 					statusBarVM = value;
-					OnPropertyChanged("StatusBarVM");
+					OnPropertyChanged(nameof(StatusBarVM));
 				}
 			}
 		}
@@ -70,7 +70,7 @@ namespace ResponsiveWorkManager.ViewModels
 				if (versionNumber != value)
 				{
 					versionNumber = value;
-					OnPropertyChanged("VersionNumber");
+					OnPropertyChanged(nameof(versionNumber));
 				}
 			}
 		}

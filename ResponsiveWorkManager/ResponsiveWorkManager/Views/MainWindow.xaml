@@ -6,12 +6,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ResponsiveWorkManager.ViewModels"
         xmlns:view="clr-namespace:ResponsiveWorkManager.Views"
-        Icon="pack://application:,,,/IconsLibrary;component/UI-48/Taskbar-Icon.ico"
-        xmlns:sBar="clr-namespace:ResponsiveWorkManager.StatusBar"
+        xmlns:us="clr-namespace:ResponsiveWorkManager.StatusBar"
+        Icon="pack://application:,,,/IconsLibrary;component/UI-48/Taskbar-Icon.ico"        
         mc:Ignorable="d"
         x:Name="winMainWindow"
         Title="MainWindow" 
-        Height="750" 
+        Height="780" 
         Width="1350"
         MinWidth="450"
         WindowStartupLocation="CenterScreen"
@@ -34,6 +34,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:LeaveDetailsViewModel}">
             <view:LeaveDetails/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:StatusBarViewModel}">
+            <us:StatusBarControl/>
         </DataTemplate>
     </Window.Resources>
 
@@ -138,7 +141,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -163,15 +166,15 @@
                     <Icon:PackIconMaterial Kind="Bell"/>
                 </Button>
 
-                <!--Page Title-->
+                <!--Main Content-->
                 <Border Grid.Row ="1" CornerRadius="50 0 0 0" Background="#623ed0" >
                     <ContentControl Content="{Binding SelectedWindow}"/>
                 </Border>
 
                 <!--Status Bar-->
-                <ContentControl Grid.Row="2">
-                    <sBar:StatusBarControl DataContext="{Binding StatusBarVM}"/>
-                </ContentControl>
+                <Border Grid.Row ="2" CornerRadius="2" Background="Transparent" Margin="2 5 0 5" >
+                    <ContentControl x:Name="statusBar" Content="{Binding StatusBarVM}"/>
+                </Border>
             </Grid>
         </Grid>
     </Border>
